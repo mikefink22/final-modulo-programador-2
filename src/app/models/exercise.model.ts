@@ -15,6 +15,7 @@ export interface McExercise extends BaseExercise {
   options: string[];
   correct_index: number;
   explanation: string;
+  option_explanations?: string[];
 }
 
 export interface CodeExercise extends BaseExercise {
@@ -42,9 +43,14 @@ export function isExercise(item: any): item is Exercise {
   if (!['mc', 'code', 'concept'].includes(item.type)) return false;
 
   if (item.type === 'mc') {
-    return Array.isArray(item.options) && 
+    const hasValidOptions = Array.isArray(item.options) && 
            typeof item.correct_index === 'number' && 
            typeof item.explanation === 'string';
+    if (!hasValidOptions) return false;
+    if (item.option_explanations !== undefined && !Array.isArray(item.option_explanations)) {
+      return false;
+    }
+    return true;
   }
   if (item.type === 'code') {
     return typeof item.starter_code === 'string' && 

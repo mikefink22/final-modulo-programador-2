@@ -39,7 +39,13 @@ Estructura exacta por tipo:
   "code_snippet": "código si aplica, o null",
   "options": ["opcion 0", "opcion 1", "opcion 2", "opcion 3"],
   "correct_index": 0,
-  "explanation": "por qué es correcta y por qué fallan las otras, citando el material"
+  "explanation": "resumen general de por qué es correcta citando el material",
+  "option_explanations": [
+    "por qué la opción 0 es correcta o incorrecta",
+    "por qué la opción 1 es correcta o incorrecta",
+    "por qué la opción 2 es correcta o incorrecta",
+    "por qué la opción 3 es correcta o incorrecta"
+  ]
 }
 
 // type: "code"

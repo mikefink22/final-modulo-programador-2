@@ -10,6 +10,8 @@ Sin backend ni base de datos: el contenido de estudio se sirve directamente desd
 
 Los ejercicios utilizan una **discriminated union** discriminada por la propiedad `type` (`'mc'`, `'code'`, `'concept'`).
 
+> **Nota sobre `option_explanations` (en `McExercise`)**: Campo opcional (`string[]`) que permite definir retroalimentación individual por cada opción (coincidiendo 1:1 con el array `options`), emulando la interfaz interactiva de cuestionarios de NotebookLM. Si no está presente, se utiliza únicamente el campo general `explanation`.
+
 ```typescript
 export type SubjectType = 'angular' | 'drf' | 'metodologias';
 export type ExerciseType = 'mc' | 'code' | 'concept';
@@ -28,6 +30,7 @@ export interface McExercise extends BaseExercise {
   options: string[];
   correct_index: number;
   explanation: string;
+  option_explanations?: string[];
 }
 
 export interface CodeExercise extends BaseExercise {
@@ -55,9 +58,14 @@ export function isExercise(item: any): item is Exercise {
   if (!['mc', 'code', 'concept'].includes(item.type)) return false;
 
   if (item.type === 'mc') {
-    return Array.isArray(item.options) && 
+    const hasValidOptions = Array.isArray(item.options) && 
            typeof item.correct_index === 'number' && 
            typeof item.explanation === 'string';
+    if (!hasValidOptions) return false;
+    if (item.option_explanations !== undefined && !Array.isArray(item.option_explanations)) {
+      return false;
+    }
+    return true;
   }
   if (item.type === 'code') {
     return typeof item.starter_code === 'string' && 
