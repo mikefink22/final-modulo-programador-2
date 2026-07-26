@@ -1,59 +1,78 @@
-# PracticaFinal
+# PracticaFinal — App de Autoevaluación
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.10.
+Aplicación web interactiva desarrollada en **Angular** (Componentes Standalone) para la preparación y autoevaluación en el examen final de la carrera de Programador Web (materias: **Angular**, **Django REST Framework** y **Metodología de Desarrollo de Sistemas**).
 
-## Development server
+El proyecto opera **sin backend ni base de datos**: todo el contenido de estudio se sirve dinámicamente desde archivos JSON estáticos precargados en el cliente.
 
-To start a local development server, run:
+---
 
-```bash
-ng serve
+## 🚀 Arquitectura y Cómo Funciona
+
+1. **Generación de Contenido con IA (Proceso Externo)**:
+   - El material de estudio oficial (PDFs, apuntes de cátedra) se procesa mediante una notebook de IA (NotebookLM / Gemini) siguiendo una plantilla de prompt estandarizada.
+   - La IA produce tandas de ejercicios tipados (`mc` para multiple choice, `code` para ejercicios de código y `concept` para preguntas abiertas).
+2. **Almacenamiento Estático**:
+   - Cada tanda de contenido se almacena como un archivo JSON (`tanda-N.json`) en `src/assets/data/<materia>/` y se registra en su correspondiente manifest `index.json`.
+3. **Carga y Quiz Dinámico en Angular**:
+   - La aplicación Angular consume los JSONs dinámicamente mediante `QuizService` y renderiza el flujo de autoevaluación filtrable por materia y tema.
+
+---
+
+## 📂 Estructura del Repositorio
+
+```text
+practica-final/
+├── .agents/
+│   └── AGENTS.md          # Reglas de trabajo para agentes y asistentes de IA
+├── docs/
+│   ├── spec.md            # Especificación técnica, modelo de datos e interfaces
+│   ├── roadmap.md         # Checklist y estado de avance por fases
+│   └── prompts.md         # Plantilla del prompt externo para generación de tandas JSON
+├── src/
+│   ├── app/
+│   │   ├── models/        # Interfaces TypeScript (Exercise, McExercise, etc.)
+│   │   ├── services/      # Servicios (QuizService para carga de datos)
+│   │   ├── components/    # Componentes UI reusables (quiz-router, mc-question, etc.)
+│   │   └── pages/         # Pantallas principales (home, quiz)
+│   └── assets/
+│       └── data/          # Tandas e índices de contenido JSON por materia
+└── README.md
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+---
 
-## Code scaffolding
+## 📚 Documentación Interna
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+- 📋 **[Especificación Técnica (spec.md)](docs/spec.md)**: Interfaces TypeScript, contratos de componentes y estrategia de validación/testing.
+- 🗺️ **[Roadmap del Proyecto (roadmap.md)](docs/roadmap.md)**: Checklist detallado del avance del desarrollo por fases.
+- 🤖 **[Prompts de Generación (prompts.md)](docs/prompts.md)**: Plantilla estándar para generar tandas de ejercicios mediante la notebook de IA.
+- 🤖 **[Protocolo de Agentes (.agents/AGENTS.md)](.agents/AGENTS.md)**: Guía de comandos, reglas y flujo de git para asistentes de IA.
 
+---
+
+## 🛠️ Comandos de Desarrollo Local
+
+### Requisitos Previos
+- Node.js (v18 o superior)
+- Angular CLI (`npm install -g @angular/cli`)
+
+### Servidor de Desarrollo
+Para ejecutar la aplicación localmente:
 ```bash
-ng generate component component-name
+npm install
+ng serve -o
 ```
+Navega a `http://localhost:4200/`. La aplicación se recargará automáticamente ante cualquier cambio en el código fuente.
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
+### Pruebas Unitarias
+Para ejecutar las pruebas unitarias:
 ```bash
 ng test
 ```
 
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
+### Compilación para Producción
+Para compilar los artefactos de producción:
 ```bash
-ng e2e
+ng build
 ```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Los archivos optimizados se generarán dentro de la carpeta `dist/`.
