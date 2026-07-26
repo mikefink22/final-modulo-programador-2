@@ -15,7 +15,7 @@
 
 ---
 
-## Protocolo de Git y Ramas
+## Protocolo de Git y Ramas (Paso a Paso)
 1. **Verificar estado actual**: Ejecutar `git status` antes de iniciar cualquier tarea.
 2. **Nunca trabajar directo sobre `main` ni `develop`**.
 3. **Flujo de inicio de tarea**:
@@ -23,15 +23,17 @@
    - `git pull origin develop`
    - `git checkout -b feature/<nombre-tarea>`
 4. **Commits atómicos**: Realizar commits pequeños y frecuentes por cada hito completado y probado.
-5. **Flujo de finalización de tarea**:
+5. **Flujo de finalización de tarea y PR**:
    - Asegurar que `ng test` o compilación no arrojen errores.
-   - **Pushear la rama feature**: `git push origin feature/<nombre-tarea>` (estando aún en la rama `feature`).
-   - `git checkout develop`
-   - `git pull origin develop` (o merge local `git merge feature/<nombre-tarea>`).
-   - Actualizar `docs/roadmap.md` marcando el ítem como completado `[x]`.
-   - Commitear la actualización del roadmap en `develop`.
-   - Pushear `develop`: `git push origin develop`.
-   - Eliminar la rama local: `git branch -d feature/<nombre-tarea>`.
+   - **Pushear la rama feature**: `git push origin feature/<nombre-tarea>`.
+   - **Entregar Walkthrough/Resumen para el PR**: Generar un artifact `walkthrough.md` con el resumen estructurado para que el usuario cree/pegue la descripción del Pull Request en GitHub.
+   - **Esperar el merge manual del usuario en GitHub**.
+   - **Sincronizar y limpiar local**:
+     - `git checkout develop`
+     - `git pull origin develop`
+     - Actualizar `docs/roadmap.md` marcando el ítem completado `[x]`.
+     - Commitear y pushear `develop`: `git push origin develop`.
+     - Eliminar la rama local: `git branch -d feature/<nombre-tarea>`.
 
 ---
 
@@ -52,4 +54,12 @@ Formato: `<tipo>(<alcance opcional>): <descripción concisa en español>`
 - `chore:` Mantenimiento o configuración
 - `docs:` Cambios en la documentación
 
-Ejemplo: `feat(quiz-service): implementar carga de tandas mediante index.json`
+**Estructura de Commits Cortos**: Usar múltiples flags `-m` para separar el título conciso de los detalles de la implementación:
+```bash
+git commit -m "<tipo>(<alcance>): <título corto en español>" -m "- <detalle de cambio 1>" -m "- <detalle de cambio 2>"
+```
+
+Ejemplo:
+```bash
+git commit -m "feat(quiz-service): cargar tandas dinámicas desde manifests" -m "- Leer index.json por materia" -m "- Aplicar forkJoin sobre tandas JSON"
+```

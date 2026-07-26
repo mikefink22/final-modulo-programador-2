@@ -7,8 +7,8 @@ Estado general del proyecto. Marcar cada ítem al completarlo (`[x]`).
 - [x] Definición del modelo de datos (`Exercise`: `mc` | `code` | `concept`)
 - [x] Definición de la arquitectura de datos estáticos y manifests (`index.json`)
 - [x] Reestructuración y eficientización de la documentación (`README.md`, `spec.md`, `prompts.md`, `AGENTS.md`)
-- [ ] Crear `src/app/models/exercise.model.ts` con interfaces y type guards
-- [ ] Crear estructura inicial en `src/assets/data/<materia>/index.json` para las 3 materias
+- [x] Crear `src/app/models/exercise.model.ts` con interfaces y type guards
+- [x] Crear estructura inicial en `src/assets/data/<materia>/index.json` para las 3 materias
 
 ## Fase 1 — Servicio de datos
 - [ ] Implementar `QuizService.getExercises()` con soporte para carga de manifests y aplanado
@@ -17,7 +17,7 @@ Estado general del proyecto. Marcar cada ítem al completarlo (`[x]`).
 
 ## Fase 2 — Contenido de Estudio
 - [ ] Notebook Angular cargado con apuntes + primera tanda generada (`tanda-1.json`)
-- [ ] Notebook DRF cargado with apuntes + primera tanda generada (`tanda-1.json`)
+- [ ] Notebook DRF cargado con apuntes + primera tanda generada (`tanda-1.json`)
 - [ ] Notebook Metodologías cargado con apuntes + primera tanda generada (`tanda-1.json`)
 
 ## Fase 3 — Componentes de UI
@@ -42,3 +42,4 @@ Estado general del proyecto. Marcar cada ítem al completarlo (`[x]`).
 
 ## 📝 Notas de Avance
 - **2026-07-26**: Análisis integral de coherencia documental. Reestructuración de `README.md` (100% en español), actualización de `spec.md` con interfaces TypeScript y estrategia de testing de JSON, clarificación de proceso externo en `prompts.md` y alineación con `.agents/AGENTS.md`.
+- **2026-07-26**: Creación de `src/app/models/exercise.model.ts` (interfaces TypeScript y type guard `isExercise`) e inicialización de carpetas de datos `src/assets/data/{angular,drf,metodologias}/index.json`.
