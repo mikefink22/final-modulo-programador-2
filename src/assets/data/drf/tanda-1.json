@@ -1,0 +1,257 @@
+[
+  {
+    "id": 1,
+    "subject": "drf",
+    "topic": "Arquitectura MTV vs MVC",
+    "type": "mc",
+    "question": "¿Qué componentes forman la arquitectura utilizada por Django?",
+    "code_snippet": null,
+    "options": [
+      "Modelo, Template, Vista",
+      "Modelo, Vista, Controlador",
+      "Mapeo, Template, Vista",
+      "Modelo, Transacción, Vista"
+    ],
+    "correct_index": 0,
+    "explanation": "Django adopta una variante del clásico patrón MVC llamada Modelo Template Vista (MTV). El Modelo maneja los datos, el Template define la presentación visual (HTML), y la Vista define la lógica procesando peticiones y respuestas."
+  },
+  {
+    "id": 2,
+    "subject": "drf",
+    "topic": "Creación de entorno virtual",
+    "type": "code",
+    "instructions": "Escribe el comando en la terminal para crear un entorno virtual en Python llamado 'env'.",
+    "starter_code": "python -m venv ",
+    "solution_code": "python -m venv env",
+    "explanation": "El comando 'python -m venv env' ejecuta el módulo venv de Python para crear un directorio de entorno virtual llamado 'env'."
+  },
+  {
+    "id": 15,
+    "subject": "drf",
+    "topic": "Flujo de trabajo MTV",
+    "type": "concept",
+    "question": "Resume cómo interactúan los componentes Modelo, Template y Vista cuando un usuario envía una solicitud a un proyecto web tradicional en Django.",
+    "expected_answer": "Tras mapearse la URL entrante (urls.py), la Vista procesa la solicitud del usuario, aplicando la lógica de negocio; si necesita datos se comunica con el Modelo, el cual opera con la base de datos. Una vez extraídos, la Vista envía estos resultados a un Template, el cual renderiza el HTML estructurado como respuesta de vuelta hacia el usuario.",
+    "key_points": [
+      "Vista actúa como orquestador y ejecuta lógica de negocio",
+      "Modelo interactúa con la base de datos",
+      "Template genera la presentación de la respuesta final"
+    ]
+  },
+  {
+    "id": 16,
+    "subject": "drf",
+    "topic": "Migraciones (makemigrations)",
+    "type": "mc",
+    "question": "¿Cuál es la función exacta de ejecutar el comando 'python manage.py makemigrations'?",
+    "code_snippet": null,
+    "options": [
+      "Aplica los cambios directamente a las tablas de la base de datos real.",
+      "Crea o actualiza los archivos de registro de migración detectando cambios en el código de los modelos.",
+      "Inicia la ejecución del servidor web local del lado del backend.",
+      "Descarga y migra nuevas dependencias dentro del entorno virtual."
+    ],
+    "correct_index": 1,
+    "explanation": "El comando makemigrations lee los modelos y genera un archivo de migración que describe las instrucciones SQL o cambios lógicos a futuro. Es un paso de preparación, ya que 'migrate' es el comando encargado de aplicarlos en la base de datos real."
+  },
+  {
+    "id": 17,
+    "subject": "drf",
+    "topic": "Serialización de un QuerySet",
+    "type": "code",
+    "instructions": "Al serializar múltiples registros en DRF (como una lista de todos los usuarios), asigna el argumento que indica al serializador que debe procesar una lista y no un objeto único.",
+    "starter_code": "users = User.objects.all()\nserializer = UserSerializer(users, )",
+    "solution_code": "users = User.objects.all()\nserializer = UserSerializer(users, many=True)",
+    "explanation": "El parámetro many=True indica al serializador de DRF que debe procesar un QuerySet o colección de múltiples objetos en lugar de un objeto único."
+  },
+  {
+    "id": 21,
+    "subject": "drf",
+    "topic": "Propósito de manage.py",
+    "type": "concept",
+    "question": "¿Cuál es la utilidad del script 'manage.py' generado automáticamente al iniciar un proyecto de Django?",
+    "expected_answer": "El archivo manage.py funciona como una herramienta de administración principal o consola de línea de comandos para el proyecto. Mediante su uso podemos levantar el servidor local de desarrollo (runserver), aplicar las migraciones, interactuar con la consola shell del entorno y registrar nuevos superusuarios o nuevas apps.",
+    "key_points": [
+      "Es el punto de entrada de la línea de comandos",
+      "Gestiona utilidades del servidor (ej. runserver)",
+      "Permite ejecutar operaciones sobre la base de datos (migraciones)"
+    ]
+  },
+  {
+    "id": 22,
+    "subject": "drf",
+    "topic": "Validación de JSON",
+    "type": "mc",
+    "question": "Según los fundamentos sobre JSON en el material de estudio, ¿cuál de estas reglas de sintaxis de formato es estricta?",
+    "code_snippet": "{\n  \"usuario\": {\n    \"id\": 123\n  }\n}",
+    "options": [
+      "El lenguaje impone que las claves de los objetos utilicen estrictamente comillas dobles (\").",
+      "Las comillas simples (') están permitidas para nombres de propiedades, pero no para cadenas de valor.",
+      "Las propiedades de los objetos se pueden omitir de ir entrecomilladas similar al lenguaje JavaScript.",
+      "Permite incluir cualquier tipo de objeto en memoria, incluyendo funciones predefinidas."
+    ],
+    "correct_index": 0,
+    "explanation": "JSON requiere utilizar comillas dobles de forma excluyente para toda cadena de texto y también obligatoriamente para los nombres de las propiedades. Usar formato JavaScript con comillas simples o sin ellas es un error que produce un objeto inválido."
+  },
+  {
+    "id": 23,
+    "subject": "drf",
+    "topic": "Creación inicial del proyecto",
+    "type": "code",
+    "instructions": "Escribe el argumento utilizado tras llamar a django-admin para construir un nuevo proyecto de Django desde cero.",
+    "starter_code": "django-admin _____ mi_proyecto .",
+    "solution_code": "django-admin startproject mi_proyecto .",
+    "explanation": "El comando para inicializar la estructura arquitectónica de un proyecto es 'startproject'. Esto construirá la carpeta del sistema y los componentes base (settings, urls, manage.py)."
+  },
+  {
+    "id": 24,
+    "subject": "drf",
+    "topic": "Gestión de URLs modulares",
+    "type": "concept",
+    "question": "¿Por qué es importante en la arquitectura de Django separar las rutas (URLs) por aplicación mediante la instrucción include()?",
+    "expected_answer": "Separar las rutas modularmente por aplicación, mediante el uso de urls.py propios de cada una, facilita la organización y delegación del código, permitiendo reusar esas aplicaciones en distintos entornos o proyectos y evitando que el archivo principal del proyecto urls.py de Django se vuelva extremadamente largo e inmanejable.",
+    "key_points": [
+      "Previene que el archivo principal urls.py se congestione",
+      "Fomenta la modularidad",
+      "Facilita la reutilización de las apps"
+    ]
+  },
+  {
+    "id": 25,
+    "subject": "drf",
+    "topic": "Panel de Administración",
+    "type": "mc",
+    "question": "¿Qué comando es necesario ejecutar para crear una cuenta con privilegios totales, que acceda directamente al Panel de Administración (/admin)?",
+    "code_snippet": null,
+    "options": [
+      "python manage.py new_admin",
+      "python manage.py generateadmin",
+      "python manage.py createsuperuser",
+      "python admin.py makeuser"
+    ],
+    "correct_index": 2,
+    "explanation": "El comando 'python manage.py createsuperuser' interactúa en consola pidiendo un username, email y password para crear un registro en la base de datos de Auth con atributos máximos, posibilitando así el logueo de gestión dentro de la ruta /admin."
+  },
+  {
+    "id": 26,
+    "subject": "drf",
+    "topic": "Restricciones a Campos de Modelos",
+    "type": "mc",
+    "question": "¿Qué comportamiento específico le indica a la base de datos el argumento unique=True en la clase Model?",
+    "code_snippet": "dni = models.CharField(max_length=20, unique=True)",
+    "options": [
+      "Garantiza que no existan valores duplicados en esa columna a nivel global.",
+      "Asigna un identificador universal autonumérico primario a esa fila.",
+      "Permite validar si el campo está vacío temporalmente.",
+      "Otorga permisos de validación personalizada a través de funciones."
+    ],
+    "correct_index": 0,
+    "explanation": "La restricción unique=True afecta directamente a cómo se guarda la columna, indicando al motor de BD o a las validaciones de modelos que no se toleren dos registros con idéntico valor en la misma columna de tabla, evitando la redundancia."
+  },
+  {
+    "id": 27,
+    "subject": "drf",
+    "topic": "Impacto de no migrar datos",
+    "type": "mc",
+    "question": "En el flujo de configuración de modelos, si creas el modelo pero te olvidas de aplicar o correr la migración, ¿qué consecuencia habrá?",
+    "code_snippet": null,
+    "options": [
+      "El modelo existirá solo en código, pero la base de datos no generará la estructura ni las tablas subyacentes.",
+      "Django alertará el conflicto y solucionará la carencia migrando el modelo por detrás en el siguiente runserver.",
+      "La base de datos inferirá los tipos al guardar el primer registro y construirá dinámicamente la tabla.",
+      "Afectará únicamente al panel /admin, pero la API HTTP continuará interactuando normalmente sin fallos."
+    ],
+    "correct_index": 0,
+    "explanation": "El paso de migrar es esencial para materializar las tablas físicas y alterar esquemas de la DB. Si solo definimos modelos o solo hacemos un 'makemigrations' sin 'migrate', la estructura existirá como clases en Python, pero fallarán las consultas porque la tabla de DB será inexistente."
+  },
+  {
+    "id": 28,
+    "subject": "drf",
+    "topic": "Tipos de Serialización en DRF",
+    "type": "concept",
+    "question": "¿Cuál es la principal ventaja técnica de emplear ModelSerializer en lugar de la clase genérica Serializer de DRF?",
+    "expected_answer": "ModelSerializer proporciona gran velocidad de desarrollo puesto que se genera automáticamente sobre la base de un modelo Django, ahorrando tiempo de escribir código a mano, e infiriendo los tipos de campos y métodos de validación de forma nativa a partir del modelo. En la versión normal (Serializer) habría que codificar todas esas reglas explícitamente, campo a campo.",
+    "key_points": [
+      "Autogeneración basada en Modelos Django ya creados",
+      "Inferencia automática de campos, tipos y validaciones",
+      "Reducción sustancial del volumen y repetición de código"
+    ]
+  },
+  {
+    "id": 29,
+    "subject": "drf",
+    "topic": "Funcionamiento de Ruteadores (Routers)",
+    "type": "mc",
+    "question": "¿Qué tarea automática realizan herramientas como DefaultRouter dentro de una arquitectura en DRF?",
+    "code_snippet": null,
+    "options": [
+      "Aseguran y filtran consultas malintencionadas evitando accesos anónimos.",
+      "Enrutan de manera dinámica y generan rutas estandarizadas a endpoints asociadas con ViewSets, como /libros y /libros/{id}.",
+      "Serializan objetos complejos y delegan diccionarios anidados hacia las vistas APIView.",
+      "Conectan automáticamente la capa del cliente HTTP con las configuraciones del archivo settings.py."
+    ],
+    "correct_index": 1,
+    "explanation": "Routers como DefaultRouter actúan en la entrada principal organizando las URLs hacia los ViewSets correctos, mapeando endpoints habituales y estandarizando métodos enrutados sin necesidad explícita de escribir a mano todas las rutas path() por cada método CRUD posible."
+  },
+  {
+    "id": 30,
+    "subject": "drf",
+    "topic": "Diferencia entre validadores de campos",
+    "type": "mc",
+    "question": "¿Qué representa que un campo defina la restricción blank=True?",
+    "code_snippet": "description = models.TextField(blank=True)",
+    "options": [
+      "Modifica la columna para forzar su eliminación luego de un periodo sin actividad.",
+      "Obliga al modelo a crear espacios en blanco cuando el texto ingresado no satisface el max_length.",
+      "Habilita el comportamiento del formulario en Django, permitiendo explícitamente que no se obligue a ingresar nada.",
+      "Interfiere en la base de datos permitiendo únicamente la inserción de valor nulo globalmente."
+    ],
+    "correct_index": 2,
+    "explanation": "El atributo blank=True incide fundamentalmente sobre el comportamiento de la validación del lado de los formularios. Define que el campo no tiene la obligación forzosa de estar completado en el proceso de recolección de entradas, a diferencia de null=True, que es un concepto estricto del gestor de Base de Datos."
+  },
+  {
+    "id": 31,
+    "subject": "drf",
+    "topic": "Códigos de Error HTTP de Cliente",
+    "type": "mc",
+    "question": "Dentro del abanico de respuestas de un API REST, si la API devuelve el código '400 Bad Request', ¿qué se está indicando?",
+    "code_snippet": null,
+    "options": [
+      "El servidor de bases de datos falló y no está disponible para contestar por error interno.",
+      "El cliente envió una solicitud incorrecta, con formato mal construido, que la API rechaza para operar.",
+      "La solicitud logró la interacción exitosa y se modificaron correctamente los recursos locales.",
+      "La solicitud requiere autenticación e ingresar una sesión correcta obligatoriamente antes de seguir."
+    ],
+    "correct_index": 1,
+    "explanation": "El rango de estado HTTP 4xx pertenece a errores y fallas del lado cliente; la variante particular 400 Bad Request notifica que la sintaxis de la petición no tiene un formato válido, lo que impide que la API trabaje satisfactoriamente el pedido. Un 401 en su lugar es el fallo de autenticación."
+  },
+  {
+    "id": 32,
+    "subject": "drf",
+    "topic": "Serializer Anidado para ForeignKeys",
+    "type": "concept",
+    "question": "Cuando se define un serializador sobre un modelo que posee una relación tipo ForeignKey (uno a muchos), por defecto DRF solo expondrá el ID de la relación. ¿Cómo se soluciona si se requiere recuperar la información entera del objeto relacionado?",
+    "expected_answer": "Para obtener toda la información del recurso subyacente y no solamente su identificador foráneo primario en el JSON de salida, se debe utilizar un concepto llamado Serializer anidado. Consiste en definir y llamar el serializador de esa entidad relacionada como un atributo en la clase Meta del serializador principal.",
+    "key_points": [
+      "El formato por defecto en ForeignKey solo proporciona el ID",
+      "Debe generarse y llamarse a un Serializer anidado explicitando el modelo relacionado",
+      "Ese serializador se define dentro de la declaración del serializador que lo invoca"
+    ]
+  },
+  {
+    "id": 33,
+    "subject": "drf",
+    "topic": "Python: Configuración del Sistema",
+    "type": "mc",
+    "question": "¿Cuál es la versión mínima recomendada de Python para instalar las dependencias previas requeridas según el material oficial del framework Django expuesto?",
+    "code_snippet": null,
+    "options": [
+      "Python 2.7",
+      "Python 3.5",
+      "Python 3.8",
+      "Python 3.12"
+    ],
+    "correct_index": 2,
+    "explanation": "En la sección de requisitos previos para la instalación básica en un entorno virtual se advierte y se insta que es necesario contar con un intérprete Python 3.8 o superior, e instalar también el gestor de paquetes pip en ese entorno."
+  }
+]
