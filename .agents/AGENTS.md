@@ -38,12 +38,13 @@
 ---
 
 ## Reglas de Desarrollo y Buenas Prácticas
-1. **No crear carpetas vacías de antemano**: Permitir que `ng generate` o la creación explícita de archivos maneje las carpetas.
-2. **Contrato de Componentes**: Releer `docs/spec.md` antes de crear o editar cualquier componente o servicio.
-3. **Comunicación entre Componentes**: Utilizar exclusivamente `@Input` y `@Output` (`EventEmitter`) para intercambio de datos entre componentes UI. El estado global del quiz se maneja únicamente en `QuizService`.
-4. **Tandas JSON**: Las tandas de ejercicios provienen del prompt documentado en `docs/prompts.md`. No editar manualmente el contenido salvo correcciones puntuales de sintaxis JSON.
-5. **Nuevas Tandas**: Al agregar una nueva tanda (`tanda-N.json`), registrar siempre el nombre del archivo dentro del array manifest `index.json` de la materia correspondiente.
-6. **Evolución del Modelo**: Si se agrega o modifica un campo en `Exercise`, actualizar `docs/spec.md` primero.
+1. **Explicación selectiva de comandos**: Explicar brevemente el propósito únicamente de comandos técnicos, avanzados o menos cotidianos (ej. `npx tsc --noEmit`, banderas especiales de Angular CLI). Omitir explicaciones para comandos básicos cotidianos de Git (`git status`, `git add`, `git commit`, `git checkout`, `git push`, `git pull`).
+2. **No crear carpetas vacías de antemano**: Permitir que `ng generate` o la creación explícita de archivos maneje las carpetas.
+3. **Contrato de Componentes**: Releer `docs/spec.md` antes de crear o editar cualquier componente o servicio.
+4. **Comunicación entre Componentes**: Utilizar exclusivamente `@Input` y `@Output` (`EventEmitter`) para intercambio de datos entre componentes UI. El estado global del quiz se maneja únicamente en `QuizService`.
+5. **Tandas JSON**: Las tandas de ejercicios provienen del prompt documentado en `docs/prompts.md`. No editar manualmente el contenido salvo correcciones puntuales de sintaxis JSON.
+6. **Nuevas Tandas**: Al agregar una nueva tanda (`tanda-N.json`), registrar siempre el nombre del archivo dentro del array manifest `index.json` de la materia correspondiente.
+7. **Evolución del Modelo**: Si se agrega o modifica un campo en `Exercise`, actualizar `docs/spec.md` primero.
 
 ---
 
