@@ -1,6 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient } from '@angular/common/http';
+import { firstValueFrom } from 'rxjs';
 import { QuizService } from './quiz.service';
 import { Exercise } from '../models/exercise.model';
 
@@ -28,18 +29,18 @@ describe('QuizService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should return empty array if index.json is empty', (done) => {
-    service.getExercises('angular').subscribe((exercises) => {
-      expect(exercises).toEqual([]);
-      done();
-    });
+  it('should return empty array if index.json is empty', async () => {
+    const exercisesPromise = firstValueFrom(service.getExercises('angular'));
 
     const req = httpMock.expectOne('assets/data/angular/index.json');
     expect(req.request.method).toBe('GET');
     req.flush([]);
+
+    const exercises = await exercisesPromise;
+    expect(exercises).toEqual([]);
   });
 
-  it('should load tandas from index.json and filter valid exercises', (done) => {
+  it('should load tandas from index.json and filter valid exercises', async () => {
     const mockMc: Exercise = {
       id: 1,
       subject: 'angular',
@@ -51,16 +52,16 @@ describe('QuizService', () => {
       explanation: 'Es una directiva estructural'
     };
 
-    service.getExercises('angular').subscribe((exercises) => {
-      expect(exercises.length).toBe(1);
-      expect(exercises[0]).toEqual(mockMc);
-      done();
-    });
+    const exercisesPromise = firstValueFrom(service.getExercises('angular'));
 
     const indexReq = httpMock.expectOne('assets/data/angular/index.json');
     indexReq.flush(['tanda-1.json']);
 
     const tandaReq = httpMock.expectOne('assets/data/angular/tanda-1.json');
     tandaReq.flush([mockMc, { invalid: 'invalid exercise object' }]);
+
+    const exercises = await exercisesPromise;
+    expect(exercises.length).toBe(1);
+    expect(exercises[0]).toEqual(mockMc);
   });
 });
