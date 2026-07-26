@@ -20,15 +20,17 @@
 2. **Nunca trabajar directo sobre `main` ni `develop`**.
 3. **Flujo de inicio de tarea**:
    - `git checkout develop`
-   - `git pull origin develop` (si existiera remoto)
+   - `git pull origin develop`
    - `git checkout -b feature/<nombre-tarea>`
 4. **Commits atómicos**: Realizar commits pequeños y frecuentes por cada hito completado y probado.
 5. **Flujo de finalización de tarea**:
    - Asegurar que `ng test` o compilación no arrojen errores.
+   - **Pushear la rama feature**: `git push origin feature/<nombre-tarea>` (estando aún en la rama `feature`).
    - `git checkout develop`
-   - `git merge feature/<nombre-tarea>`
+   - `git pull origin develop` (o merge local `git merge feature/<nombre-tarea>`).
    - Actualizar `docs/roadmap.md` marcando el ítem como completado `[x]`.
-   - Commitear la actualización del roadmap.
+   - Commitear la actualización del roadmap en `develop`.
+   - Pushear `develop`: `git push origin develop`.
    - Eliminar la rama local: `git branch -d feature/<nombre-tarea>`.
 
 ---
