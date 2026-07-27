@@ -36,7 +36,21 @@ export class CodeExercise implements OnChanges {
 
   get isExactMatch(): boolean {
     if (!this.userCode || !this.exercise.solution_code) return false;
-    return this.userCode.trim().toLowerCase() === this.exercise.solution_code.trim().toLowerCase();
+    const cleanUser = this.userCode.trim().toLowerCase();
+    const cleanSolution = this.exercise.solution_code.trim().toLowerCase();
+
+    if (cleanUser === cleanSolution) {
+      return true;
+    }
+
+    if (this.exercise.starter_code && this.exercise.starter_code.includes('_____')) {
+      const filledCode = this.exercise.starter_code.replace('_____', this.userCode.trim());
+      if (filledCode.trim().toLowerCase() === cleanSolution) {
+        return true;
+      }
+    }
+
+    return false;
   }
 
   evaluate(correct: boolean) {

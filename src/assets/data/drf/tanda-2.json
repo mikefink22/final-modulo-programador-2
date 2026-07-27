@@ -74,7 +74,7 @@
     "code_snippet": null,
     "options": [
       "La aplicación define la conexión a la base de datos y el proyecto define los modelos de datos.",
-      "El proyecto se encarga del frontend y la aplicación se encarga strictly del backend.",
+      "El proyecto se encarga del frontend y la aplicación se encarga estrictamente del backend.",
       "Un proyecto puede contener solo una aplicación, mientras que una aplicación puede pertenecer a múltiples proyectos simultáneamente.",
       "El proyecto contiene la configuración global y las rutas principales, mientras que la aplicación es un módulo funcional reutilizable."
     ],
