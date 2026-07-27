@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CodeExercise as ICodeExercise } from '../../models/exercise.model';
 
@@ -9,15 +9,34 @@ import { CodeExercise as ICodeExercise } from '../../models/exercise.model';
   templateUrl: './code-exercise.html',
   styleUrl: './code-exercise.scss',
 })
-export class CodeExercise {
+export class CodeExercise implements OnChanges {
   @Input({ required: true }) exercise!: ICodeExercise;
   @Output() answered = new EventEmitter<{ correct: boolean }>();
 
+  userCode: string = '';
   showSolution: boolean = false;
   isSubmitted: boolean = false;
 
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['exercise'] && this.exercise) {
+      this.userCode = '';
+      this.showSolution = false;
+      this.isSubmitted = false;
+    }
+  }
+
+  onCodeInput(event: Event) {
+    const input = event.target as HTMLTextAreaElement;
+    this.userCode = input.value;
+  }
+
   toggleSolution() {
     this.showSolution = !this.showSolution;
+  }
+
+  get isExactMatch(): boolean {
+    if (!this.userCode || !this.exercise.solution_code) return false;
+    return this.userCode.trim().toLowerCase() === this.exercise.solution_code.trim().toLowerCase();
   }
 
   evaluate(correct: boolean) {
@@ -26,4 +45,5 @@ export class CodeExercise {
     this.answered.emit({ correct });
   }
 }
+
 

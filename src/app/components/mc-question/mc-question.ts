@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { McExercise } from '../../models/exercise.model';
 
@@ -9,12 +9,19 @@ import { McExercise } from '../../models/exercise.model';
   templateUrl: './mc-question.html',
   styleUrl: './mc-question.scss',
 })
-export class McQuestion {
+export class McQuestion implements OnChanges {
   @Input({ required: true }) exercise!: McExercise;
   @Output() answered = new EventEmitter<{ correct: boolean }>();
 
   selectedIndex: number | null = null;
   isSubmitted: boolean = false;
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['exercise']) {
+      this.selectedIndex = null;
+      this.isSubmitted = false;
+    }
+  }
 
   selectOption(index: number) {
     if (this.isSubmitted) return;

@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { QuizService } from '../../services/quiz.service';
@@ -17,6 +17,7 @@ export class Quiz implements OnInit {
   private route = inject(ActivatedRoute);
   private router = inject(Router);
   private quizService = inject(QuizService);
+  private cdr = inject(ChangeDetectorRef);
 
   subject?: SubjectType;
   exercises: Exercise[] = [];
@@ -39,6 +40,7 @@ export class Quiz implements OnInit {
   loadExercises() {
     this.isLoading = true;
     this.errorMessage = null;
+    this.cdr.markForCheck();
 
     this.quizService.getExercises(this.subject).subscribe({
       next: (data) => {
@@ -47,11 +49,13 @@ export class Quiz implements OnInit {
         if (data.length === 0) {
           this.errorMessage = 'No se encontraron ejercicios cargados para esta materia.';
         }
+        this.cdr.markForCheck();
       },
       error: (err) => {
         console.error('Error al cargar ejercicios:', err);
         this.errorMessage = 'Ocurrió un error al cargar los ejercicios de práctica.';
         this.isLoading = false;
+        this.cdr.markForCheck();
       },
     });
   }
@@ -71,6 +75,7 @@ export class Quiz implements OnInit {
     if (event.correct) {
       this.score++;
     }
+    this.cdr.markForCheck();
   }
 
   nextQuestion() {
@@ -82,6 +87,7 @@ export class Quiz implements OnInit {
     } else {
       this.isFinished = true;
     }
+    this.cdr.markForCheck();
   }
 
   restartQuiz() {
@@ -89,10 +95,12 @@ export class Quiz implements OnInit {
     this.score = 0;
     this.isCurrentAnswered = false;
     this.isFinished = false;
+    this.cdr.markForCheck();
   }
 
   goHome() {
     this.router.navigate(['/']);
   }
 }
+
 

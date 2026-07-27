@@ -6,9 +6,19 @@
 
   <h2 class="question-text">{{ exercise.question }}</h2>
 
+  <div class="concept-editor-box">
+    <div class="editor-header">✍️ Tu Respuesta Conceptual</div>
+    <textarea 
+      class="concept-editor-input" 
+      [value]="userAnswer" 
+      (input)="onAnswerInput($event)"
+      rows="5" 
+      placeholder="Escribe tu respuesta o resumen conceptual aquí antes de comparar..."></textarea>
+  </div>
+
   <div class="actions-row">
     <button type="button" class="btn btn-outline" (click)="toggleAnswer()">
-      {{ showModelAnswer ? '🙈 Ocultar Respuesta Modelo' : '👁️ Ver Respuesta Modelo y Puntos Clave' }}
+      {{ showModelAnswer ? '🙈 Ocultar Respuesta Modelo' : '👁️ Comparar con Respuesta Modelo y Puntos Clave' }}
     </button>
   </div>
 
@@ -34,7 +44,7 @@
   }
 
   <div class="self-eval-container">
-    <p class="eval-prompt">Autoevaluación: ¿Cubriste los puntos clave en tu respuesta mental?</p>
+    <p class="eval-prompt">Autoevaluación: ¿Cubriste los puntos clave en tu respuesta escrita o mental?</p>
     <div class="eval-buttons">
       <button 
         type="button" 
@@ -53,4 +63,5 @@
     </div>
   </div>
 </div>
+
 

@@ -6,14 +6,30 @@
 
   <h2 class="instructions-text">{{ exercise.instructions }}</h2>
 
-  <div class="code-box">
-    <div class="code-header">Código Base (Starter Code)</div>
-    <pre><code>{{ exercise.starter_code }}</code></pre>
+  @if (exercise.starter_code) {
+    <div class="starter-hint">
+      <span class="hint-label">Pista / Estructura base:</span> <code>{{ exercise.starter_code }}</code>
+    </div>
+  }
+
+  <div class="code-editor-box">
+    <div class="code-header d-flex justify-content-between align-items-center">
+      <span>💻 Campo de Código / Comando</span>
+      @if (userCode && isExactMatch) {
+        <span class="badge-exact-match">✨ ¡Coincidencia Exacta!</span>
+      }
+    </div>
+    <textarea 
+      class="code-editor-input" 
+      [value]="userCode" 
+      (input)="onCodeInput($event)"
+      rows="4" 
+      placeholder="Escribe tu código o comando aquí..."></textarea>
   </div>
 
   <div class="actions-row">
     <button type="button" class="btn btn-outline" (click)="toggleSolution()">
-      {{ showSolution ? '🙈 Ocultar Solución' : '👁️ Ver Solución Recomendada' }}
+      {{ showSolution ? '🙈 Ocultar Solución' : '👁️ Comprobar con Solución Recomendada' }}
     </button>
   </div>
 
@@ -51,4 +67,5 @@
     </div>
   </div>
 </div>
+
 

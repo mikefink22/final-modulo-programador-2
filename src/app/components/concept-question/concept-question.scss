@@ -30,12 +30,39 @@
     }
   }
 
-  .question-text {
-    font-size: 1.35rem;
-    font-weight: 700;
-    color: var(--text-main);
-    line-height: 1.4;
-    margin-bottom: 24px;
+  .concept-editor-box {
+    margin-bottom: 20px;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+
+    .editor-header {
+      background: var(--code-header-bg);
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 8px 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .concept-editor-input {
+      width: 100%;
+      background: var(--bg-secondary);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      font-size: 0.98rem;
+      padding: 16px;
+      border: none;
+      outline: none;
+      resize: vertical;
+      line-height: 1.55;
+
+      &:focus {
+        box-shadow: inset 0 0 0 1px var(--primary);
+      }
+    }
   }
 
   .actions-row {
