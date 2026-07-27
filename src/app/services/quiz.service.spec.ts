@@ -1,9 +1,11 @@
+import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { TestBed } from '@angular/core/testing';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 import { QuizService } from './quiz.service';
 import { Exercise } from '../models/exercise.model';
+
 
 describe('QuizService', () => {
   let service: QuizService;

@@ -1,6 +1,8 @@
+import { describe, it, expect } from 'vitest';
 import { isExercise, McExercise } from '../models/exercise.model';
 import drfIndex from '../../assets/data/drf/index.json';
 import drfTanda1 from '../../assets/data/drf/tanda-1.json';
+
 
 describe('Data Integrity - Assets Validation', () => {
   it('drf index.json should list tanda-1.json', () => {

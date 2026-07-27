@@ -1,0 +1,30 @@
+<div class="home-container animate-fade-in">
+  <section class="hero-section">
+    <div class="hero-badge">🎓 Examen Final Programador Web</div>
+    <h1 class="hero-title">
+      Plataforma de <span class="gradient-text">Autoevaluación</span>
+    </h1>
+    <p class="hero-description">
+      Practicá y medí tus conocimientos en <strong>Angular 21</strong>, <strong>Django REST Framework</strong> y <strong>Metodologías Ágiles</strong> con ejercicios interactivos de opción múltiple, código y preguntas conceptuales.
+    </p>
+  </section>
+
+  <section class="selection-section">
+    <div class="section-header">
+      <h2>Elegí una Materia para Comenzar</h2>
+      <p>Podés enfocar tu práctica en una materia específica o hacer un examen global.</p>
+    </div>
+
+    <app-subject-filter 
+      [selectedSubject]="selectedSubject"
+      (subjectSelected)="onSubjectSelected($event)">
+    </app-subject-filter>
+
+    <div class="cta-container">
+      <button type="button" class="btn btn-primary start-btn" (click)="startQuiz()">
+        🚀 Iniciar Autoevaluación
+      </button>
+    </div>
+  </section>
+</div>
+

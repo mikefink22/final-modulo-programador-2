@@ -1,0 +1,66 @@
+<div class="quiz-container animate-fade-in">
+  @if (isLoading) {
+    <div class="loading-box glass-card">
+      <div class="spinner"></div>
+      <p>Cargando ejercicios de autoevaluación...</p>
+    </div>
+  } @else if (errorMessage) {
+    <div class="error-box glass-card">
+      <span class="error-icon">⚠️</span>
+      <h3>¡Atención!</h3>
+      <p>{{ errorMessage }}</p>
+      <button type="button" class="btn btn-primary" (click)="goHome()">
+        Volver a la Pantalla de Inicio
+      </button>
+    </div>
+  } @else if (isFinished) {
+    <app-results-summary 
+      [score]="score" 
+      [total]="exercises.length" 
+      (restart)="restartQuiz()">
+    </app-results-summary>
+  } @else if (currentExercise) {
+    <header class="quiz-header">
+      <div class="header-top">
+        <button type="button" class="btn btn-outline back-btn" (click)="goHome()">
+          ← Salir del Quiz
+        </button>
+
+        <div class="quiz-info">
+          <span class="subject-badge">
+            {{ subject ? (subject | uppercase) : 'TODAS LAS MATERIAS' }}
+          </span>
+          <span class="question-counter">
+            Pregunta <strong>{{ currentIndex + 1 }}</strong> de <strong>{{ exercises.length }}</strong>
+          </span>
+        </div>
+      </div>
+
+      <div class="progress-bar-track">
+        <div class="progress-bar-fill" [style.width.%]="progressPercentage"></div>
+      </div>
+    </header>
+
+    <main class="quiz-body">
+      <app-quiz-router 
+        [exercise]="currentExercise" 
+        (answered)="onAnswered($event)">
+      </app-quiz-router>
+    </main>
+
+    <footer class="quiz-footer">
+      <div class="footer-content">
+        <span class="current-score">Puntaje actual: <strong>{{ score }}</strong></span>
+        
+        <button 
+          type="button" 
+          class="btn btn-primary next-btn" 
+          [disabled]="!isCurrentAnswered"
+          (click)="nextQuestion()">
+          {{ currentIndex === exercises.length - 1 ? '🏁 Ver Resultados Finales' : 'Siguiente Pregunta →' }}
+        </button>
+      </div>
+    </footer>
+  }
+</div>
+

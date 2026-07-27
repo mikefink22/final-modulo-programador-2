@@ -20,12 +20,24 @@ export class QuizService {
     const subjectRequests = subjectsToLoad.map((sub) => this.loadSubjectExercises(sub));
 
     return forkJoin(subjectRequests).pipe(
-      map((exerciseArrays) => exerciseArrays.flat()),
+      map((exerciseArrays) => this.shuffleArray(exerciseArrays.flat())),
       catchError((error) => {
         console.error('Error al cargar ejercicios:', error);
         return of([]);
       })
     );
+  }
+
+  /**
+   * Algoritmo Fisher-Yates para desordenar aleatoriamente la lista de ejercicios.
+   */
+  private shuffleArray<T>(array: T[]): T[] {
+    const shuffled = [...array];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
   }
 
   /**
