@@ -2,18 +2,21 @@
   @case ('mc') {
     <app-mc-question 
       [exercise]="mcExercise" 
+      [savedState]="savedState"
       (answered)="onAnswered($event)">
     </app-mc-question>
   }
   @case ('code') {
     <app-code-exercise 
       [exercise]="codeExercise" 
+      [savedState]="savedState"
       (answered)="onAnswered($event)">
     </app-code-exercise>
   }
   @case ('concept') {
     <app-concept-question 
       [exercise]="conceptExercise" 
+      [savedState]="savedState"
       (answered)="onAnswered($event)">
     </app-concept-question>
   }
