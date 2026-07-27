@@ -29,10 +29,14 @@ export class Quiz implements OnInit {
   isCurrentAnswered: boolean = false;
   isFinished: boolean = false;
 
+  limit?: number;
+
   ngOnInit() {
     this.route.queryParams.subscribe((params) => {
       const subjectParam = params['subject'] as SubjectType | undefined;
+      const limitParam = params['limit'] ? parseInt(params['limit'], 10) : undefined;
       this.subject = subjectParam;
+      this.limit = limitParam && !isNaN(limitParam) ? limitParam : undefined;
       this.loadExercises();
     });
   }
@@ -42,7 +46,7 @@ export class Quiz implements OnInit {
     this.errorMessage = null;
     this.cdr.markForCheck();
 
-    this.quizService.getExercises(this.subject).subscribe({
+    this.quizService.getExercises(this.subject, this.limit).subscribe({
       next: (data) => {
         this.exercises = data;
         this.isLoading = false;

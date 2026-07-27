@@ -45,3 +45,4 @@ Estado general del proyecto. Marcar cada ítem al completarlo (`[x]`).
 - **2026-07-26**: Creación de `src/app/models/exercise.model.ts` (interfaces TypeScript y type guard `isExercise`) e inicialización de carpetas de datos `src/assets/data/{angular,drf,metodologias}/index.json`.
 - **2026-07-26**: Implementación de `QuizService` con `HttpClient`, `provideHttpClient`, carga de manifests `index.json`, desanidado con `switchMap`, aplanado de ejercicios y suite de pruebas unitarias en `quiz.service.spec.ts`.
 - **2026-07-26**: Implementación de componentes UI (`quiz-router`, `mc-question`, `code-exercise`, `concept-question`, `subject-filter`, `results-summary`), páginas (`home`, `quiz`), ruteo y shuffle de preguntas. Integration en `develop`.
+- **2026-07-26**: Implementación del selector dinámico de cantidad de preguntas por ronda (5, 10, 15, 20 o "Todas") y soporte del parámetro limit en QuizService y la vista Home.
