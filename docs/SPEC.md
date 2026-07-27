@@ -84,13 +84,15 @@ export function isExercise(item: any): item is Exercise {
 ## 3. Contrato de Componentes y Servicios
 
 ### 3.1 `QuizService`
-- `getExercises(subject?: SubjectType): Observable<Exercise[]>`
+- `getExercises(subject?: SubjectType, limit?: number): Observable<Exercise[]>`
 - **Estructura en assets**: Carpetas `angular/`, `drf/`, `metodologias/` dentro de `src/assets/data/`.
 - **Algoritmo de Carga**:
   1. Lee `assets/data/<materia>/index.json` (array de nombres de archivo JSON, ej. `["tanda-1.json"]`).
   2. Realiza un `forkJoin` (o `rxjs` combination) para descargar cada tanda listada.
   3. Aplana (`flat`) todos los arrays resultantes en un único array de ejercicios.
-  4. Si no se especifica `subject`, se cargan y combinan las 3 materias.
+  4. Aplica el algoritmo Fisher-Yates para desordenar los ejercicios aleatoriamente.
+  5. Si se especifica `limit` (`number > 0`), recorta el array desordenado retornando únicamente las primeras `N` preguntas (`slice(0, limit)`).
+  6. Si no se especifica `subject`, se cargan y combinan las 3 materias.
 - **Identificadores**: Los `id` de `Exercise` deben ser únicos *dentro* de cada tanda JSON.
 
 ### 3.2 `quiz-router` (Componente Router de Ejercicio)

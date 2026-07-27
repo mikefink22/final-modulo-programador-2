@@ -13,18 +13,37 @@ export class QuizService {
 
   /**
    * Obtiene la lista de ejercicios para una materia específica o para todas las materias.
-   * Carga dinámicamente los manifests (index.json) y cada tanda (tanda-N.json).
+   * Si se especifica limit, devuelve únicamente los primeros N ejercicios aleatorios.
    */
-  getExercises(subject?: SubjectType): Observable<Exercise[]> {
+  getExercises(subject?: SubjectType, limit?: number): Observable<Exercise[]> {
     const subjectsToLoad: SubjectType[] = subject ? [subject] : this.ALL_SUBJECTS;
     const subjectRequests = subjectsToLoad.map((sub) => this.loadSubjectExercises(sub));
 
     return forkJoin(subjectRequests).pipe(
-      map((exerciseArrays) => this.shuffleArray(exerciseArrays.flat())),
+      map((exerciseArrays) => {
+        const allExercises = this.shuffleArray(exerciseArrays.flat());
+        if (limit && limit > 0) {
+          return allExercises.slice(0, limit);
+        }
+        return allExercises;
+      }),
       catchError((error) => {
         console.error('Error al cargar ejercicios:', error);
         return of([]);
       })
+    );
+  }
+
+  /**
+   * Obtiene el total de ejercicios disponibles para una materia o para todas.
+   */
+  getExerciseCount(subject?: SubjectType): Observable<number> {
+    const subjectsToLoad: SubjectType[] = subject ? [subject] : this.ALL_SUBJECTS;
+    const subjectRequests = subjectsToLoad.map((sub) => this.loadSubjectExercises(sub));
+
+    return forkJoin(subjectRequests).pipe(
+      map((exerciseArrays) => exerciseArrays.flat().length),
+      catchError(() => of(0))
     );
   }
 
