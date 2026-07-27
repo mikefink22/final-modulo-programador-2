@@ -1,0 +1,35 @@
+<div class="results-card glass-card animate-fade-in">
+  <div class="feedback-icon">{{ feedbackMessage.icon }}</div>
+
+  <h2 class="feedback-title">{{ feedbackMessage.title }}</h2>
+  <p class="feedback-subtitle">{{ feedbackMessage.subtitle }}</p>
+
+  <div class="score-circle-container">
+    <div class="score-circle">
+      <span class="score-percentage">{{ percentage }}%</span>
+      <span class="score-ratio">{{ score }} / {{ total }} correctas</span>
+    </div>
+  </div>
+
+  <div class="metrics-grid">
+    <div class="metric-item">
+      <span class="metric-label">Respuestas Correctas</span>
+      <span class="metric-value success-val">{{ score }}</span>
+    </div>
+    <div class="metric-item">
+      <span class="metric-label">Respuestas Incorrectas</span>
+      <span class="metric-value error-val">{{ total - score }}</span>
+    </div>
+    <div class="metric-item">
+      <span class="metric-label">Total de Ejercicios</span>
+      <span class="metric-value">{{ total }}</span>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button type="button" class="btn btn-primary" (click)="onRestart()">
+      🔄 Reiniciar Autoevaluación
+    </button>
+  </div>
+</div>
+

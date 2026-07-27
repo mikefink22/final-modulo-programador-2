@@ -1,0 +1,24 @@
+<div class="subject-filter-grid">
+  @for (item of subjects; track item.id) {
+    <button 
+      type="button" 
+      class="subject-card glass-card"
+      [class.active]="selectedSubject === item.id"
+      [class.angular-theme]="item.id === 'angular'"
+      [class.drf-theme]="item.id === 'drf'"
+      [class.metodologias-theme]="item.id === 'metodologias'"
+      (click)="selectSubject(item.id)">
+      <div class="card-header">
+        <span class="icon">{{ item.icon }}</span>
+        <span class="badge">{{ item.badge }}</span>
+      </div>
+      <h3 class="card-title">{{ item.label }}</h3>
+      <p class="card-desc">{{ item.description }}</p>
+      <div class="card-footer">
+        <span class="action-text">Seleccionar</span>
+        <span class="arrow">→</span>
+      </div>
+    </button>
+  }
+</div>
+

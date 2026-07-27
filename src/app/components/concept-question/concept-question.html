@@ -1,0 +1,67 @@
+<div class="concept-card glass-card animate-fade-in">
+  <div class="card-meta">
+    <span class="badge topic-badge">{{ exercise.topic }}</span>
+    <span class="badge type-badge">Pregunta Conceptual</span>
+  </div>
+
+  <h2 class="question-text">{{ exercise.question }}</h2>
+
+  <div class="concept-editor-box">
+    <div class="editor-header">✍️ Tu Respuesta Conceptual</div>
+    <textarea 
+      class="concept-editor-input" 
+      [value]="userAnswer" 
+      (input)="onAnswerInput($event)"
+      rows="5" 
+      placeholder="Escribe tu respuesta o resumen conceptual aquí antes de comparar..."></textarea>
+  </div>
+
+  <div class="actions-row">
+    <button type="button" class="btn btn-outline" (click)="toggleAnswer()">
+      {{ showModelAnswer ? '🙈 Ocultar Respuesta Modelo' : '👁️ Comparar con Respuesta Modelo y Puntos Clave' }}
+    </button>
+  </div>
+
+  @if (showModelAnswer) {
+    <div class="answer-container animate-fade-in">
+      <div class="model-answer-box">
+        <h4>💬 Respuesta Modelo</h4>
+        <p>{{ exercise.expected_answer }}</p>
+      </div>
+
+      <div class="key-points-box">
+        <h4>🎯 Puntos Clave a Incluir:</h4>
+        <ul>
+          @for (point of exercise.key_points; track $index) {
+            <li>
+              <span class="bullet">✓</span>
+              <span>{{ point }}</span>
+            </li>
+          }
+        </ul>
+      </div>
+    </div>
+  }
+
+  <div class="self-eval-container">
+    <p class="eval-prompt">Autoevaluación: ¿Cubriste los puntos clave en tu respuesta escrita o mental?</p>
+    <div class="eval-buttons">
+      <button 
+        type="button" 
+        class="btn btn-success" 
+        [disabled]="isSubmitted"
+        (click)="evaluate(true)">
+        👍 Sí, mi respuesta fue completa
+      </button>
+      <button 
+        type="button" 
+        class="btn btn-danger" 
+        [disabled]="isSubmitted"
+        (click)="evaluate(false)">
+        👎 No, me faltó algún punto importante
+      </button>
+    </div>
+  </div>
+</div>
+
+

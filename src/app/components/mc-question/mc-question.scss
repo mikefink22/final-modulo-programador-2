@@ -1,0 +1,206 @@
+.mc-card {
+  padding: 32px;
+  max-width: 800px;
+  margin: 0 auto;
+
+  .card-meta {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 16px;
+
+    .badge {
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .topic-badge {
+      background: var(--primary-light);
+      color: var(--primary);
+      border: 1px solid var(--border-focus);
+    }
+
+    .type-badge {
+      background: var(--bg-elevated);
+      color: var(--text-muted);
+      border: 1px solid var(--border-color);
+    }
+  }
+
+  .question-text {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--text-main);
+    line-height: 1.4;
+    margin-bottom: 24px;
+  }
+
+  .code-wrapper {
+    margin-bottom: 24px;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+
+    .code-header {
+      background: var(--code-header-bg);
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 6px 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    pre {
+      margin: 0;
+      border: none;
+      border-radius: 0;
+    }
+  }
+
+  .options-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+
+  .option-button {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 20px;
+    width: 100%;
+    text-align: left;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    color: var(--text-main);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    .option-prefix {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: var(--bg-elevated);
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      flex-shrink: 0;
+    }
+
+    .option-text {
+      flex-grow: 1;
+      line-height: 1.4;
+    }
+
+    .status-icon {
+      font-size: 1.2rem;
+      font-weight: 800;
+      margin-left: 8px;
+
+      &.success { color: var(--success); }
+      &.error { color: var(--error); }
+    }
+
+    &:hover:not(:disabled) {
+      border-color: var(--primary);
+      background: var(--bg-card-hover);
+      transform: translateX(4px);
+
+      .option-prefix {
+        background: var(--primary);
+        color: #ffffff;
+      }
+    }
+
+    &.correct {
+      background: var(--success-bg);
+      border-color: var(--success-border);
+      color: var(--text-main);
+      font-weight: 600;
+
+      .option-prefix {
+        background: var(--success);
+        color: #ffffff;
+      }
+    }
+
+    &.incorrect {
+      background: var(--error-bg);
+      border-color: var(--error-border);
+      color: var(--text-main);
+
+      .option-prefix {
+        background: var(--error);
+        color: #ffffff;
+      }
+    }
+  }
+
+  .option-feedback {
+    margin-top: -6px;
+    margin-bottom: 6px;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 0.88rem;
+    line-height: 1.4;
+
+    &.success-feedback {
+      background: var(--success-bg);
+      color: var(--text-main);
+      border-left: 3px solid var(--success);
+    }
+
+    &.error-feedback {
+      background: var(--error-bg);
+      color: var(--text-main);
+      border-left: 3px solid var(--error);
+    }
+  }
+
+  .explanation-box {
+    padding: 20px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+    background: var(--bg-secondary);
+
+    .explanation-header {
+      margin-bottom: 10px;
+
+      .badge-result {
+        display: inline-block;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-weight: 700;
+        font-size: 0.85rem;
+
+        &.success {
+          background: var(--success);
+          color: #ffffff;
+        }
+
+        &.error {
+          background: var(--error);
+          color: #ffffff;
+        }
+      }
+    }
+
+    .explanation-content {
+      font-size: 0.95rem;
+      color: var(--text-main);
+      line-height: 1.5;
+    }
+  }
+}

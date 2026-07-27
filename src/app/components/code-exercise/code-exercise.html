@@ -1,0 +1,71 @@
+<div class="code-card glass-card animate-fade-in">
+  <div class="card-meta">
+    <span class="badge topic-badge">{{ exercise.topic }}</span>
+    <span class="badge type-badge">Práctica de Código</span>
+  </div>
+
+  <h2 class="instructions-text">{{ exercise.instructions }}</h2>
+
+  @if (exercise.starter_code) {
+    <div class="starter-hint">
+      <span class="hint-label">Pista / Estructura base:</span> <code>{{ exercise.starter_code }}</code>
+    </div>
+  }
+
+  <div class="code-editor-box">
+    <div class="code-header d-flex justify-content-between align-items-center">
+      <span>💻 Campo de Código / Comando</span>
+      @if (userCode && isExactMatch) {
+        <span class="badge-exact-match">✨ ¡Coincidencia Exacta!</span>
+      }
+    </div>
+    <textarea 
+      class="code-editor-input" 
+      [value]="userCode" 
+      (input)="onCodeInput($event)"
+      rows="4" 
+      placeholder="Escribe tu código o comando aquí..."></textarea>
+  </div>
+
+  <div class="actions-row">
+    <button type="button" class="btn btn-outline" (click)="toggleSolution()">
+      {{ showSolution ? '🙈 Ocultar Solución' : '👁️ Comprobar con Solución Recomendada' }}
+    </button>
+  </div>
+
+  @if (showSolution) {
+    <div class="solution-container animate-fade-in">
+      <div class="code-box solution-box">
+        <div class="code-header success-header">Solución Esperada</div>
+        <pre><code>{{ exercise.solution_code }}</code></pre>
+      </div>
+
+      <div class="explanation-box">
+        <h4>💡 Explicación del Patrón</h4>
+        <p>{{ exercise.explanation }}</p>
+      </div>
+    </div>
+  }
+
+  <div class="self-eval-container">
+    <p class="eval-prompt">Autoevaluación: ¿Cómo te fue con este ejercicio?</p>
+    <div class="eval-buttons">
+      <button 
+        type="button" 
+        class="btn btn-success" 
+        [disabled]="isSubmitted"
+        (click)="evaluate(true)">
+        👍 Logré resolverlo correctamente
+      </button>
+      <button 
+        type="button" 
+        class="btn btn-danger" 
+        [disabled]="isSubmitted"
+        (click)="evaluate(false)">
+        👎 Necesito repasar este concepto
+      </button>
+    </div>
+  </div>
+</div>
+
+
