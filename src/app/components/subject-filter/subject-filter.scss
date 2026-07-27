@@ -1,0 +1,112 @@
+.subject-filter-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+  width: 100%;
+}
+
+.subject-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  padding: 24px;
+  width: 100%;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  outline: none;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 16px;
+
+    .icon {
+      font-size: 1.8rem;
+    }
+
+    .badge {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 20px;
+      background: var(--bg-elevated);
+      color: var(--text-muted);
+      border: 1px solid var(--border-color);
+    }
+  }
+
+  .card-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 8px;
+  }
+
+  .card-desc {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    line-height: 1.45;
+    flex-grow: 1;
+    margin-bottom: 20px;
+  }
+
+  .card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--primary);
+
+    .arrow {
+      transition: transform 0.2s ease;
+    }
+  }
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--primary);
+
+    .card-footer .arrow {
+      transform: translateX(4px);
+    }
+  }
+
+  &.active {
+    border-color: var(--primary);
+    background: var(--primary-light);
+    box-shadow: 0 0 0 2px var(--primary);
+
+    .card-footer {
+      color: var(--primary);
+      font-weight: 700;
+    }
+  }
+
+  &.angular-theme:hover, &.angular-theme.active {
+    border-color: var(--accent-angular);
+    .card-footer { color: var(--accent-angular); }
+  }
+
+  &.drf-theme:hover, &.drf-theme.active {
+    border-color: var(--accent-drf-badge);
+    .card-footer { color: var(--accent-drf-badge); }
+  }
+
+  &.metodologias-theme:hover, &.metodologias-theme.active {
+    border-color: var(--accent-metodologias);
+    .card-footer { color: var(--accent-metodologias); }
+  }
+}

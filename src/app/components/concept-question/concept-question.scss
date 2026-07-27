@@ -1,0 +1,121 @@
+.concept-card {
+  padding: 32px;
+  max-width: 800px;
+  margin: 0 auto;
+
+  .card-meta {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 16px;
+
+    .badge {
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .topic-badge {
+      background: var(--primary-light);
+      color: var(--primary);
+      border: 1px solid var(--border-focus);
+    }
+
+    .type-badge {
+      background: var(--bg-elevated);
+      color: var(--text-muted);
+      border: 1px solid var(--border-color);
+    }
+  }
+
+  .question-text {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--text-main);
+    line-height: 1.4;
+    margin-bottom: 24px;
+  }
+
+  .actions-row {
+    margin-bottom: 24px;
+  }
+
+  .answer-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 28px;
+
+    .model-answer-box {
+      background: var(--bg-secondary);
+      padding: 20px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-color);
+
+      h4 {
+        color: var(--primary);
+        font-size: 1rem;
+        margin-bottom: 8px;
+      }
+
+      p {
+        font-size: 1rem;
+        color: var(--text-main);
+        line-height: 1.55;
+      }
+    }
+
+    .key-points-box {
+      background: var(--bg-secondary);
+      padding: 20px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-color);
+
+      h4 {
+        color: var(--text-main);
+        font-size: 0.95rem;
+        margin-bottom: 12px;
+      }
+
+      ul {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        li {
+          display: flex;
+          align-items: flex-start;
+          gap: 10px;
+          font-size: 0.93rem;
+          color: var(--text-main);
+
+          .bullet {
+            color: var(--success);
+            font-weight: 800;
+          }
+        }
+      }
+    }
+  }
+
+  .self-eval-container {
+    padding-top: 24px;
+    border-top: 1px solid var(--border-color);
+
+    .eval-prompt {
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 16px;
+      font-size: 0.98rem;
+    }
+
+    .eval-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+  }
+}

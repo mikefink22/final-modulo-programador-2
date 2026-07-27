@@ -1,0 +1,27 @@
+@switch (exercise.type) {
+  @case ('mc') {
+    <app-mc-question 
+      [exercise]="mcExercise" 
+      (answered)="onAnswered($event)">
+    </app-mc-question>
+  }
+  @case ('code') {
+    <app-code-exercise 
+      [exercise]="codeExercise" 
+      (answered)="onAnswered($event)">
+    </app-code-exercise>
+  }
+  @case ('concept') {
+    <app-concept-question 
+      [exercise]="conceptExercise" 
+      (answered)="onAnswered($event)">
+    </app-concept-question>
+  }
+  @default {
+    <div class="unknown-exercise glass-card">
+      <p>⚠️ Tipo de ejercicio no soportado.</p>
+    </div>
+  }
+}
+
+

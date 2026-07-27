@@ -1,0 +1,54 @@
+<div class="code-card glass-card animate-fade-in">
+  <div class="card-meta">
+    <span class="badge topic-badge">{{ exercise.topic }}</span>
+    <span class="badge type-badge">Práctica de Código</span>
+  </div>
+
+  <h2 class="instructions-text">{{ exercise.instructions }}</h2>
+
+  <div class="code-box">
+    <div class="code-header">Código Base (Starter Code)</div>
+    <pre><code>{{ exercise.starter_code }}</code></pre>
+  </div>
+
+  <div class="actions-row">
+    <button type="button" class="btn btn-outline" (click)="toggleSolution()">
+      {{ showSolution ? '🙈 Ocultar Solución' : '👁️ Ver Solución Recomendada' }}
+    </button>
+  </div>
+
+  @if (showSolution) {
+    <div class="solution-container animate-fade-in">
+      <div class="code-box solution-box">
+        <div class="code-header success-header">Solución Esperada</div>
+        <pre><code>{{ exercise.solution_code }}</code></pre>
+      </div>
+
+      <div class="explanation-box">
+        <h4>💡 Explicación del Patrón</h4>
+        <p>{{ exercise.explanation }}</p>
+      </div>
+    </div>
+  }
+
+  <div class="self-eval-container">
+    <p class="eval-prompt">Autoevaluación: ¿Cómo te fue con este ejercicio?</p>
+    <div class="eval-buttons">
+      <button 
+        type="button" 
+        class="btn btn-success" 
+        [disabled]="isSubmitted"
+        (click)="evaluate(true)">
+        👍 Logré resolverlo correctamente
+      </button>
+      <button 
+        type="button" 
+        class="btn btn-danger" 
+        [disabled]="isSubmitted"
+        (click)="evaluate(false)">
+        👎 Necesito repasar este concepto
+      </button>
+    </div>
+  </div>
+</div>
+
