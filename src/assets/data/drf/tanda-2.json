@@ -1,0 +1,222 @@
+[
+  {
+    "id": 34,
+    "subject": "drf",
+    "topic": "Configuración de aplicaciones",
+    "type": "mc",
+    "question": "¿En qué parte del proyecto se debe registrar una nueva aplicación para que Django la reconozca como parte del sistema?",
+    "code_snippet": null,
+    "options": [
+      "En la lista INSTALLED_APPS dentro del archivo settings.py.",
+      "En el archivo urls.py global mediante la función include().",
+      "Dentro del archivo __init__.py de la carpeta raíz del proyecto.",
+      "Únicamente en el archivo apps.py de la propia aplicación recién creada."
+    ],
+    "correct_index": 0,
+    "explanation": "Registrar la aplicación aquí permite que Django ejecute sus modelos, migraciones y encuentre sus plantillas.",
+    "option_explanations": [
+      "Registrar la aplicación aquí permite que Django ejecute sus modelos, migraciones y encuentre sus plantillas.",
+      "Esto conecta las rutas, pero Django no reconocerá los modelos o la existencia formal de la app si no está en INSTALLED_APPS.",
+      "El archivo __init__.py solo sirve para que Python trate al directorio como un paquete, no para configuraciones de Django.",
+      "Aunque apps.py define la configuración de la app, el proyecto central debe ser notificado en su archivo de configuración global."
+    ]
+  },
+  {
+    "id": 35,
+    "subject": "drf",
+    "topic": "Arquitectura modular",
+    "type": "mc",
+    "question": "¿Por qué Django promueve la creación de aplicaciones modulares independientes dentro de un mismo proyecto?",
+    "code_snippet": null,
+    "options": [
+      "Porque Django no permite tener más de mil líneas de código en un solo archivo.",
+      "Para reducir el consumo de memoria RAM del servidor al cargar solo lo necesario.",
+      "Para obligar al desarrollador a utilizar distintos motores de base de datos para cada funcionalidad.",
+      "Para facilitar la reutilización de código en otros proyectos y mejorar la escalabilidad al separar responsabilidades."
+    ],
+    "correct_index": 3,
+    "explanation": "La modularidad permite que una aplicación (como un sistema de blog) pueda trasladarse a otro proyecto sin reescribir su lógica básica.",
+    "option_explanations": [
+      "No existen restricciones técnicas de tamaño de archivo; la separación es una decisión de diseño arquitectónico para mantener el orden.",
+      "La modularidad ayuda al desarrollador, pero Django suele cargar todas las aplicaciones instaladas al iniciar el servidor.",
+      "Generalmente, todas las aplicaciones de un proyecto comparten la misma base de datos configurada globalmente.",
+      "La modularidad permite que una aplicación (como un sistema de blog) pueda trasladarse a otro proyecto sin reescribir su lógica básica."
+    ]
+  },
+  {
+    "id": 36,
+    "subject": "drf",
+    "topic": "Estructura del proyecto y comandos",
+    "type": "mc",
+    "question": "¿Cuál es el propósito del archivo manage.py dentro de la estructura de un proyecto Django?",
+    "code_snippet": null,
+    "options": [
+      "Establecer la lógica de enrutamiento para las APIs RESTful.",
+      "Servir como una herramienta de línea de comandos para realizar tareas administrativas como ejecutar el servidor o crear migraciones.",
+      "Almacenar todas las variables de entorno y claves secretas del proyecto.",
+      "Definir las plantillas HTML globales que se utilizarán en todas las aplicaciones."
+    ],
+    "correct_index": 1,
+    "explanation": "Es el script principal que interactúa con el framework para gestionar el ciclo de vida del desarrollo.",
+    "option_explanations": [
+      "El enrutamiento se define en archivos urls.py, no en el script de administración del proyecto.",
+      "Es el script principal que interactúa con el framework para gestionar el ciclo de vida del desarrollo.",
+      "Las configuraciones se guardan en settings.py; manage.py es un ejecutable de gestión, no un archivo de configuración.",
+      "Las plantillas se gestionan en carpetas específicas o se definen en la configuración, no dentro de un script de Python ejecutable."
+    ]
+  },
+  {
+    "id": 37,
+    "subject": "drf",
+    "topic": "Jerarquía de proyecto y aplicación",
+    "type": "mc",
+    "question": "En la jerarquía de Django, ¿qué diferencia fundamental existe entre un 'Proyecto' y una 'Aplicación'?",
+    "code_snippet": null,
+    "options": [
+      "La aplicación define la conexión a la base de datos y el proyecto define los modelos de datos.",
+      "El proyecto se encarga del frontend y la aplicación se encarga strictly del backend.",
+      "Un proyecto puede contener solo una aplicación, mientras que una aplicación puede pertenecer a múltiples proyectos simultáneamente.",
+      "El proyecto contiene la configuración global y las rutas principales, mientras que la aplicación es un módulo funcional reutilizable."
+    ],
+    "correct_index": 3,
+    "explanation": "Un proyecto es la suma de configuraciones y aplicaciones que trabajan juntas para formar un sitio web completo.",
+    "option_explanations": [
+      "Es al revés; la configuración de la base de datos reside en el proyecto (settings.py) y los modelos en la aplicación.",
+      "Ambos conceptos son estructurales del backend de Django y no dividen la aplicación entre capas de presentación y lógica.",
+      "Aunque las aplicaciones son reutilizables, un proyecto Django puede albergar múltiples aplicaciones para separar responsabilidades.",
+      "Un proyecto es la suma de configuraciones y aplicaciones que trabajan juntas para formar un sitio web completo."
+    ]
+  },
+  {
+    "id": 38,
+    "subject": "drf",
+    "topic": "Patrón arquitectónico MTV",
+    "type": "mc",
+    "question": "¿Cuál es la función principal de la 'Vista' (View) dentro del patrón arquitectónico MTV de Django?",
+    "code_snippet": null,
+    "options": [
+      "Renderizar exclusivamente archivos HTML y archivos estáticos como CSS.",
+      "Mapear las URLs del navegador hacia las funciones correspondientes del servidor.",
+      "Definir la estructura de las tablas y las relaciones en la base de datos.",
+      "Gestionar la lógica de negocio y procesar las peticiones HTTP para devolver una respuesta."
+    ],
+    "correct_index": 3,
+    "explanation": "En Django, la vista actúa como el puente lógico que recibe solicitudes, interactúa con modelos y decide qué datos enviar al usuario o a la plantilla.",
+    "option_explanations": [
+      "Si bien la vista puede enviar datos a una plantilla, la renderización visual final y la estructura del documento son competencia del Template.",
+      "El enrutamiento de peticiones basándose en la URL es tarea del sistema de URLs (urls.py), no de la lógica interna de la vista.",
+      "Esta es la responsabilidad del Modelo, que actúa como la capa de acceso a datos mediante el ORM.",
+      "En Django, la vista actúa como el puente lógico que recibe solicitudes, interactúa con modelos y decide qué datos enviar al usuario o a la plantilla."
+    ]
+  },
+  {
+    "id": 39,
+    "subject": "drf",
+    "topic": "Seguridad",
+    "type": "mc",
+    "question": "¿Qué vulnerabilidad previene Django de forma predeterminada mediante el uso de tokens únicos en los formularios enviados por el usuario?",
+    "code_snippet": null,
+    "options": [
+      "Ataques de fuerza bruta contra el panel de administración.",
+      "Denegación de servicio distribuido (DDoS).",
+      "Falsificación de solicitudes en sitios cruzados (CSRF).",
+      "Inyección de dependencias maliciosas en el entorno virtual."
+    ],
+    "correct_index": 2,
+    "explanation": "Django incluye protección integrada contra CSRF validando que cada solicitud POST provenga de un usuario autenticado y con un token válido.",
+    "option_explanations": [
+      "La protección contra ataques de fuerza bruta suele requerir límites de tasa (ratelimiting) o bloqueos de cuenta, no simplemente un token de validación.",
+      "Los ataques DDoS se gestionan a nivel de infraestructura o servidor web, ya que Django por sí solo no puede detener un volumen masivo de tráfico coordinado.",
+      "Django incluye protección integrada contra CSRF validando que cada solicitud POST provenga de un usuario autenticado y con un token válido.",
+      "La inyección de dependencias es un patrón de diseño o riesgo de gestión de paquetes, no una vulnerabilidad de red que se mitigue con tokens de formulario."
+    ]
+  },
+  {
+    "id": 40,
+    "subject": "drf",
+    "topic": "Creación de aplicaciones",
+    "type": "mc",
+    "question": "¿Qué comando se debe ejecutar para crear la estructura inicial de carpetas de una aplicación llamada 'ventas'?",
+    "code_snippet": null,
+    "options": [
+      "django-admin startproject ventas",
+      "python manage.py startapp ventas",
+      "pip install ventas",
+      "python manage.py createapp ventas"
+    ],
+    "correct_index": 1,
+    "explanation": "Este comando genera los archivos base como models.py, views.py y la carpeta de migraciones para la nueva funcionalidad.",
+    "option_explanations": [
+      "Este comando crea un proyecto nuevo completo (con settings.py), no una aplicación modular interna.",
+      "Este comando genera los archivos base como models.py, views.py y la carpeta de migraciones para la nueva funcionalidad.",
+      "Este comando se utiliza para instalar paquetes externos desde repositorios como PyPI, no para generar módulos locales.",
+      "El subcomando 'createapp' no existe en la interfaz de línea de comandos estándar de Django."
+    ]
+  },
+  {
+    "id": 41,
+    "subject": "drf",
+    "topic": "Vistas basadas en funciones vs vistas basadas en clases",
+    "type": "mc",
+    "question": "¿Cuándo es más recomendable utilizar Vistas Basadas en Funciones (FBV) en lugar de Vistas Basadas en Clases (CBV)?",
+    "code_snippet": null,
+    "options": [
+      "Únicamente cuando se desea renderizar archivos XML en lugar de HTML.",
+      "Siempre que se trabaje con el patrón MTV, ya que las CBVs solo funcionan en arquitecturas MVC.",
+      "Cuando se necesita que la aplicación sea escalable a millones de usuarios.",
+      "Cuando se requiere implementar una lógica de negocio muy personalizada o compleja que no se ajusta a los patrones estándar."
+    ],
+    "correct_index": 3,
+    "explanation": "Las FBVs ofrecen total libertad de implementación, mientras que las CBVs son ideales para comportamientos genéricos y repetitivos.",
+    "option_explanations": [
+      "El formato de salida no condiciona si la vista es una función o una clase; ambos pueden devolver cualquier formato HTTP.",
+      "Django soporta ambos tipos de vistas dentro de su arquitectura nativa sin distinción del patrón utilizado.",
+      "Ambos tipos de vistas tienen el mismo rendimiento a nivel de escalabilidad de tráfico; la diferencia es organizativa.",
+      "Las FBVs ofrecen total libertad de implementación, mientras que las CBVs son ideales para comportamientos genéricos y repetitivos."
+    ]
+  },
+  {
+    "id": 42,
+    "subject": "drf",
+    "topic": "Serializadores",
+    "type": "mc",
+    "question": "En el contexto de Django REST Framework (DRF), ¿cuál es la función de un 'Serializer'?",
+    "code_snippet": null,
+    "options": [
+      "Definir los endpoints de la API y mapearlos a los métodos HTTP correspondientes.",
+      "Transformar objetos complejos de Django en formatos como JSON para que puedan ser consumidos por clientes externos.",
+      "Gestionar el sistema de permisos y autenticación de la API.",
+      "Encriptar las contraseñas de los usuarios antes de guardarlas en la base de datos."
+    ],
+    "correct_index": 1,
+    "explanation": "Actúan como traductores entre los modelos de la base de datos y los formatos de datos estándar de la web.",
+    "option_explanations": [
+      "El mapeo de rutas es tarea de los Routers y las URLs, no de la capa de serialización de datos.",
+      "Actúan como traductores entre los modelos de la base de datos y los formatos de datos estándar de la web.",
+      "Esto es responsabilidad de las clases de permisos (permissions) y autenticación de las vistas en DRF.",
+      "La encriptación de contraseñas es manejada por el sistema de autenticación de Django, no por los serializadores de DRF."
+    ]
+  },
+  {
+    "id": 43,
+    "subject": "drf",
+    "topic": "Mapeador Objeto-Relacional (ORM)",
+    "type": "mc",
+    "question": "¿Qué componente de Django actúa como el 'Mapeador Objeto-Relacional' (ORM) para interactuar con la base de datos?",
+    "code_snippet": null,
+    "options": [
+      "La clase models.Model.",
+      "El motor de plantillas Jinja2.",
+      "El archivo wsgi.py.",
+      "La clase Serializer."
+    ],
+    "correct_index": 0,
+    "explanation": "Al heredar de esta clase, los modelos de Django adquieren la capacidad de traducirse automáticamente a tablas SQL.",
+    "option_explanations": [
+      "Al heredar de esta clase, los modelos de Django adquieren la capacidad de traducirse automáticamente a tablas SQL.",
+      "Jinja2 es un sistema de renderizado de texto para el frontend, no tiene relación directa con la base de datos.",
+      "WSGI es el estándar de comunicación entre el servidor web y la aplicación Django.",
+      "Los serializadores operan sobre los datos ya recuperados; el acceso inicial a la base de datos es tarea del Modelo."
+    ]
+  }
+]
