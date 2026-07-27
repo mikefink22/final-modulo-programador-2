@@ -20,8 +20,8 @@
     "subject": "drf",
     "topic": "Creación de entorno virtual",
     "type": "code",
-    "instructions": "Escribe el comando en la terminal para crear un entorno virtual en Python llamado 'env'.",
-    "starter_code": "python -m venv ",
+    "instructions": "Completa el comando en la terminal para crear un entorno virtual en Python llamado 'env'.",
+    "starter_code": "python -m _____ env",
     "solution_code": "python -m venv env",
     "explanation": "El comando 'python -m venv env' ejecuta el módulo venv de Python para crear un directorio de entorno virtual llamado 'env'."
   },
@@ -60,7 +60,7 @@
     "topic": "Serialización de un QuerySet",
     "type": "code",
     "instructions": "Al serializar múltiples registros en DRF (como una lista de todos los usuarios), asigna el argumento que indica al serializador que debe procesar una lista y no un objeto único.",
-    "starter_code": "users = User.objects.all()\nserializer = UserSerializer(users, )",
+    "starter_code": "users = User.objects.all()\nserializer = UserSerializer(users, _____=True)",
     "solution_code": "users = User.objects.all()\nserializer = UserSerializer(users, many=True)",
     "explanation": "El parámetro many=True indica al serializador de DRF que debe procesar un QuerySet o colección de múltiples objetos en lugar de un objeto único."
   },
