@@ -11,15 +11,21 @@ import { McExercise } from '../../models/exercise.model';
 })
 export class McQuestion implements OnChanges {
   @Input({ required: true }) exercise!: McExercise;
-  @Output() answered = new EventEmitter<{ correct: boolean }>();
+  @Input() savedState?: { isAnswered: boolean; selectedOptionIndex?: number };
+  @Output() answered = new EventEmitter<{ correct: boolean; selectedOptionIndex?: number }>();
 
   selectedIndex: number | null = null;
   isSubmitted: boolean = false;
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes['exercise']) {
-      this.selectedIndex = null;
-      this.isSubmitted = false;
+    if (changes['exercise'] || changes['savedState']) {
+      if (this.savedState && this.savedState.isAnswered) {
+        this.isSubmitted = true;
+        this.selectedIndex = this.savedState.selectedOptionIndex ?? null;
+      } else {
+        this.selectedIndex = null;
+        this.isSubmitted = false;
+      }
     }
   }
 
@@ -29,7 +35,7 @@ export class McQuestion implements OnChanges {
     this.selectedIndex = index;
     this.isSubmitted = true;
     const isCorrect = index === this.exercise.correct_index;
-    this.answered.emit({ correct: isCorrect });
+    this.answered.emit({ correct: isCorrect, selectedOptionIndex: index });
   }
 
   getOptionExplanation(index: number): string | null {

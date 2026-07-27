@@ -1,8 +1,14 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnInit, inject, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { SubjectFilter } from '../../components/subject-filter/subject-filter';
 import { SubjectType } from '../../models/exercise.model';
+import { QuizService } from '../../services/quiz.service';
+
+export interface LimitOption {
+  value: number | null;
+  label: string;
+}
 
 @Component({
   selector: 'app-home',
@@ -11,17 +17,70 @@ import { SubjectType } from '../../models/exercise.model';
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })
-export class Home {
+export class Home implements OnInit {
   private router = inject(Router);
+  private quizService = inject(QuizService);
+  private cdr = inject(ChangeDetectorRef);
+
   selectedSubject: SubjectType | null = null;
+  selectedLimit: number | null = 10;
+  totalAvailableCount: number = 0;
+  reviewDeckCount: number = 0;
+
+  limitOptions: LimitOption[] = [];
+
+  ngOnInit() {
+    this.updateAvailableCounts();
+  }
 
   onSubjectSelected(subject: SubjectType | null) {
     this.selectedSubject = subject;
+    this.updateAvailableCounts();
+  }
+
+  selectLimit(limit: number | null) {
+    this.selectedLimit = limit;
+  }
+
+  updateAvailableCounts() {
+    this.reviewDeckCount = this.quizService.getReviewDeckCount(this.selectedSubject ?? undefined);
+    this.quizService.getExerciseCount(this.selectedSubject ?? undefined).subscribe((count) => {
+      this.totalAvailableCount = count;
+      this.buildLimitOptions(count);
+      this.cdr.markForCheck();
+    });
+  }
+
+  private buildLimitOptions(total: number) {
+    const defaultSteps = [5, 10, 15, 20];
+    const validSteps = defaultSteps.filter((step) => step < total);
+
+    this.limitOptions = validSteps.map((step) => ({
+      value: step,
+      label: `${step} preguntas`,
+    }));
+
+    this.limitOptions.push({
+      value: null,
+      label: `Todas (${total})`,
+    });
+
+    if (this.selectedLimit !== null && this.selectedLimit > total && total > 0) {
+      this.selectedLimit = total;
+    }
   }
 
   startQuiz() {
-    const queryParams = this.selectedSubject ? { subject: this.selectedSubject } : {};
+    const queryParams: any = {};
+    if (this.selectedSubject) queryParams.subject = this.selectedSubject;
+    if (this.selectedLimit) queryParams.limit = this.selectedLimit;
+    this.router.navigate(['/quiz'], { queryParams });
+  }
+
+  startReviewQuiz() {
+    if (this.reviewDeckCount === 0) return;
+    const queryParams: any = { mode: 'review' };
+    if (this.selectedSubject) queryParams.subject = this.selectedSubject;
     this.router.navigate(['/quiz'], { queryParams });
   }
 }
-

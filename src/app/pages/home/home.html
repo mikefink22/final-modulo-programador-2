@@ -20,11 +20,42 @@
       (subjectSelected)="onSubjectSelected($event)">
     </app-subject-filter>
 
+    <div class="limit-selection-box glass-card">
+      <div class="limit-header">
+        <span class="limit-title">⏱️ Tamaño de la Ronda:</span>
+        <span class="limit-subtitle">Preguntas disponibles: <strong>{{ totalAvailableCount }}</strong></span>
+      </div>
+
+      <div class="limit-buttons-grid">
+        @for (opt of limitOptions; track opt.label) {
+          <button 
+            type="button" 
+            class="limit-btn"
+            [class.active]="selectedLimit === opt.value"
+            (click)="selectLimit(opt.value)">
+            {{ opt.label }}
+          </button>
+        }
+      </div>
+    </div>
+
     <div class="cta-container">
-      <button type="button" class="btn btn-primary start-btn" (click)="startQuiz()">
-        🚀 Iniciar Autoevaluación
+      <button 
+        type="button" 
+        class="btn btn-primary start-btn" 
+        [disabled]="totalAvailableCount === 0"
+        (click)="startQuiz()">
+        🚀 {{ totalAvailableCount === 0 ? 'Sin ejercicios disponibles' : 'Iniciar Autoevaluación' }}
       </button>
+
+      @if (reviewDeckCount > 0) {
+        <button 
+          type="button" 
+          class="btn btn-secondary review-deck-btn"
+          (click)="startReviewQuiz()">
+          🧠 Repasar Mazo Acumulado (<strong>{{ reviewDeckCount }}</strong> {{ reviewDeckCount === 1 ? 'pendiente' : 'pendientes' }})
+        </button>
+      }
     </div>
   </section>
 </div>
-

@@ -11,6 +11,7 @@ import { CodeExercise as ICodeExercise } from '../../models/exercise.model';
 })
 export class CodeExercise implements OnChanges {
   @Input({ required: true }) exercise!: ICodeExercise;
+  @Input() savedState?: { isAnswered: boolean; isCorrect?: boolean };
   @Output() answered = new EventEmitter<{ correct: boolean }>();
 
   userCode: string = '';
@@ -18,10 +19,15 @@ export class CodeExercise implements OnChanges {
   isSubmitted: boolean = false;
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes['exercise'] && this.exercise) {
-      this.userCode = '';
-      this.showSolution = false;
-      this.isSubmitted = false;
+    if ((changes['exercise'] || changes['savedState']) && this.exercise) {
+      if (this.savedState && this.savedState.isAnswered) {
+        this.isSubmitted = true;
+        this.showSolution = true;
+      } else {
+        this.userCode = '';
+        this.showSolution = false;
+        this.isSubmitted = false;
+      }
     }
   }
 
@@ -36,7 +42,21 @@ export class CodeExercise implements OnChanges {
 
   get isExactMatch(): boolean {
     if (!this.userCode || !this.exercise.solution_code) return false;
-    return this.userCode.trim().toLowerCase() === this.exercise.solution_code.trim().toLowerCase();
+    const cleanUser = this.userCode.trim().toLowerCase();
+    const cleanSolution = this.exercise.solution_code.trim().toLowerCase();
+
+    if (cleanUser === cleanSolution) {
+      return true;
+    }
+
+    if (this.exercise.starter_code && this.exercise.starter_code.includes('_____')) {
+      const filledCode = this.exercise.starter_code.replace('_____', this.userCode.trim());
+      if (filledCode.trim().toLowerCase() === cleanSolution) {
+        return true;
+      }
+    }
+
+    return false;
   }
 
   evaluate(correct: boolean) {

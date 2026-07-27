@@ -66,4 +66,28 @@ describe('QuizService', () => {
     expect(exercises.length).toBe(1);
     expect(exercises[0]).toEqual(mockMc);
   });
+
+  it('should manage review deck in localStorage correctly', () => {
+    localStorage.clear();
+    const mockExercise: Exercise = {
+      id: 10,
+      subject: 'drf',
+      topic: 'Serializers',
+      type: 'mc',
+      question: '¿Qué es ModelSerializer?',
+      options: ['Clase de serializador', 'Vistas', 'Modelos', 'Filtros'],
+      correct_index: 0,
+      explanation: 'Genera campos automáticamente.'
+    };
+
+    expect(service.getReviewDeckCount()).toBe(0);
+
+    service.addToReviewDeck(mockExercise);
+    expect(service.getReviewDeckCount()).toBe(1);
+    expect(service.getReviewDeckCount('drf')).toBe(1);
+    expect(service.getReviewDeckCount('angular')).toBe(0);
+
+    service.removeFromReviewDeck(10, 'drf');
+    expect(service.getReviewDeckCount()).toBe(0);
+  });
 });

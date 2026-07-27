@@ -6,6 +6,12 @@ import { Exercise, SubjectType } from '../../models/exercise.model';
 import { QuizRouter } from '../../components/quiz-router/quiz-router';
 import { ResultsSummary } from '../../components/results-summary/results-summary';
 
+export interface QuestionAnswerState {
+  isAnswered: boolean;
+  isCorrect?: boolean;
+  selectedOptionIndex?: number;
+}
+
 @Component({
   selector: 'app-quiz',
   standalone: true,
@@ -21,18 +27,27 @@ export class Quiz implements OnInit {
 
   subject?: SubjectType;
   exercises: Exercise[] = [];
+  answersState: QuestionAnswerState[] = [];
   currentIndex: number = 0;
   score: number = 0;
 
   isLoading: boolean = true;
   errorMessage: string | null = null;
-  isCurrentAnswered: boolean = false;
   isFinished: boolean = false;
+
+  limit?: number;
+  mode?: string;
 
   ngOnInit() {
     this.route.queryParams.subscribe((params) => {
       const subjectParam = params['subject'] as SubjectType | undefined;
+      const limitParam = params['limit'] ? parseInt(params['limit'], 10) : undefined;
+      const modeParam = params['mode'] as string | undefined;
+
       this.subject = subjectParam;
+      this.limit = limitParam && !isNaN(limitParam) ? limitParam : undefined;
+      this.mode = modeParam;
+
       this.loadExercises();
     });
   }
@@ -42,12 +57,23 @@ export class Quiz implements OnInit {
     this.errorMessage = null;
     this.cdr.markForCheck();
 
-    this.quizService.getExercises(this.subject).subscribe({
+    const exercises$ = this.mode === 'review' 
+      ? this.quizService.getReviewDeckExercises(this.subject)
+      : this.quizService.getExercises(this.subject, this.limit);
+
+    exercises$.subscribe({
       next: (data) => {
         this.exercises = data;
+        this.answersState = data.map(() => ({ isAnswered: false }));
+        this.currentIndex = 0;
+        this.score = 0;
+        this.isFinished = false;
         this.isLoading = false;
+
         if (data.length === 0) {
-          this.errorMessage = 'No se encontraron ejercicios cargados para esta materia.';
+          this.errorMessage = this.mode === 'review' 
+            ? 'No hay preguntas en tu Mazo de Repaso para esta materia.' 
+            : 'No se encontraron ejercicios cargados para esta materia.';
         }
         this.cdr.markForCheck();
       },
@@ -64,36 +90,85 @@ export class Quiz implements OnInit {
     return this.exercises[this.currentIndex];
   }
 
+  get currentSavedState(): QuestionAnswerState | undefined {
+    return this.answersState[this.currentIndex];
+  }
+
+  get isCurrentAnswered(): boolean {
+    return this.answersState[this.currentIndex]?.isAnswered ?? false;
+  }
+
   get progressPercentage(): number {
     if (this.exercises.length === 0) return 0;
     return Math.round(((this.currentIndex + 1) / this.exercises.length) * 100);
   }
 
-  onAnswered(event: { correct: boolean }) {
-    if (this.isCurrentAnswered) return;
-    this.isCurrentAnswered = true;
+  get exercisesStateSummary() {
+    return this.exercises.map((exercise, index) => ({
+      exercise,
+      isAnswered: this.answersState[index]?.isAnswered ?? false,
+      isCorrect: this.answersState[index]?.isCorrect,
+    }));
+  }
+
+  onAnswered(event: { correct: boolean; selectedOptionIndex?: number }) {
+    const current = this.currentExercise;
+    if (!current) return;
+
+    this.answersState[this.currentIndex] = {
+      isAnswered: true,
+      isCorrect: event.correct,
+      selectedOptionIndex: event.selectedOptionIndex,
+    };
+
+    this.score = this.answersState.filter((state) => state.isCorrect === true).length;
+
     if (event.correct) {
-      this.score++;
+      this.quizService.removeFromReviewDeck(current.id, current.subject);
+    } else {
+      this.quizService.addToReviewDeck(current);
     }
+
     this.cdr.markForCheck();
   }
 
-  nextQuestion() {
-    if (!this.isCurrentAnswered) return;
+  skipQuestion() {
+    const current = this.currentExercise;
+    if (current && !this.isCurrentAnswered) {
+      this.quizService.addToReviewDeck(current);
+    }
 
+    this.nextQuestion();
+  }
+
+  nextQuestion() {
     if (this.currentIndex < this.exercises.length - 1) {
       this.currentIndex++;
-      this.isCurrentAnswered = false;
     } else {
       this.isFinished = true;
     }
     this.cdr.markForCheck();
   }
 
+  goToPrevious() {
+    if (this.currentIndex > 0) {
+      this.currentIndex--;
+      this.cdr.markForCheck();
+    }
+  }
+
+  jumpToQuestion(index: number) {
+    if (index >= 0 && index < this.exercises.length) {
+      this.currentIndex = index;
+      this.isFinished = false;
+      this.cdr.markForCheck();
+    }
+  }
+
   restartQuiz() {
+    this.answersState = this.exercises.map(() => ({ isAnswered: false }));
     this.currentIndex = 0;
     this.score = 0;
-    this.isCurrentAnswered = false;
     this.isFinished = false;
     this.cdr.markForCheck();
   }
