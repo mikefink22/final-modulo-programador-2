@@ -13,18 +13,89 @@
 
   <div class="metrics-grid">
     <div class="metric-item">
-      <span class="metric-label">Respuestas Correctas</span>
-      <span class="metric-value success-val">{{ score }}</span>
+      <span class="metric-label">Correctas</span>
+      <span class="metric-value success-val">{{ correctCount }}</span>
     </div>
     <div class="metric-item">
-      <span class="metric-label">Respuestas Incorrectas</span>
-      <span class="metric-value error-val">{{ total - score }}</span>
+      <span class="metric-label">Incorrectas</span>
+      <span class="metric-value error-val">{{ incorrectCount }}</span>
     </div>
     <div class="metric-item">
-      <span class="metric-label">Total de Ejercicios</span>
-      <span class="metric-value">{{ total }}</span>
+      <span class="metric-label">Sin Responder / Omitidas</span>
+      <span class="metric-value warning-val">{{ unansweredCount }}</span>
     </div>
   </div>
+
+  @if (exercisesState.length > 0) {
+    <div class="questions-breakdown">
+      <div class="breakdown-header">
+        <h3>📋 Detalle y Revisión de Preguntas</h3>
+        <p>Hacé clic en cualquier pregunta para volver y responderla.</p>
+      </div>
+
+      <div class="filter-tabs">
+        <button 
+          type="button" 
+          class="tab-btn" 
+          [class.active]="selectedFilter === 'all'"
+          (click)="setFilter('all')">
+          Todas ({{ total }})
+        </button>
+        <button 
+          type="button" 
+          class="tab-btn tab-warning" 
+          [class.active]="selectedFilter === 'unanswered'"
+          (click)="setFilter('unanswered')">
+          Sin responder ({{ unansweredCount }})
+        </button>
+        <button 
+          type="button" 
+          class="tab-btn tab-danger" 
+          [class.active]="selectedFilter === 'incorrect'"
+          (click)="setFilter('incorrect')">
+          Incorrectas ({{ incorrectCount }})
+        </button>
+        <button 
+          type="button" 
+          class="tab-btn tab-success" 
+          [class.active]="selectedFilter === 'correct'"
+          (click)="setFilter('correct')">
+          Correctas ({{ correctCount }})
+        </button>
+      </div>
+
+      <div class="questions-list">
+        @for (entry of filteredExercisesState; track entry.originalIndex) {
+          <div class="question-list-item glass-card" (click)="onSelectQuestion(entry.originalIndex)">
+            <div class="item-left">
+              <span class="q-number">#{{ entry.originalIndex + 1 }}</span>
+              <div class="q-details">
+                <span class="q-topic">{{ entry.item.exercise.subject | uppercase }} • {{ entry.item.exercise.topic }}</span>
+                <span class="q-title">{{ getQuestionTitle(entry.item.exercise) }}</span>
+              </div>
+            </div>
+
+            <div class="item-right">
+              @if (!entry.item.isAnswered) {
+                <span class="badge badge-unanswered">⚠️ Sin Responder</span>
+              } @else if (entry.item.isCorrect) {
+                <span class="badge badge-correct">✓ Correcta</span>
+              } @else {
+                <span class="badge badge-incorrect">✗ Incorrecta</span>
+              }
+              <button type="button" class="btn btn-outline btn-sm action-btn">
+                Volver a la pregunta →
+              </button>
+            </div>
+          </div>
+        } @empty {
+          <div class="empty-filter-state">
+            <p>No se encontraron preguntas en esta categoría.</p>
+          </div>
+        }
+      </div>
+    </div>
+  }
 
   <div class="actions">
     <button type="button" class="btn btn-primary" (click)="onRestart()">

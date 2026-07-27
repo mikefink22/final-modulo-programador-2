@@ -11,6 +11,7 @@ import { ConceptExercise } from '../../models/exercise.model';
 })
 export class ConceptQuestion implements OnChanges {
   @Input({ required: true }) exercise!: ConceptExercise;
+  @Input() savedState?: { isAnswered: boolean; isCorrect?: boolean };
   @Output() answered = new EventEmitter<{ correct: boolean }>();
 
   userAnswer: string = '';
@@ -18,10 +19,15 @@ export class ConceptQuestion implements OnChanges {
   isSubmitted: boolean = false;
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes['exercise'] && this.exercise) {
-      this.userAnswer = '';
-      this.showModelAnswer = false;
-      this.isSubmitted = false;
+    if ((changes['exercise'] || changes['savedState']) && this.exercise) {
+      if (this.savedState && this.savedState.isAnswered) {
+        this.isSubmitted = true;
+        this.showModelAnswer = true;
+      } else {
+        this.userAnswer = '';
+        this.showModelAnswer = false;
+        this.isSubmitted = false;
+      }
     }
   }
 

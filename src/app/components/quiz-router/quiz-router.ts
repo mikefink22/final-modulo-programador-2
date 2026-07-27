@@ -14,7 +14,8 @@ import { ConceptQuestion } from '../concept-question/concept-question';
 })
 export class QuizRouter {
   @Input({ required: true }) exercise!: Exercise;
-  @Output() answered = new EventEmitter<{ correct: boolean }>();
+  @Input() savedState?: { isAnswered: boolean; isCorrect?: boolean; selectedOptionIndex?: number };
+  @Output() answered = new EventEmitter<{ correct: boolean; selectedOptionIndex?: number }>();
 
   get mcExercise(): McExercise {
     return this.exercise as McExercise;
@@ -28,7 +29,7 @@ export class QuizRouter {
     return this.exercise as ConceptExercise;
   }
 
-  onAnswered(event: { correct: boolean }) {
+  onAnswered(event: { correct: boolean; selectedOptionIndex?: number }) {
     this.answered.emit(event);
   }
 }
