@@ -25,6 +25,7 @@ export class Home implements OnInit {
   selectedSubject: SubjectType | null = null;
   selectedLimit: number | null = 10;
   totalAvailableCount: number = 0;
+  reviewDeckCount: number = 0;
 
   limitOptions: LimitOption[] = [];
 
@@ -42,6 +43,7 @@ export class Home implements OnInit {
   }
 
   updateAvailableCounts() {
+    this.reviewDeckCount = this.quizService.getReviewDeckCount(this.selectedSubject ?? undefined);
     this.quizService.getExerciseCount(this.selectedSubject ?? undefined).subscribe((count) => {
       this.totalAvailableCount = count;
       this.buildLimitOptions(count);
@@ -72,6 +74,13 @@ export class Home implements OnInit {
     const queryParams: any = {};
     if (this.selectedSubject) queryParams.subject = this.selectedSubject;
     if (this.selectedLimit) queryParams.limit = this.selectedLimit;
+    this.router.navigate(['/quiz'], { queryParams });
+  }
+
+  startReviewQuiz() {
+    if (this.reviewDeckCount === 0) return;
+    const queryParams: any = { mode: 'review' };
+    if (this.selectedSubject) queryParams.subject = this.selectedSubject;
     this.router.navigate(['/quiz'], { queryParams });
   }
 }

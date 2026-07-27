@@ -47,6 +47,15 @@
         (click)="startQuiz()">
         🚀 {{ totalAvailableCount === 0 ? 'Sin ejercicios disponibles' : 'Iniciar Autoevaluación' }}
       </button>
+
+      @if (reviewDeckCount > 0) {
+        <button 
+          type="button" 
+          class="btn btn-secondary review-deck-btn"
+          (click)="startReviewQuiz()">
+          🧠 Repasar Mazo Acumulado (<strong>{{ reviewDeckCount }}</strong> {{ reviewDeckCount === 1 ? 'pendiente' : 'pendientes' }})
+        </button>
+      }
     </div>
   </section>
 </div>

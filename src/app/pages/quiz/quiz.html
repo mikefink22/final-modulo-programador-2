@@ -17,6 +17,8 @@
     <app-results-summary 
       [score]="score" 
       [total]="exercises.length" 
+      [exercisesState]="exercisesStateSummary"
+      (goToQuestion)="jumpToQuestion($event)"
       (restart)="restartQuiz()">
     </app-results-summary>
   } @else if (currentExercise) {
@@ -29,6 +31,9 @@
         <div class="quiz-info">
           <span class="subject-badge">
             {{ subject ? (subject | uppercase) : 'TODAS LAS MATERIAS' }}
+            @if (mode === 'review') {
+              <span class="mode-badge">MAZO DE REPASO</span>
+            }
           </span>
           <span class="question-counter">
             Pregunta <strong>{{ currentIndex + 1 }}</strong> de <strong>{{ exercises.length }}</strong>
@@ -39,26 +44,62 @@
       <div class="progress-bar-track">
         <div class="progress-bar-fill" [style.width.%]="progressPercentage"></div>
       </div>
+
+      <!-- Barra de Chips para Salto Rápido -->
+      <div class="question-chips-bar">
+        @for (state of answersState; track $index) {
+          <button 
+            type="button" 
+            class="chip-btn"
+            [class.chip-active]="$index === currentIndex"
+            [class.chip-correct]="state.isAnswered && state.isCorrect === true"
+            [class.chip-incorrect]="state.isAnswered && state.isCorrect === false"
+            [class.chip-unanswered]="!state.isAnswered"
+            (click)="jumpToQuestion($index)">
+            {{ $index + 1 }}
+          </button>
+        }
+      </div>
     </header>
 
     <main class="quiz-body">
       <app-quiz-router 
         [exercise]="currentExercise" 
+        [savedState]="currentSavedState"
         (answered)="onAnswered($event)">
       </app-quiz-router>
     </main>
 
     <footer class="quiz-footer">
       <div class="footer-content">
-        <span class="current-score">Puntaje actual: <strong>{{ score }}</strong></span>
-        
-        <button 
-          type="button" 
-          class="btn btn-primary next-btn" 
-          [disabled]="!isCurrentAnswered"
-          (click)="nextQuestion()">
-          {{ currentIndex === exercises.length - 1 ? '🏁 Ver Resultados Finales' : 'Siguiente Pregunta →' }}
-        </button>
+        <div class="nav-left">
+          <button 
+            type="button" 
+            class="btn btn-outline nav-btn" 
+            [disabled]="currentIndex === 0"
+            (click)="goToPrevious()">
+            ← Anterior
+          </button>
+          <span class="current-score">Puntaje actual: <strong>{{ score }}</strong></span>
+        </div>
+
+        <div class="nav-right">
+          @if (!isCurrentAnswered) {
+            <button 
+              type="button" 
+              class="btn btn-secondary skip-btn" 
+              (click)="skipQuestion()">
+              Omitir / Saltar ↷
+            </button>
+          }
+          
+          <button 
+            type="button" 
+            class="btn btn-primary next-btn" 
+            (click)="nextQuestion()">
+            {{ currentIndex === exercises.length - 1 ? '🏁 Ver Resultados Finales' : 'Siguiente →' }}
+          </button>
+        </div>
       </div>
     </footer>
   }
