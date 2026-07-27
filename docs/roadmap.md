@@ -17,7 +17,7 @@ Estado general del proyecto. Marcar cada ítem al completarlo (`[x]`).
 
 ## Fase 2 — Contenido de Estudio
 - [ ] Notebook Angular cargado con apuntes + primera tanda generada (`tanda-1.json`)
-- [ ] Notebook DRF cargado con apuntes + primera tanda generada (`tanda-1.json`)
+- [x] Notebook DRF cargado con apuntes + primera tanda generada (`tanda-1.json`)
 - [ ] Notebook Metodologías cargado con apuntes + primera tanda generada (`tanda-1.json`)
 
 ## Fase 3 — Componentes de UI
