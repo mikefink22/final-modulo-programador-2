@@ -35,7 +35,7 @@ Estado general del proyecto. Marcar cada ítem al completarlo (`[x]`).
 
 ## Fase 5 — Pulido y Experiencia de Usuario
 - [x] Orden aleatorio de preguntas (Shuffle)
-- [ ] Modo "Solo las preguntas que fallé"
+- [x] Modo "Solo las preguntas que fallé"
 - [ ] Estilos CSS / Diseño responsive y accesible
 
 ---
@@ -46,3 +46,4 @@ Estado general del proyecto. Marcar cada ítem al completarlo (`[x]`).
 - **2026-07-26**: Implementación de `QuizService` con `HttpClient`, `provideHttpClient`, carga de manifests `index.json`, desanidado con `switchMap`, aplanado de ejercicios y suite de pruebas unitarias en `quiz.service.spec.ts`.
 - **2026-07-26**: Implementación de componentes UI (`quiz-router`, `mc-question`, `code-exercise`, `concept-question`, `subject-filter`, `results-summary`), páginas (`home`, `quiz`), ruteo y shuffle de preguntas. Integration en `develop`.
 - **2026-07-26**: Implementación del selector dinámico de cantidad de preguntas por ronda (5, 10, 15, 20 o "Todas") y soporte del parámetro limit en QuizService y la vista Home.
+- **2026-07-27**: Implementación de navegación libre en el Quiz, desglose detallado de respuestas en pantalla de resultados y modo "Repasar preguntas falladas" (Review Deck).
