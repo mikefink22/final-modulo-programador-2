@@ -1,0 +1,222 @@
+[
+  {
+    "id": 1,
+    "subject": "desarrollo-de-software",
+    "topic": "Procesos secuenciales",
+    "type": "mc",
+    "question": "¿Cuál es la principal característica de los procesos definidos o secuenciales como el modelo en cascada?",
+    "code_snippet": null,
+    "options": [
+      "Cada fase depende de la finalización y validación de la etapa anterior.",
+      "No requieren una documentación detallada antes de iniciar la implementación.",
+      "Permiten la superposición constante de fases para ganar velocidad.",
+      "Se basan en la adaptación constante según la evolución del producto."
+    ],
+    "correct_index": 0,
+    "explanation": "El modelo lineal secuencial requiere que cada paso esté cerrado antes de avanzar al siguiente en un orden preestablecido.",
+    "option_explanations": [
+      "El modelo lineal secuencial requiere que cada paso esté cerrado antes de avanzar al siguiente en un orden preestablecido.",
+      "Los modelos tradicionales suelen depender fuertemente de especificaciones y planes detallados previos.",
+      "La estructura rígida del modelo en cascada prohíbe avanzar si la fase previa no ha sido validada formalmente.",
+      "Esta es una característica de los modelos empíricos, no de los definidos o secuenciales."
+    ]
+  },
+  {
+    "id": 2,
+    "subject": "desarrollo-de-software",
+    "topic": "Roles en Scrum",
+    "type": "mc",
+    "question": "En el marco de trabajo Scrum, ¿quién es el responsable de maximizar el valor del producto resultante?",
+    "code_snippet": null,
+    "options": [
+      "El Project Manager",
+      "El Product Owner",
+      "El Scrum Master",
+      "Los Developers"
+    ],
+    "correct_index": 1,
+    "explanation": "Esta figura central es responsable de gestionar el Product Backlog para obtener el mayor valor posible.",
+    "option_explanations": [
+      "Scrum no define formalmente el rol de Project Manager, distribuyendo sus funciones entre el Scrum Team.",
+      "Esta figura central es responsable de gestionar el Product Backlog para obtener el mayor valor posible.",
+      "Su responsabilidad principal es la efectividad del equipo y la correcta aplicación del marco de trabajo.",
+      "Ellos son responsables de la creación técnica del incremento y la calidad del mismo durante el Sprint."
+    ]
+  },
+  {
+    "id": 3,
+    "subject": "desarrollo-de-software",
+    "topic": "Pilares de Scrum",
+    "type": "mc",
+    "question": "¿Qué pilar del empirismo en Scrum busca que el proceso y el trabajo sean visibles para todos los involucrados?",
+    "code_snippet": null,
+    "options": [
+      "Adaptación",
+      "Transparencia",
+      "Coraje",
+      "Inspección"
+    ],
+    "correct_index": 1,
+    "explanation": "La transparencia asegura que los aspectos significativos del proceso sean definidos bajo un estándar común y entendible para todos.",
+    "option_explanations": [
+      "La adaptación es el ajuste que se realiza tras detectar una desviación, no el estado de visibilidad.",
+      "La transparencia asegura que los aspectos significativos del proceso sean definidos bajo un estándar común y entendible para todos.",
+      "El coraje es uno de los valores de Scrum, no uno de los tres pilares empíricos.",
+      "La inspección se refiere al acto de revisar el trabajo para detectar variaciones, no a la visibilidad inicial."
+    ]
+  },
+  {
+    "id": 4,
+    "subject": "desarrollo-de-software",
+    "topic": "Artefactos y Compromisos de Scrum",
+    "type": "mc",
+    "question": "¿Cuál es el compromiso asociado al Sprint Backlog en Scrum?",
+    "code_snippet": null,
+    "options": [
+      "El Objetivo del Sprint",
+      "La Definición de Terminado",
+      "El Incremento de Valor",
+      "El Objetivo del Producto"
+    ],
+    "correct_index": 0,
+    "explanation": "El Sprint Goal proporciona el 'por qué' del trabajo realizado durante el ciclo de desarrollo actual.",
+    "option_explanations": [
+      "El Sprint Goal proporciona el 'por qué' del trabajo realizado durante el ciclo de desarrollo actual.",
+      "Este compromiso pertenece al Incremento para asegurar su calidad y usabilidad.",
+      "El incremento es un artefacto en sí mismo, no el compromiso del Sprint Backlog.",
+      "Este es el compromiso a largo plazo asociado al Product Backlog."
+    ]
+  },
+  {
+    "id": 5,
+    "subject": "desarrollo-de-software",
+    "topic": "Eventos de Scrum",
+    "type": "mc",
+    "question": "¿Cuál es la duración máxima recomendada para una Daily Scrum?",
+    "code_snippet": null,
+    "options": [
+      "5 minutos por persona",
+      "30 minutos",
+      "10 minutos",
+      "15 minutos"
+    ],
+    "correct_index": 3,
+    "explanation": "Es un evento corto diseñado para que los Developers inspeccionen el progreso hacia el Sprint Goal y adapten su plan diario.",
+    "option_explanations": [
+      "Scrum define un tiempo total para el evento, no un tiempo individual que podría escalar excesivamente.",
+      "Un tiempo tan extenso suele indicar que se están discutiendo detalles técnicos innecesarios para la sincronización diaria.",
+      "Aunque puede durar menos, el límite máximo estandarizado para mantener el enfoque es mayor.",
+      "Es un evento corto diseñado para que los Developers inspeccionen el progreso hacia el Sprint Goal y adapten su plan diario."
+    ]
+  },
+  {
+    "id": 6,
+    "subject": "desarrollo-de-software",
+    "topic": "Manifiesto Ágil",
+    "type": "mc",
+    "question": "¿Cuál de los siguientes es un valor explícito del Manifiesto Ágil?",
+    "code_snippet": null,
+    "options": [
+      "Negociación contractual por sobre colaboración",
+      "Procesos y herramientas por sobre individuos e interacciones",
+      "Seguir un plan detallado por encima de los cambios",
+      "Software funcionando por sobre documentación exhaustiva"
+    ],
+    "correct_index": 3,
+    "explanation": "La prioridad es entregar valor real al usuario final, sin que la burocracia documental detenga el progreso.",
+    "option_explanations": [
+      "Se busca trabajar junto al cliente como un solo equipo en lugar de centrarse únicamente en acuerdos legales.",
+      "El primer valor de la agilidad pone a las personas y su comunicación por encima de los procesos.",
+      "El manifiesto valora precisamente lo contrario: la respuesta ante el cambio sobre el seguimiento de un plan rígido.",
+      "La prioridad es entregar valor real al usuario final, sin que la burocracia documental detenga el progreso."
+    ]
+  },
+  {
+    "id": 7,
+    "subject": "desarrollo-de-software",
+    "topic": "Historias de Usuario",
+    "type": "mc",
+    "question": "En el contexto de las Historias de Usuario, ¿qué significa realizar un 'slicing' vertical?",
+    "code_snippet": null,
+    "options": [
+      "Dividir la historia por capas tecnológicas como base de datos o interfaz.",
+      "Organizar el trabajo según la especialidad del programador.",
+      "Separar el diseño gráfico de la lógica de programación.",
+      "Dividir una funcionalidad de modo que cada parte entregue valor de negocio completo."
+    ],
+    "correct_index": 3,
+    "explanation": "El corte vertical asegura que el incremento sea funcional y demostrable desde la perspectiva del usuario.",
+    "option_explanations": [
+      "Esto se conoce como división horizontal y suele generar elementos que no entregan valor por sí solos.",
+      "La agilidad promueve la multifuncionalidad y no la división por silos de especialidad técnica.",
+      "Este enfoque es una división técnica (horizontal) que impide ver el software funcionando de forma integral.",
+      "El corte vertical asegura que el incremento sea funcional y demostrable desde la perspectiva del usuario."
+    ]
+  },
+  {
+    "id": 8,
+    "subject": "desarrollo-de-software",
+    "topic": "Eventos de Scrum",
+    "type": "mc",
+    "question": "¿Qué evento de Scrum tiene como objetivo principal inspeccionar el resultado del Sprint y determinar futuras adaptaciones con los interesados?",
+    "code_snippet": null,
+    "options": [
+      "Sprint Retrospective",
+      "Sprint Review",
+      "Daily Scrum",
+      "Sprint Planning"
+    ],
+    "correct_index": 1,
+    "explanation": "Es una sesión de trabajo donde el equipo y los stakeholders colaboran sobre lo logrado para ajustar el Product Backlog.",
+    "option_explanations": [
+      "Este evento se centra en la mejora interna del equipo, no en mostrar el producto a los interesados.",
+      "Es una sesión de trabajo donde el equipo y los stakeholders colaboran sobre lo logrado para ajustar el Product Backlog.",
+      "Es una reunión técnica interna de los Developers para la sincronización diaria del plan.",
+      "Este evento ocurre al inicio para planificar el trabajo futuro, no para revisar el resultado del ciclo anterior."
+    ]
+  },
+  {
+    "id": 9,
+    "subject": "desarrollo-de-software",
+    "topic": "Prácticas de Extreme Programming (XP)",
+    "type": "mc",
+    "question": "Dentro de las 12 prácticas de XP (Extreme Programming), ¿en qué consiste el 'Planning Game'?",
+    "code_snippet": null,
+    "options": [
+      "Una competencia entre desarrolladores para ver quién programa más rápido.",
+      "La negociación del alcance entre el cliente y el equipo basada en estimaciones.",
+      "El diseño de la arquitectura del software mediante prototipos rápidos.",
+      "Un juego de mesa para entrenar Scrum Masters."
+    ],
+    "correct_index": 1,
+    "explanation": "El cliente prioriza según el valor y el equipo estima según la viabilidad técnica para definir la iteración.",
+    "option_explanations": [
+      "XP fomenta la colaboración y el respeto, no la competencia individual por velocidad.",
+      "El cliente prioriza según el valor y el equipo estima según la viabilidad técnica para definir la iteración.",
+      "El Planning Game se enfoca en el alcance y la planificación, no en los detalles técnicos de la arquitectura.",
+      "Aunque el nombre suena lúdico, es un proceso formal de negociación técnica."
+    ]
+  },
+  {
+    "id": 10,
+    "subject": "desarrollo-de-software",
+    "topic": "Artefactos de Scrum",
+    "type": "mc",
+    "question": "¿Qué representa un 'Increment' en Scrum?",
+    "code_snippet": null,
+    "options": [
+      "Una versión parcial del código que requiere pruebas adicionales para ser útil.",
+      "El conjunto de todas las tareas finalizadas por los Developers.",
+      "Un documento con los planes de diseño del software.",
+      "Un peldaño concreto hacia el Objetivo del Producto que debe ser utilizable."
+    ],
+    "correct_index": 3,
+    "explanation": "Cada incremento se suma a los anteriores y debe estar verificado para asegurar que todos funcionen juntos.",
+    "option_explanations": [
+      "Para ser considerado un Increment, debe cumplir con la Definición de Terminado y ser utilizable.",
+      "El incremento es el resultado de valor, no solo la suma de horas o tareas técnicas individuales.",
+      "Los documentos de diseño no son incrementos; el incremento debe ser un peldaño concreto y usable.",
+      "Cada incremento se suma a los anteriores y debe estar verificado para asegurar que todos funcionen juntos."
+    ]
+  }
+]

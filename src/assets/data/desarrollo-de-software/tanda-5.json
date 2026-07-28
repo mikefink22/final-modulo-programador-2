@@ -1,0 +1,222 @@
+[
+  {
+    "id": 1,
+    "subject": "desarrollo-de-software",
+    "topic": "Gestión de Trabajo Incompleto en Scrum",
+    "type": "mc",
+    "question": "¿Qué sucede con los elementos del Product Backlog que no pueden darse por 'Terminados' en un Sprint?",
+    "code_snippet": null,
+    "options": [
+      "No se incluyen en el Incremento y vuelven al Product Backlog.",
+      "Se borran definitivamente para limpiar el backlog.",
+      "Se obliga al equipo a trabajar horas extras hasta terminarlos.",
+      "Se consideran terminados de todas formas para no bajar la moral."
+    ],
+    "correct_index": 0,
+    "explanation": "Solo lo que cumple con la Definición de Terminado suma valor; el resto se reevalúa para el futuro.",
+    "option_explanations": [
+      "Solo lo que cumple con la Definición de Terminado suma valor; el resto se reevalúa para el futuro.",
+      "Si aún son necesarios, deben permanecer en la lista de trabajo pendiente para ser priorizados luego.",
+      "Scrum promueve el ritmo sostenible y la calidad sobre la cantidad forzada de trabajo.",
+      "Esto violaría el pilar de transparencia y crearía una deuda técnica peligrosa."
+    ]
+  },
+  {
+    "id": 2,
+    "subject": "desarrollo-de-software",
+    "topic": "Origen y Analogía de Scrum",
+    "type": "mc",
+    "question": "En la analogía con el Rugby, ¿qué característica del 'Scrum' se intenta imitar en la gestión de proyectos?",
+    "code_snippet": null,
+    "options": [
+      "La exclusión de personas que no tengan habilidades físicas.",
+      "El empuje coordinado y simultáneo de todos los miembros hacia un objetivo.",
+      "La fuerza bruta contra el adversario.",
+      "El uso de uniformes y reglas deportivas estrictas."
+    ],
+    "correct_index": 1,
+    "explanation": "Representa la suma de fuerzas individuales trabajando en la misma dirección y al mismo tiempo.",
+    "option_explanations": [
+      "Scrum es inclusivo y se basa en la inteligencia colectiva del conocimiento.",
+      "Representa la suma de fuerzas individuales trabajando en la misma dirección y al mismo tiempo.",
+      "No se trata de agresividad, sino de la mecánica de equipo en una formación específica.",
+      "La analogía es funcional respecto al trabajo en equipo, no estética o de reglamento deportivo."
+    ]
+  },
+  {
+    "id": 3,
+    "subject": "desarrollo-de-software",
+    "topic": "Artefactos de Scrum / Product Backlog",
+    "type": "mc",
+    "question": "¿Cuál es el propósito del artefacto 'Product Backlog'?",
+    "code_snippet": null,
+    "options": [
+      "Asignar salarios según el trabajo realizado.",
+      "Guardar el registro de todos los errores pasados ya corregidos.",
+      "Documentar las actas de las reuniones con los clientes.",
+      "Ser la única fuente de trabajo realizado por el Scrum Team."
+    ],
+    "correct_index": 3,
+    "explanation": "Es una lista ordenada de todo lo que se sabe que es necesario en el producto en un momento dado.",
+    "option_explanations": [
+      "No es una herramienta administrativa de recursos humanos.",
+      "El backlog mira hacia el trabajo futuro necesario, no es un historial de incidencias cerradas.",
+      "Aunque puede originarse allí, su formato es una lista de elementos de valor para el producto.",
+      "Es una lista ordenada de todo lo que se sabe que es necesario en el producto en un momento dado."
+    ]
+  },
+  {
+    "id": 4,
+    "subject": "desarrollo-de-software",
+    "topic": "Eventos de Scrum / Daily Scrum",
+    "type": "mc",
+    "question": "En Scrum, ¿quién define la estructura y técnicas que se usarán en la Daily Scrum?",
+    "code_snippet": null,
+    "options": [
+      "La Gerencia de la Empresa",
+      "El Product Owner",
+      "El Scrum Master",
+      "Los Developers"
+    ],
+    "correct_index": 3,
+    "explanation": "Ellos pueden seleccionar el formato que deseen mientras se enfoquen en el progreso hacia el Sprint Goal.",
+    "option_explanations": [
+      "El equipo es autogestionado y no recibe instrucciones sobre su coordinación interna.",
+      "Como no suele participar activamente en la ejecución técnica diaria, no decide el formato.",
+      "Solo asegura que el evento se realice, pero no impone la técnica interna.",
+      "Ellos pueden seleccionar el formato que deseen mientras se enfoquen en el progreso hacia el Sprint Goal."
+    ]
+  },
+  {
+    "id": 5,
+    "subject": "desarrollo-de-software",
+    "topic": "Definición de Terminado y Transparencia",
+    "type": "mc",
+    "question": "¿Qué compromiso asegura que el Incremento proporcione información que mejore la transparencia frente a la cual se mide el progreso?",
+    "code_snippet": null,
+    "options": [
+      "La Definición de Terminado",
+      "El Objetivo del Sprint",
+      "El Plan de Lanzamiento (Release Plan)",
+      "La Visión del Producto"
+    ],
+    "correct_index": 0,
+    "explanation": "Al tener un estándar claro de qué significa 'listo', todos pueden confiar en la calidad del incremento presentado.",
+    "option_explanations": [
+      "Al tener un estándar claro de qué significa 'listo', todos pueden confiar en la calidad del incremento presentado.",
+      "Este compromiso pertenece al Sprint Backlog.",
+      "No es un compromiso formal de un artefacto según la Guía de Scrum 2020.",
+      "Aunque es importante, el compromiso específico del Product Backlog es el Objetivo del Producto."
+    ]
+  },
+  {
+    "id": 6,
+    "subject": "desarrollo-de-software",
+    "topic": "Timeboxing / Sprint Review",
+    "type": "mc",
+    "question": "Durante un ciclo de Sprint de un mes, ¿cuál es el límite de tiempo para la Sprint Review?",
+    "code_snippet": null,
+    "options": [
+      "8 horas",
+      "15 minutos",
+      "Toda la jornada laboral final",
+      "4 horas"
+    ],
+    "correct_index": 3,
+    "explanation": "Para Sprints más cortos, la duración suele ser proporcionalmente menor.",
+    "option_explanations": [
+      "Este es el límite para la Sprint Planning, no para la Review.",
+      "Este es el tiempo de la Daily Scrum.",
+      "Scrum utiliza límites de tiempo (timeboxes) fijos para mantener la eficiencia.",
+      "Para Sprints más cortos, la duración suele ser proporcionalmente menor."
+    ]
+  },
+  {
+    "id": 7,
+    "subject": "desarrollo-de-software",
+    "topic": "Equipos Ágiles / Multifuncionalidad",
+    "type": "mc",
+    "question": "En el contexto de la metodología Ágil, ¿qué significa que un equipo sea 'Multifuncional'?",
+    "code_snippet": null,
+    "options": [
+      "Que cada persona debe saber hacer todas las tareas de todos sus compañeros.",
+      "Que el equipo trabaja en varios proyectos diferentes al mismo tiempo.",
+      "Que los desarrolladores también deben realizar tareas de limpieza y administración.",
+      "Que el equipo posee todas las habilidades necesarias para crear valor en cada Sprint."
+    ],
+    "correct_index": 3,
+    "explanation": "Incluye diseño, desarrollo, pruebas, etc., sin depender de expertos externos al equipo para completar el incremento.",
+    "option_explanations": [
+      "No requiere que todos sean expertos en todo, sino que el equipo como unidad tenga todas las habilidades necesarias.",
+      "Multifuncionalidad se refiere a habilidades, no a la cantidad de proyectos (multitasking), lo cual suele ser contraproducente.",
+      "Se refiere a las funciones propias de la creación del producto de software.",
+      "Incluye diseño, desarrollo, pruebas, etc., sin depender de expertos externos al equipo para completar el incremento."
+    ]
+  },
+  {
+    "id": 8,
+    "subject": "desarrollo-de-software",
+    "topic": "Artefactos de Scrum / Sprint Backlog",
+    "type": "mc",
+    "question": "¿Cuál es la función del 'Sprint Backlog'?",
+    "code_snippet": null,
+    "options": [
+      "Registrar las horas que el equipo gasta en cada reunión diaria.",
+      "Ser un contrato inamovible entre el cliente y los programadores.",
+      "Listar todos los errores encontrados en versiones anteriores del software.",
+      "Proporcionar una imagen en tiempo real del trabajo que los Developers planean realizar."
+    ],
+    "correct_index": 3,
+    "explanation": "Es una herramienta de visibilidad para que el equipo gestione su propio progreso durante el ciclo.",
+    "option_explanations": [
+      "Su propósito es gestionar el trabajo del producto, no realizar un control horario administrativo.",
+      "Es un plan flexible que se actualiza a lo largo del Sprint según se aprende más.",
+      "Se enfoca exclusivamente en el trabajo seleccionado para el Sprint actual.",
+      "Es una herramienta de visibilidad para que el equipo gestione su propio progreso durante el ciclo."
+    ]
+  },
+  {
+    "id": 9,
+    "subject": "desarrollo-de-software",
+    "topic": "Pilares de Scrum / Adaptación",
+    "type": "mc",
+    "question": "Si un equipo Scrum incorpora mejoras en su forma de trabajar tras una retrospectiva, ¿qué pilar está poniendo en práctica?",
+    "code_snippet": null,
+    "options": [
+      "Adaptación",
+      "Inspección",
+      "Disciplina",
+      "Transparencia"
+    ],
+    "correct_index": 0,
+    "explanation": "Realizar cambios para mejorar la efectividad basándose en la inspección previa es la esencia de la adaptación.",
+    "option_explanations": [
+      "Realizar cambios para mejorar la efectividad basándose en la inspección previa es la esencia de la adaptación.",
+      "La inspección ocurrió durante la reunión de retrospectiva al analizar el pasado.",
+      "Aunque se requiere disciplina, no es uno de los tres pilares definidos por la teoría de Scrum.",
+      "La transparencia solo mostró la necesidad de mejora; el cambio real es otro pilar."
+    ]
+  },
+  {
+    "id": 10,
+    "subject": "desarrollo-de-software",
+    "topic": "Refinamiento del Product Backlog",
+    "type": "mc",
+    "question": "¿Qué elemento del Product Backlog suele requerir actividades de 'refinamiento' para adquirir transparencia?",
+    "code_snippet": null,
+    "options": [
+      "Los informes de desempeño del Scrum Master.",
+      "Los elementos que se consideran preparados para ser seleccionados en la Sprint Planning.",
+      "La Definición de Terminado",
+      "La visión general de la empresa."
+    ],
+    "correct_index": 1,
+    "explanation": "El refinamiento asegura que las historias sean lo suficientemente pequeñas y claras para ser ejecutadas en un Sprint.",
+    "option_explanations": [
+      "No son elementos de valor del producto ni pertenecen al Product Backlog.",
+      "El refinamiento asegura que las historias sean lo suficientemente pequeñas y claras para ser ejecutadas en un Sprint.",
+      "Este es un compromiso del Incremento, no un elemento del backlog que se descompone.",
+      "La visión es de alto nivel y no forma parte de los ítems de trabajo técnico del backlog."
+    ]
+  }
+]

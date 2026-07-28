@@ -58,8 +58,8 @@ export class SubjectFilter {
       icon: '🅰️',
     },
     {
-      id: 'metodologias',
-      label: 'Metodologías Ágiles',
+      id: 'desarrollo-de-software',
+      label: 'Desarrollo de Software',
       badge: 'Procesos',
       description: 'Scrum, Kanban, Gitflow y estimaciones',
       icon: '🚀',

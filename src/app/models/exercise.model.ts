@@ -1,4 +1,4 @@
-export type SubjectType = 'angular' | 'drf' | 'metodologias' | 'programacion-web' | 'poo-python';
+export type SubjectType = 'angular' | 'drf' | 'desarrollo-de-software' | 'programacion-web' | 'poo-python';
 export type ExerciseType = 'mc' | 'code' | 'concept';
 
 export interface BaseExercise {
