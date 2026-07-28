@@ -46,6 +46,7 @@
 6. **Nuevas Tandas**: Al agregar una nueva tanda (`tanda-N.json`), registrar siempre el nombre del archivo dentro del array manifest `index.json` de la materia correspondiente.
 7. **Evolución del Modelo**: Si se agrega o modifica un campo en `Exercise`, actualizar `docs/spec.md` primero.
 8. **Rutas Relativas en Walkthrough**: En el artifact `walkthrough.md`, utilizar siempre rutas relativas limpias respecto a la raíz del repositorio (ej. `src/assets/data/...`, `docs/...`) y **nunca rutas absolutas del sistema de archivos local** (`file:///c:/...` o `c:\Proyectos\...`), garantizando que la descripción sea 100% reutilizable al copiar y pegar en GitHub PRs.
+9. **Verificación en Servidor Local en Vivo (UI/UX)**: Al realizar cambios visibles en la interfaz o experiencia de usuario (UI/UX), antes de ejecutar el primer `git add`, solicitar o confirmar la verificación visual en el servidor local en vivo para garantizar que la pantalla y las interacciones se comporten como se espera.
 
 ---
 

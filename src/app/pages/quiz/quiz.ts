@@ -166,11 +166,7 @@ export class Quiz implements OnInit {
   }
 
   restartQuiz() {
-    this.answersState = this.exercises.map(() => ({ isAnswered: false }));
-    this.currentIndex = 0;
-    this.score = 0;
-    this.isFinished = false;
-    this.cdr.markForCheck();
+    this.loadExercises();
   }
 
   goHome() {

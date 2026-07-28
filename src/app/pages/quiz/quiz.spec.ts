@@ -61,5 +61,12 @@ describe('Quiz', () => {
     component.jumpToQuestion(2);
     expect(component.currentIndex).toBe(2);
   });
+
+  it('should reload exercises when restartQuiz is called', () => {
+    let loaded = false;
+    component.loadExercises = () => { loaded = true; };
+    component.restartQuiz();
+    expect(loaded).toBe(true);
+  });
 });
 

@@ -71,12 +71,13 @@ export class QuizService {
   }
 
   /**
-   * Devuelve un Observable con los ejercicios del Mazo de Repaso (filtrados y desordenados).
+   * Devuelve un Observable con los ejercicios del Mazo de Repaso (filtrados, desordenados y con opciones aleatorizadas).
    */
   getReviewDeckExercises(subject?: SubjectType): Observable<Exercise[]> {
     const deck = this.getReviewDeck();
     const filtered = subject ? deck.filter((item) => item.subject === subject) : deck;
-    return of(this.shuffleArray(filtered));
+    const prepared = this.shuffleArray(filtered).map((ex) => this.shuffleExerciseOptions(ex));
+    return of(prepared);
   }
 
   /**
@@ -90,10 +91,11 @@ export class QuizService {
     return forkJoin(subjectRequests).pipe(
       map((exerciseArrays) => {
         const allExercises = this.shuffleArray(exerciseArrays.flat());
+        const preparedExercises = allExercises.map((ex) => this.shuffleExerciseOptions(ex));
         if (limit && limit > 0) {
-          return allExercises.slice(0, limit);
+          return preparedExercises.slice(0, limit);
         }
-        return allExercises;
+        return preparedExercises;
       }),
       catchError((error) => {
         console.error('Error al cargar ejercicios:', error);
@@ -113,6 +115,34 @@ export class QuizService {
       map((exerciseArrays) => exerciseArrays.flat().length),
       catchError(() => of(0))
     );
+  }
+
+  /**
+   * Si el ejercicio es de tipo 'mc', desordena aleatoriamente sus opciones
+   * y ajusta correct_index y option_explanations para mantener la integridad.
+   */
+  private shuffleExerciseOptions(exercise: Exercise): Exercise {
+    if (exercise.type !== 'mc' || !exercise.options || exercise.options.length <= 1) {
+      return exercise;
+    }
+
+    const items = exercise.options.map((optionText, idx) => ({
+      option: optionText,
+      explanation: exercise.option_explanations ? exercise.option_explanations[idx] : undefined,
+      isCorrect: idx === exercise.correct_index,
+    }));
+
+    const shuffled = this.shuffleArray(items);
+    const newCorrectIndex = shuffled.findIndex((item) => item.isCorrect);
+
+    return {
+      ...exercise,
+      options: shuffled.map((item) => item.option),
+      correct_index: newCorrectIndex,
+      option_explanations: exercise.option_explanations
+        ? shuffled.map((item) => item.explanation ?? '')
+        : undefined,
+    };
   }
 
   /**
