@@ -1,0 +1,222 @@
+[
+  {
+    "id": 1,
+    "subject": "desarrollo-de-software",
+    "topic": "Definición de Terminado (DoD)",
+    "type": "mc",
+    "question": "En Scrum, ¿qué se requiere para que una unidad de trabajo se considere 'Done' o Terminada?",
+    "code_snippet": null,
+    "options": [
+      "Que el Product Owner haya dado su aprobación verbal.",
+      "Que cumpla con la 'Definición de Terminado' establecida por el equipo.",
+      "Que se haya agotado el tiempo asignado a la tarea en el Sprint.",
+      "Que el programador haya terminado de escribir el código."
+    ],
+    "correct_index": 1,
+    "explanation": "Esta definición común asegura la transparencia y la calidad uniforme de todos los incrementos.",
+    "option_explanations": [
+      "La aprobación es importante, pero el estándar técnico de calidad debe cumplirse independientemente del visto bueno.",
+      "Esta definición común asegura la transparencia y la calidad uniforme de todos los incrementos.",
+      "El tiempo agotado no garantiza la calidad ni la finalización de la funcionalidad.",
+      "Escribir el código es solo una parte; faltarían pruebas, documentación o integración según el estándar del equipo."
+    ]
+  },
+  {
+    "id": 2,
+    "subject": "desarrollo-de-software",
+    "topic": "Historias de Usuario / Slicing",
+    "type": "mc",
+    "question": "Según el material sobre Slicing, ¿qué problema suele generar la división horizontal de historias de usuario?",
+    "code_snippet": null,
+    "options": [
+      "Crea cuellos de botella al centrar a los miembros solo en su especialidad técnica.",
+      "Reduce la necesidad de comunicación entre los desarrolladores.",
+      "Facilita demasiado la priorización por parte del Product Owner.",
+      "Permite entregar software funcional de forma muy rápida."
+    ],
+    "correct_index": 0,
+    "explanation": "Propicia que los especialistas trabajen de forma aislada, perdiendo la visión de producto completo y funcional.",
+    "option_explanations": [
+      "Propicia que los especialistas trabajen de forma aislada, perdiendo la visión de producto completo y funcional.",
+      "Aumenta la complejidad de la integración y la dependencia entre capas técnicas aisladas.",
+      "Al contrario, dificulta la priorización porque las partes técnicas por separado no tienen valor de negocio.",
+      "La entrega es más lenta porque se necesitan completar todos los 'horizontales' para tener algo usable."
+    ]
+  },
+  {
+    "id": 3,
+    "subject": "desarrollo-de-software",
+    "topic": "Tamaño del Equipo en Scrum",
+    "type": "mc",
+    "question": "¿Cuál es la recomendación de tamaño para un equipo de Scrum efectivo?",
+    "code_snippet": null,
+    "options": [
+      "Exactamente 7 personas, sin excepción.",
+      "No hay límite, mientras todos tengan una tarea asignada.",
+      "Entre 15 y 20 personas para proyectos de gran escala.",
+      "Típicamente 10 personas o menos."
+    ],
+    "correct_index": 3,
+    "explanation": "Los equipos pequeños se comunican mejor y suelen ser más productivos al reducir la complejidad de las interacciones.",
+    "option_explanations": [
+      "Scrum sugiere un rango flexible basado en la agilidad y la capacidad de comunicación.",
+      "La falta de límites en el tamaño del equipo degrada rápidamente la efectividad del Daily Scrum y la coordinación.",
+      "Equipos tan grandes suelen perder agilidad y requieren marcos de escalado específicos, no el Scrum básico.",
+      "Los equipos pequeños se comunican mejor y suelen ser más productivos al reducir la complejidad de las interacciones."
+    ]
+  },
+  {
+    "id": 4,
+    "subject": "desarrollo-de-software",
+    "topic": "Modelo en Cascada",
+    "type": "mc",
+    "question": "En el modelo de Cascada, ¿qué sucede si se detecta un error de requerimientos en la fase de mantenimiento?",
+    "code_snippet": null,
+    "options": [
+      "Se ignora, ya que el contrato se basó en el diseño inicial aprobado.",
+      "Requiere reiniciar gran parte del ciclo de vida, lo que es extremadamente costoso.",
+      "Se corrige inmediatamente sin afectar el costo del proyecto.",
+      "Se soluciona en el próximo Sprint del equipo."
+    ],
+    "correct_index": 1,
+    "explanation": "Debido a la naturaleza secuencial, los errores tardíos obligan a revisar el diseño, la implementación y las pruebas.",
+    "option_explanations": [
+      "Ignorar errores críticos no es una práctica de ingeniería, aunque el modelo sea rígido.",
+      "Debido a la naturaleza secuencial, los errores tardíos obligan a revisar el diseño, la implementación y las pruebas.",
+      "En cascada, volver a fases iniciales desde las finales tiene un impacto altísimo en costo y tiempo.",
+      "El modelo de cascada no utiliza Sprints; es un modelo lineal y no iterativo."
+    ]
+  },
+  {
+    "id": 5,
+    "subject": "desarrollo-de-software",
+    "topic": "Prácticas de XP",
+    "type": "mc",
+    "question": "¿Qué práctica de XP busca que dos programadores trabajen juntos en un solo ordenador?",
+    "code_snippet": null,
+    "options": [
+      "Refactorización",
+      "Propiedad colectiva del código",
+      "Programación en pareja (Pair Programming)",
+      "Integración continua"
+    ],
+    "correct_index": 2,
+    "explanation": "Uno escribe el código mientras el otro revisa y piensa estratégicamente, mejorando la calidad y el aprendizaje.",
+    "option_explanations": [
+      "Es la mejora del diseño del código existente sin cambiar su comportamiento externo.",
+      "Es el concepto de que cualquiera puede mejorar cualquier parte del código, pero no implica trabajar en el mismo monitor.",
+      "Uno escribe el código mientras el otro revisa y piensa estratégicamente, mejorando la calidad y el aprendizaje.",
+      "Es el proceso de unir el código nuevo al repositorio principal varias veces al día."
+    ]
+  },
+  {
+    "id": 6,
+    "subject": "desarrollo-de-software",
+    "topic": "Refinamiento del Product Backlog",
+    "type": "mc",
+    "question": "¿Cuál es el objetivo principal del 'Refinamiento' del Product Backlog?",
+    "code_snippet": null,
+    "options": [
+      "Eliminar todas las historias de usuario que parezcan difíciles de programar.",
+      "Descomponer elementos grandes en otros más pequeños y precisos para futuros Sprints.",
+      "Asignar responsables definitivos a cada tarea del proyecto global.",
+      "Presentar el avance del proyecto a los inversores externos."
+    ],
+    "correct_index": 1,
+    "explanation": "Es el acto continuo de añadir detalle, estimaciones y orden a los elementos para que estén listos para la planificación.",
+    "option_explanations": [
+      "El refinamiento busca entender y descomponer la complejidad, no evitarla por conveniencia técnica.",
+      "Es el acto continuo de añadir detalle, estimaciones y orden a los elementos para que estén listos para la planificación.",
+      "La asignación detallada de tareas se realiza durante el Sprint Planning para el ciclo inmediato.",
+      "Esta es una función comunicativa de la Review, no del refinamiento técnico del backlog."
+    ]
+  },
+  {
+    "id": 7,
+    "subject": "desarrollo-de-software",
+    "topic": "Gestión del Sprint Backlog",
+    "type": "mc",
+    "question": "En Scrum, si el Product Owner desea añadir un nuevo requisito urgente a mitad de un Sprint, ¿cuál es el procedimiento correcto?",
+    "code_snippet": null,
+    "options": [
+      "Obligar al Scrum Master a que asigne a alguien para esa tarea extra.",
+      "Interrumpir a los Developers para que lo incluyan de inmediato.",
+      "Sustituirlo por una tarea del Sprint actual sin consultar a nadie.",
+      "Añadirlo al Product Backlog para ser considerado en futuras planificaciones."
+    ],
+    "correct_index": 3,
+    "explanation": "El Sprint Backlog está protegido durante el ciclo para mantener la estabilidad, salvo negociaciones puntuales que no afecten la meta.",
+    "option_explanations": [
+      "El Scrum Master no tiene autoridad para asignar tareas técnicas a los miembros del equipo.",
+      "Esto rompe el foco del equipo y pone en riesgo el Objetivo del Sprint aceptado.",
+      "Cualquier cambio en el Sprint actual debe ser colaborado y negociado con los Developers.",
+      "El Sprint Backlog está protegido durante el ciclo para mantener la estabilidad, salvo negociaciones puntuales que no afecten la meta."
+    ]
+  },
+  {
+    "id": 8,
+    "subject": "desarrollo-de-software",
+    "topic": "Desarrollo Guiado por Pruebas (TDD)",
+    "type": "mc",
+    "question": "Según el material de TDD (Test Driven Development), ¿cuál es el orden correcto del ciclo de desarrollo?",
+    "code_snippet": null,
+    "options": [
+      "Diseñar la interfaz → Programar lógica → Ejecutar pruebas manuales",
+      "Analizar requerimientos → Documentar → Escribir todas las pruebas",
+      "Escribir la prueba → Verla fallar → Escribir código → Verla pasar → Refactorizar",
+      "Escribir código → Probar → Refactorizar"
+    ],
+    "correct_index": 2,
+    "explanation": "Este ciclo (Rojo-Verde-Refactor) asegura que solo se escriba el código necesario y que el diseño sea limpio.",
+    "option_explanations": [
+      "TDD se basa en pruebas automatizadas y unitarias que guían el desarrollo de la lógica.",
+      "En TDD las pruebas se escriben una a una, de forma incremental, no todas al principio.",
+      "Este ciclo (Rojo-Verde-Refactor) asegura que solo se escriba el código necesario y que el diseño sea limpio.",
+      "Este es el enfoque tradicional. TDD requiere que la prueba exista antes que la funcionalidad."
+    ]
+  },
+  {
+    "id": 9,
+    "subject": "desarrollo-de-software",
+    "topic": "Roles en Scrum / Scrum Master",
+    "type": "mc",
+    "question": "En un equipo Scrum, si alguien externo intenta cambiar las prioridades de los Developers, ¿quién debe actuar como facilitador y protector del equipo?",
+    "code_snippet": null,
+    "options": [
+      "El Líder Técnico",
+      "El Product Owner",
+      "El Scrum Master",
+      "El Gerente de Proyecto"
+    ],
+    "correct_index": 2,
+    "explanation": "Una de sus funciones es remover impedimentos y proteger al equipo de interrupciones para mantener el enfoque.",
+    "option_explanations": [
+      "Scrum no reconoce el rol jerárquico de Líder Técnico, la responsabilidad es del equipo autogestionado.",
+      "Aunque gestiona las prioridades, su rol no es el de facilitador de procesos ni protector contra interferencias externas.",
+      "Una de sus funciones es remover impedimentos y proteger al equipo de interrupciones para mantener el enfoque.",
+      "Este rol externo no forma parte del Scrum Team y no interviene en la dinámica interna del Sprint."
+    ]
+  },
+  {
+    "id": 10,
+    "subject": "desarrollo-de-software",
+    "topic": "Pilares de Scrum",
+    "type": "mc",
+    "question": "¿Qué pilar de Scrum permite realizar ajustes si un inspector determina que el producto resultante será inaceptable?",
+    "code_snippet": null,
+    "options": [
+      "Transparencia",
+      "Inspección",
+      "Adaptación",
+      "Sostenibilidad"
+    ],
+    "correct_index": 2,
+    "explanation": "Es el acto de corregir la trayectoria lo antes posible para minimizar desviaciones mayores.",
+    "option_explanations": [
+      "La transparencia solo hace visible el problema, no realiza el ajuste por sí misma.",
+      "La inspección es el acto de buscar errores, mientras que la adaptación es el acto de corregirlos.",
+      "Es el acto de corregir la trayectoria lo antes posible para minimizar desviaciones mayores.",
+      "No es uno de los tres pilares fundamentales de la teoría empírica de Scrum."
+    ]
+  }
+]
