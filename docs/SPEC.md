@@ -48,6 +48,14 @@ export interface ConceptExercise extends BaseExercise {
   key_points: string[];
 }
 
+export interface QuestionHistoryRecord {
+  exerciseKey: string; // `${subject}_${id}`
+  lastAttemptTimestamp: number;
+  lastResult: 'correct' | 'incorrect';
+  timesCorrect: number;
+  timesIncorrect: number;
+}
+
 export type Exercise = McExercise | CodeExercise | ConceptExercise;
 
 /**
@@ -86,13 +94,24 @@ export function isExercise(item: any): item is Exercise {
 ### 3.1 `QuizService`
 - `getExercises(subject?: SubjectType, limit?: number): Observable<Exercise[]>`
 - **Estructura en assets**: Carpetas `angular/`, `drf/`, `metodologias/`, `programacion-web/`, `poo-python/` dentro de `src/assets/data/`.
-- **Algoritmo de Carga**:
-  1. Lee `assets/data/<materia>/index.json` (array de nombres de archivo JSON, ej. `["tanda-1.json"]`).
-  2. Realiza un `forkJoin` (o `rxjs` combination) para descargar cada tanda listada.
-  3. Aplana (`flat`) todos los arrays resultantes en un único array de ejercicios.
-  4. Aplica el algoritmo Fisher-Yates para desordenar los ejercicios aleatoriamente.
-  5. Si se especifica `limit` (`number > 0`), recorta el array desordenado retornando únicamente las primeras `N` preguntas (`slice(0, limit)`).
-  6. Si no se especifica `subject`, se cargan y combinan las 5 materias.
+- **Algoritmo de Selección Ponderada y Muestreo Estratificado**:
+  1. **Historial de Respuestas y Mazo Descartado**: Rastrear por cada ejercicio (`${subject}_${id}`) su estado en `localStorage` (`practica_final_question_history`). Las preguntas acertadas en las últimas 24h pasan al **Mazo Descartado** y se excluyen de la práctica activa a menos que el usuario las reincorpore manualmente.
+  2. **Sistema de Pesos por Pregunta**:
+     - No vista: Peso 3 (Prioridad Máxima).
+     - Fallada o en Mazo de Repaso: Peso 2 (Prioridad Alta).
+     - Acertada lejana (> 24h): Peso 1 (Prioridad Media).
+     - Acertada reciente (<= 24h): Excluida al Mazo Descartado (Peso 0).
+  3. **Pesos Relativos por Materia (`SUBJECT_WEIGHTS`)**:
+     - `drf`: 2.0
+     - `angular`: 2.0
+     - `desarrollo-de-software`: 1.7
+     - `poo-python`: 0.7
+     - `programacion-web`: 0.7
+  4. **Muestreo Estratificado Ponderado en "Todas las Materias"**:
+     - Carga los ejercicios de las 5 materias por separado, excluyendo los que estén en el Mazo Descartado.
+     - Aplica el peso por materia para calcular sus cuotas relativas dentro del `limit`.
+     - Si una materia sobrepasa su disponible o límite, las vacantes se reasignan a las materias principales con mayor disponibilidad de preguntas.
+     - Concatena y realiza un barajado final (Fisher-Yates) para alternar las materias en la sesión del quiz.
 - **Identificadores**: Los `id` de `Exercise` deben ser únicos *dentro* de cada tanda JSON.
 
 ### 3.2 `quiz-router` (Componente Router de Ejercicio)

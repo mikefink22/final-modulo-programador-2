@@ -124,4 +124,67 @@ describe('QuizService', () => {
     service.removeFromReviewDeck(10, 'drf');
     expect(service.getReviewDeckCount()).toBe(0);
   });
+
+  it('should manage question history in localStorage and calculate weights correctly', () => {
+    localStorage.clear();
+    const mockExercise: Exercise = {
+      id: 5,
+      subject: 'angular',
+      topic: 'Directivas',
+      type: 'mc',
+      question: '¿Qué es ngFor?',
+      options: ['Directiva estructural', 'Pipe'],
+      correct_index: 0,
+      explanation: 'Renderiza una lista.'
+    };
+
+    const historyBefore = service.getQuestionHistory();
+    expect(Object.keys(historyBefore).length).toBe(0);
+
+    // No vista -> Peso 3
+    expect(service.calculateQuestionWeight(mockExercise, service.getQuestionHistory())).toBe(3);
+
+    // Intento incorrecto -> Peso 2
+    service.recordQuestionAttempt(mockExercise, false);
+    let history = service.getQuestionHistory();
+    expect(history['angular_5']?.lastResult).toBe('incorrect');
+    expect(history['angular_5']?.timesIncorrect).toBe(1);
+    expect(service.calculateQuestionWeight(mockExercise, history)).toBe(2);
+
+    // Intento correcto reciente -> Peso 0
+    service.recordQuestionAttempt(mockExercise, true);
+    history = service.getQuestionHistory();
+    expect(history['angular_5']?.lastResult).toBe('correct');
+    expect(history['angular_5']?.timesCorrect).toBe(1);
+    expect(service.calculateQuestionWeight(mockExercise, history)).toBe(0);
+  });
+
+  it('should manage discarded deck and restore questions correctly', () => {
+    localStorage.clear();
+    const mockExercise: Exercise = {
+      id: 8,
+      subject: 'angular',
+      topic: 'Componentes',
+      type: 'mc',
+      question: '¿Qué es Input?',
+      options: ['Decorador', 'Servicio'],
+      correct_index: 0,
+      explanation: 'Pasa datos.'
+    };
+
+    expect(service.getDiscardedDeckCount()).toBe(0);
+
+    service.recordQuestionAttempt(mockExercise, true);
+    expect(service.getDiscardedDeckCount()).toBe(1);
+    expect(service.getDiscardedDeckCount('angular')).toBe(1);
+    expect(service.getDiscardedDeckCount('drf')).toBe(0);
+
+    service.restoreToMainDeck(8, 'angular');
+    expect(service.getDiscardedDeckCount()).toBe(0);
+
+    service.recordQuestionAttempt(mockExercise, true);
+    expect(service.getDiscardedDeckCount()).toBe(1);
+    service.restoreAllDiscarded();
+    expect(service.getDiscardedDeckCount()).toBe(0);
+  });
 });

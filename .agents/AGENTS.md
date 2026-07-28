@@ -22,7 +22,7 @@
    - `git checkout develop`
    - `git pull origin develop`
    - `git checkout -b feature/<nombre-tarea>`
-4. **Commits atómicos**: Realizar commits pequeños y frecuentes por cada hito completado y probado.
+4. **Commits Atómicos Inmediatos**: Cada hito o sub-tarea completada debe seguir estrictamente el flujo: **Tarea completada -> Pruebas comprobadas -> Commit inmediato**, antes de comenzar con la siguiente tarea. Prohibido agrupar múltiples tareas o cambios en un solo commit masivo.
 5. **Flujo de finalización de tarea y PR**:
    - Asegurar que `ng test` o compilación no arrojen errores.
    - **Pushear la rama feature**: `git push origin feature/<nombre-tarea>`.
@@ -46,7 +46,8 @@
 6. **Nuevas Tandas**: Al agregar una nueva tanda (`tanda-N.json`), registrar siempre el nombre del archivo dentro del array manifest `index.json` de la materia correspondiente.
 7. **Evolución del Modelo**: Si se agrega o modifica un campo en `Exercise`, actualizar `docs/spec.md` primero.
 8. **Rutas Relativas en Walkthrough**: En el artifact `walkthrough.md`, utilizar siempre rutas relativas limpias respecto a la raíz del repositorio (ej. `src/assets/data/...`, `docs/...`) y **nunca rutas absolutas del sistema de archivos local** (`file:///c:/...` o `c:\Proyectos\...`), garantizando que la descripción sea 100% reutilizable al copiar y pegar en GitHub PRs.
-9. **Verificación en Servidor Local en Vivo (UI/UX)**: Al realizar cambios visibles en la interfaz o experiencia de usuario (UI/UX), antes de ejecutar el primer `git add`, solicitar o confirmar la verificación visual en el servidor local en vivo para garantizar que la pantalla y las interacciones se comporten como se espera.
+9. **Verificación en Servidor Local en Vivo (UI/UX y Lógica de Quiz)**: Al realizar cambios visibles en la interfaz, experiencia de usuario (UI/UX) o lógica interactiva de cuestionarios, **OBLIGATORIAMENTE antes de ejecutar cualquier `git add`**, solicitar o confirmar la verificación visual e interactiva en el servidor local en vivo (`http://localhost:4200/`) para garantizar que las pantallas y las interacciones se comporten como se espera. NUNCA realizar `git add` o `git commit` sobre cambios de UI/UX sin la luz verde previa del usuario.
+10. **Ejecución de Pruebas Unitarias (`ng test` vs `vitest`)**: Usar siempre `npx ng test --watch=false` (o `npm test`) para verificar la suite de pruebas del proyecto. **NO usar `npx vitest run` directo**, dado que omite el entorno de inicialización de Angular CLI (`init-testbed`), provocando errores de `TestBed` no inicializado en componentes y servicios. `vitest` directo solo es utilizable para funciones o utilidades TS 100% puras independientes del framework Angular.
 
 ---
 

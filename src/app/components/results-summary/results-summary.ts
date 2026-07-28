@@ -23,6 +23,7 @@ export class ResultsSummary {
   @Input() exercisesState: ExerciseStateItem[] = [];
   
   @Output() restart = new EventEmitter<void>();
+  @Output() goHome = new EventEmitter<void>();
   @Output() goToQuestion = new EventEmitter<number>();
 
   selectedFilter: ResultFilter = 'all';
@@ -100,6 +101,10 @@ export class ResultsSummary {
 
   onRestart() {
     this.restart.emit();
+  }
+
+  onGoHome() {
+    this.goHome.emit();
   }
 }
 

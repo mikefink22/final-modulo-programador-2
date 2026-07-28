@@ -123,6 +123,8 @@ export class Quiz implements OnInit {
 
     this.score = this.answersState.filter((state) => state.isCorrect === true).length;
 
+    this.quizService.recordQuestionAttempt(current, event.correct);
+
     if (event.correct) {
       this.quizService.removeFromReviewDeck(current.id, current.subject);
     } else {
@@ -141,11 +143,16 @@ export class Quiz implements OnInit {
     this.nextQuestion();
   }
 
+  finishQuiz() {
+    this.isFinished = true;
+    this.cdr.markForCheck();
+  }
+
   nextQuestion() {
     if (this.currentIndex < this.exercises.length - 1) {
       this.currentIndex++;
     } else {
-      this.isFinished = true;
+      this.finishQuiz();
     }
     this.cdr.markForCheck();
   }

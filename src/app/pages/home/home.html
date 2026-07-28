@@ -49,11 +49,29 @@
       </button>
 
       @if (reviewDeckCount > 0) {
+        <div class="review-deck-group">
+          <button 
+            type="button" 
+            class="btn btn-secondary review-deck-btn"
+            (click)="startReviewQuiz()">
+            🧠 Repasar Mazo Acumulado (<strong>{{ reviewDeckCount }}</strong> {{ reviewDeckCount === 1 ? 'pendiente' : 'pendientes' }})
+          </button>
+          <button
+            type="button"
+            class="btn btn-outline clear-review-btn"
+            title="Vaciar Mazo Acumulado"
+            (click)="clearReviewDeck()">
+            🗑️ Vaciar Mazo
+          </button>
+        </div>
+      }
+
+      @if (discardedDeckCount > 0) {
         <button 
           type="button" 
-          class="btn btn-secondary review-deck-btn"
-          (click)="startReviewQuiz()">
-          🧠 Repasar Mazo Acumulado (<strong>{{ reviewDeckCount }}</strong> {{ reviewDeckCount === 1 ? 'pendiente' : 'pendientes' }})
+          class="btn btn-outline restore-discarded-btn"
+          (click)="restoreDiscardedDeck()">
+          ♻️ Reincorporar Mazo Descartado (<strong>{{ discardedDeckCount }}</strong> {{ discardedDeckCount === 1 ? 'dominada' : 'dominadas' }} &lt;24h)
         </button>
       }
     </div>
