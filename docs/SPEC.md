@@ -48,6 +48,14 @@ export interface ConceptExercise extends BaseExercise {
   key_points: string[];
 }
 
+export interface QuestionHistoryRecord {
+  exerciseKey: string; // `${subject}_${id}`
+  lastAttemptTimestamp: number;
+  lastResult: 'correct' | 'incorrect';
+  timesCorrect: number;
+  timesIncorrect: number;
+}
+
 export type Exercise = McExercise | CodeExercise | ConceptExercise;
 
 /**
@@ -86,13 +94,19 @@ export function isExercise(item: any): item is Exercise {
 ### 3.1 `QuizService`
 - `getExercises(subject?: SubjectType, limit?: number): Observable<Exercise[]>`
 - **Estructura en assets**: Carpetas `angular/`, `drf/`, `metodologias/`, `programacion-web/`, `poo-python/` dentro de `src/assets/data/`.
-- **Algoritmo de Carga**:
-  1. Lee `assets/data/<materia>/index.json` (array de nombres de archivo JSON, ej. `["tanda-1.json"]`).
-  2. Realiza un `forkJoin` (o `rxjs` combination) para descargar cada tanda listada.
-  3. Aplana (`flat`) todos los arrays resultantes en un único array de ejercicios.
-  4. Aplica el algoritmo Fisher-Yates para desordenar los ejercicios aleatoriamente.
-  5. Si se especifica `limit` (`number > 0`), recorta el array desordenado retornando únicamente las primeras `N` preguntas (`slice(0, limit)`).
-  6. Si no se especifica `subject`, se cargan y combinan las 5 materias.
+- **Algoritmo de Selección Ponderada y Muestreo Estratificado**:
+  1. **Historial de Respuestas**: Rastrear por cada ejercicio (`${subject}_${id}`) su estado en `localStorage` (`practica_final_question_history`).
+  2. **Sistema de Pesos por Pregunta**:
+     - No vista: Peso 3 (Prioridad Máxima).
+     - Fallada o en Mazo de Repaso: Peso 2 (Prioridad Alta).
+     - Acertada lejana (> 24h): Peso 1 (Prioridad Media).
+     - Acertada reciente (<= 24h): Peso 0 (Prioridad Baja).
+  3. **Selección Ponderada en Materia Única**: Asigna `score = peso + Math.random()`, ordena descendente y extrae hasta el límite.
+  4. **Muestreo Estratificado en "Todas las Materias"**:
+     - Carga los ejercicios de las 5 materias por separado.
+     - Divide el `limit` equitativamente entre las materias (ej. $\lfloor N / 5 \rfloor$), distribuyendo homogéneamente cualquier residuo.
+     - Extrae las preguntas priorizadas correspondientes de cada materia.
+     - Concatena y realiza un barajado final (Fisher-Yates) para alternar las materias en la sesión del quiz.
 - **Identificadores**: Los `id` de `Exercise` deben ser únicos *dentro* de cada tanda JSON.
 
 ### 3.2 `quiz-router` (Componente Router de Ejercicio)
