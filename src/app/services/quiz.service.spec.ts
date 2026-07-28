@@ -64,7 +64,41 @@ describe('QuizService', () => {
 
     const exercises = await exercisesPromise;
     expect(exercises.length).toBe(1);
-    expect(exercises[0]).toEqual(mockMc);
+    expect((exercises[0] as any).options).toEqual(expect.arrayContaining(['Directiva estructural', 'Componente', 'Pipe', 'Servicio']));
+    expect((exercises[0] as any).options[(exercises[0] as any).correct_index]).toBe('Directiva estructural');
+  });
+
+  it('should preserve correct answer mapping when options are shuffled', async () => {
+    const mockMc: Exercise = {
+      id: 2,
+      subject: 'drf',
+      topic: 'Views',
+      type: 'mc',
+      question: '¿Qué es APIView?',
+      options: ['Clase base de vista', 'Modelo DB', 'Filtro de búsqueda'],
+      correct_index: 0,
+      explanation: 'Es la clase base para vistas en DRF',
+      option_explanations: ['Correcto', 'Incorrecto: es un ORM', 'Incorrecto: es para queries']
+    };
+
+    const exercisesPromise = firstValueFrom(service.getExercises('drf'));
+
+    const indexReq = httpMock.expectOne('assets/data/drf/index.json');
+    indexReq.flush(['tanda-1.json']);
+
+    const tandaReq = httpMock.expectOne('assets/data/drf/tanda-1.json');
+    tandaReq.flush([mockMc]);
+
+    const exercises = await exercisesPromise;
+    const loaded = exercises[0] as any;
+
+    expect(loaded.options.length).toBe(3);
+    const correctOptionText = loaded.options[loaded.correct_index];
+    expect(correctOptionText).toBe('Clase base de vista');
+
+    if (loaded.option_explanations) {
+      expect(loaded.option_explanations[loaded.correct_index]).toBe('Correcto');
+    }
   });
 
   it('should manage review deck in localStorage correctly', () => {
