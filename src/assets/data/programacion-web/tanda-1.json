@@ -1,0 +1,57 @@
+[
+  {
+    "id": 1,
+    "subject": "programacion-web",
+    "topic": "Arquitectura Web",
+    "type": "mc",
+    "question": "¿Cuál es el rol principal del cliente en la arquitectura Cliente-Servidor web?",
+    "options": [
+      "Almacenar y gestionar la base de datos de la aplicación",
+      "Solicitar recursos al servidor y renderizar la interfaz para el usuario",
+      "Compilar el código del servidor antes de ejecutarlo",
+      "Gestionar las peticiones HTTP directamente entre navegadores sin pasar por un servidor"
+    ],
+    "correct_index": 1,
+    "explanation": "En la arquitectura cliente-servidor web, el cliente (navegador) solicita recursos (HTML, CSS, JS) al servidor mediante protocolos HTTP/HTTPS y los procesa para mostrar la interfaz al usuario.",
+    "option_explanations": [
+      "Incorrecto. El almacenamiento y gestión de la base de datos se realiza en la capa del servidor o base de datos.",
+      "¡Correcto! El cliente es responsable de enviar peticiones HTTP y renderizar el contenido que recibe del servidor.",
+      "Incorrecto. El cliente no compila código de servidor.",
+      "Incorrecto. Las peticiones entre navegadores directamente corresponden a arquitecturas P2P, no a la arquitectura cliente-servidor tradicional."
+    ]
+  },
+  {
+    "id": 2,
+    "subject": "programacion-web",
+    "topic": "Manipulación del DOM",
+    "type": "mc",
+    "question": "¿Qué método estándar de JavaScript se utiliza para seleccionar el primer elemento de la página que coincida con un selector CSS especificado?",
+    "options": [
+      "document.getElementById()",
+      "document.getElementsByClassName()",
+      "document.querySelector()",
+      "document.querySelectorAll()"
+    ],
+    "correct_index": 2,
+    "explanation": "document.querySelector() recibe un selector CSS como parámetro y devuelve el primer elemento del DOM que coincida con dicho selector.",
+    "option_explanations": [
+      "Incorrecto. getElementById() busca únicamente por el valor exacto del atributo id.",
+      "Incorrecto. getElementsByClassName() devuelve una colección HTML de todos los elementos con una clase específica.",
+      "¡Correcto! querySelector() acepta cualquier selector CSS válido y retorna el primer elemento coincidente.",
+      "Incorrecto. querySelectorAll() devuelve una NodeList de todos los elementos que coincidan con el selector, no solo el primero."
+    ]
+  },
+  {
+    "id": 3,
+    "subject": "programacion-web",
+    "topic": "Bootstrap & Layout",
+    "type": "concept",
+    "question": "¿Cómo funciona el sistema de grilla (Grid System) de Bootstrap 5 para crear diseños adaptables (responsive)?",
+    "expected_answer": "El sistema de grilla de Bootstrap se basa en Flexbox y utiliza un contenedor dividido en 12 columnas. Permite definir el comportamiento del diseño en diferentes puntos de interrupción (breakpoints como sm, md, lg, xl, xxl) asignando clases de columna que especifican cuántas de las 12 columnas debe ocupar un elemento según el tamaño de la pantalla.",
+    "key_points": [
+      "Basado en un contenedor de 12 columnas",
+      "Utiliza puntos de interrupción (breakpoints: sm, md, lg, etc.)",
+      "Fundamentado en el modelo Flexbox de CSS"
+    ]
+  }
+]
