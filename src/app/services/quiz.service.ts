@@ -14,7 +14,7 @@ export class QuizService {
     'poo-python',
     'drf',
     'angular',
-    'metodologias',
+    'desarrollo-de-software',
   ];
   private readonly REVIEW_DECK_KEY = 'practica_final_review_deck';
 
