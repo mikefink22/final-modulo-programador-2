@@ -197,11 +197,54 @@ export class QuizService {
 
     const selected = scored.map((item) => item.exercise);
 
-    if (limit && limit > 0) {
+    if (limit !== undefined) {
       return selected.slice(0, limit);
     }
 
     return selected;
+  }
+
+  /**
+   * Selecciona ejercicios distribuidos por tipo (60% MC, 20% Concept, 20% Code)
+   * con fallback suave si no hay suficientes ítems disponibles de algún tipo.
+   */
+  selectExercisesByType(pool: Exercise[], limit: number): Exercise[] {
+    if (pool.length === 0 || limit <= 0) return [];
+    if (pool.length <= limit) {
+      return this.selectPrioritizedExercises(pool, limit);
+    }
+
+    const objetivoMC = Math.round(limit * 0.6);
+    const objetivoConcept = Math.floor(limit * 0.2);
+    const objetivoCode = limit - objetivoMC - objetivoConcept;
+
+    const poolMC = pool.filter((ex) => ex.type === 'mc');
+    const poolConcept = pool.filter((ex) => ex.type === 'concept');
+    const poolCode = pool.filter((ex) => ex.type === 'code');
+
+    const seleccionadosMC = this.selectPrioritizedExercises(poolMC, objetivoMC);
+    const seleccionadosConcept = this.selectPrioritizedExercises(poolConcept, objetivoConcept);
+    const seleccionadosCode = this.selectPrioritizedExercises(poolCode, objetivoCode);
+
+    const acumulado: Exercise[] = [
+      ...seleccionadosMC,
+      ...seleccionadosConcept,
+      ...seleccionadosCode,
+    ];
+
+    if (acumulado.length < limit) {
+      const faltantes = limit - acumulado.length;
+      const seleccionadosSet = new Set(
+        acumulado.map((ex) => `${ex.subject}_${ex.id}`)
+      );
+      const restantes = pool.filter(
+        (ex) => !seleccionadosSet.has(`${ex.subject}_${ex.id}`)
+      );
+      const adicionales = this.selectPrioritizedExercises(restantes, faltantes);
+      acumulado.push(...adicionales);
+    }
+
+    return this.shuffleArray(acumulado);
   }
 
   /**
@@ -301,8 +344,10 @@ export class QuizService {
         map((exercises) => {
           const nonDiscarded = exercises.filter((ex) => !discardedKeys.has(`${ex.subject}_${ex.id}`));
           const pool = nonDiscarded.length > 0 ? nonDiscarded : exercises;
-          const prioritized = this.selectPrioritizedExercises(pool, limit);
-          return prioritized.map((ex) => this.shuffleExerciseOptions(ex));
+          const selected = limit && limit > 0
+            ? this.selectExercisesByType(pool, limit)
+            : this.selectPrioritizedExercises(pool);
+          return selected.map((ex) => this.shuffleExerciseOptions(ex));
         }),
         catchError((error) => {
           console.error(`Error al cargar ejercicios de ${subject}:`, error);
@@ -385,7 +430,7 @@ export class QuizService {
         const selectedExercises: Exercise[] = [];
         rawQuotas.forEach((q) => {
           if (q.assignedQuota > 0) {
-            const selected = this.selectPrioritizedExercises(q.exercises, q.assignedQuota);
+            const selected = this.selectExercisesByType(q.exercises, q.assignedQuota);
             selectedExercises.push(...selected);
           }
         });

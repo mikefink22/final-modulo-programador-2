@@ -1,4 +1,13 @@
 <div class="results-card glass-card animate-fade-in">
+  <div class="actions top-actions">
+    <button type="button" class="btn btn-outline btn-sm" (click)="onGoHome()">
+      🏠 Volver a la Pantalla Principal
+    </button>
+    <button type="button" class="btn btn-primary btn-sm" (click)="onRestart()">
+      🔄 Reiniciar Autoevaluación
+    </button>
+  </div>
+
   <div class="feedback-icon">{{ feedbackMessage.icon }}</div>
 
   <h2 class="feedback-title">{{ feedbackMessage.title }}</h2>
@@ -70,7 +79,12 @@
             <div class="item-left">
               <span class="q-number">#{{ entry.originalIndex + 1 }}</span>
               <div class="q-details">
-                <span class="q-topic">{{ entry.item.exercise.subject | uppercase }} • {{ entry.item.exercise.topic }}</span>
+                <div class="q-meta">
+                  <span class="q-topic">{{ entry.item.exercise.subject | uppercase }} • {{ entry.item.exercise.topic }}</span>
+                  <span class="type-badge" [class]="getExerciseTypeBadgeClass(entry.item.exercise)">
+                    {{ getExerciseTypeLabel(entry.item.exercise) }}
+                  </span>
+                </div>
                 <span class="q-title">{{ getQuestionTitle(entry.item.exercise) }}</span>
               </div>
             </div>

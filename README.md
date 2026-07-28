@@ -31,6 +31,10 @@ La aplicación utiliza un algoritmo de selección adaptativo diseñado para maxi
    - Distribuye las cuotas de cada ronda priorizando las materias centrales del examen (`Django REST Framework` y `Angular` con peso **2.0**, `Desarrollo de Software` con **1.7**) y asignando cuotas reducidas a las materias de repaso base (`POO en Python` y `Programación Web` con **0.7**).
    - Si el cupo de una materia supera su banco activo disponible, las vacantes se reasignan dinámicamente a las materias principales.
 
+3. **Distribución Pedagógica Balanceada por Tipo (60% MC / 20% Concept / 20% Code)**:
+   - Para mantener coherencia pedagógica en cada ronda y ejercitar distintas capacidades cognitivas (reconocimiento, teoría explicativa y aplicación práctica), las rondas se arman con una proporción ideal de **60% Opción Múltiple (`mc`)**, **20% Conceptual (`concept`)** y **20% Código (`code`)** (ej. ronda de 5 preguntas: 3 MC, 1 Concept, 1 Code; 10 preguntas: 6 MC, 2 Concept, 2 Code).
+   - **Manejo de Excepciones (Fallback Graceful)**: Si una materia o lote carece de suficientes preguntas de algún tipo (ej. sin ejercicios de código cargados), los cupos faltantes se rellenan automáticamente con los ejercicios de mayor prioridad del resto del pool sin romper la ronda.
+
 ---
 
 ## 📂 Estructura del Repositorio
