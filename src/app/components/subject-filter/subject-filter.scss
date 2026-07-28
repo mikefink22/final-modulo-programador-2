@@ -20,6 +20,7 @@
   border: 1px solid var(--border-color);
   border-radius: var(--radius-md);
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  scroll-margin-top: 120px;
 
   .card-header {
     display: flex;
@@ -180,6 +181,7 @@
 
   .subject-card {
     padding: 14px 16px;
+    scroll-margin-top: 135px;
 
     .card-options-panel {
       display: flex;
