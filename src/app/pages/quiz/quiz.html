@@ -19,14 +19,20 @@
       [total]="exercises.length" 
       [exercisesState]="exercisesStateSummary"
       (goToQuestion)="jumpToQuestion($event)"
-      (restart)="restartQuiz()">
+      (restart)="restartQuiz()"
+      (goHome)="goHome()">
     </app-results-summary>
   } @else if (currentExercise) {
     <header class="quiz-header">
       <div class="header-top">
-        <button type="button" class="btn btn-outline back-btn" (click)="goHome()">
-          ← Salir del Quiz
-        </button>
+        <div class="header-actions">
+          <button type="button" class="btn btn-outline back-btn" (click)="goHome()">
+            ← Inicio
+          </button>
+          <button type="button" class="btn btn-outline finish-early-btn" (click)="finishQuiz()">
+            🏁 Terminar Cuestionario
+          </button>
+        </div>
 
         <div class="quiz-info">
           <span class="subject-badge">
@@ -84,6 +90,13 @@
         </div>
 
         <div class="nav-right">
+          <button 
+            type="button" 
+            class="btn btn-outline finish-early-btn" 
+            (click)="finishQuiz()">
+            🏁 Terminar
+          </button>
+
           @if (!isCurrentAnswered) {
             <button 
               type="button" 

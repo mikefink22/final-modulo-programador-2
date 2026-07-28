@@ -26,6 +26,7 @@ export class Home implements OnInit {
   selectedLimit: number | null = 10;
   totalAvailableCount: number = 0;
   reviewDeckCount: number = 0;
+  discardedDeckCount: number = 0;
 
   limitOptions: LimitOption[] = [];
 
@@ -43,16 +44,31 @@ export class Home implements OnInit {
   }
 
   updateAvailableCounts() {
-    this.reviewDeckCount = this.quizService.getReviewDeckCount(this.selectedSubject ?? undefined);
-    this.quizService.getExerciseCount(this.selectedSubject ?? undefined).subscribe((count) => {
+    const subjectParam = this.selectedSubject ?? undefined;
+    this.reviewDeckCount = this.quizService.getReviewDeckCount(subjectParam);
+    this.discardedDeckCount = this.quizService.getDiscardedDeckCount(subjectParam);
+
+    this.quizService.getExerciseCount(subjectParam).subscribe((count) => {
       this.totalAvailableCount = count;
       this.buildLimitOptions(count);
       this.cdr.markForCheck();
     });
   }
 
+  restoreDiscardedDeck() {
+    const subjectParam = this.selectedSubject ?? undefined;
+    this.quizService.restoreAllDiscarded(subjectParam);
+    this.updateAvailableCounts();
+  }
+
+  clearReviewDeck() {
+    const subjectParam = this.selectedSubject ?? undefined;
+    this.quizService.clearReviewDeck(subjectParam);
+    this.updateAvailableCounts();
+  }
+
   private buildLimitOptions(total: number) {
-    const defaultSteps = [5, 10, 15, 20];
+    const defaultSteps = [5, 10, 15, 20, 25, 30];
     const validSteps = defaultSteps.filter((step) => step < total);
 
     this.limitOptions = validSteps.map((step) => ({
