@@ -180,6 +180,8 @@ REGLAS DE VALIDACIÓN ESTRICTA:
 | **Angular** | `src/assets/data/angular/` | `"angular"` |
 | **Django REST Framework** | `src/assets/data/drf/` | `"drf"` |
 | **Metodologías** | `src/assets/data/metodologias/` | `"metodologias"` |
+| **Programación Web** | `src/assets/data/programacion-web/` | `"programacion-web"` |
+| **POO en Python** | `src/assets/data/poo-python/` | `"poo-python"` |
 
 **Ejemplo de archivo manifest `src/assets/data/angular/index.json`**:
 ```json

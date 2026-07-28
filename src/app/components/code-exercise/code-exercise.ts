@@ -24,7 +24,7 @@ export class CodeExercise implements OnChanges {
         this.isSubmitted = true;
         this.showSolution = true;
       } else {
-        this.userCode = '';
+        this.userCode = this.exercise.starter_code || '';
         this.showSolution = false;
         this.isSubmitted = false;
       }
@@ -34,6 +34,28 @@ export class CodeExercise implements OnChanges {
   onCodeInput(event: Event) {
     const input = event.target as HTMLTextAreaElement;
     this.userCode = input.value;
+  }
+
+  onKeyDown(event: KeyboardEvent) {
+    if (event.key === 'Tab') {
+      event.preventDefault();
+      const textarea = event.target as HTMLTextAreaElement;
+      const start = textarea.selectionStart;
+      const end = textarea.selectionEnd;
+
+      const spaces = '    ';
+      this.userCode = this.userCode.substring(0, start) + spaces + this.userCode.substring(end);
+
+      setTimeout(() => {
+        textarea.selectionStart = textarea.selectionEnd = start + spaces.length;
+      }, 0);
+    }
+  }
+
+  resetToStarterCode() {
+    if (this.exercise && this.exercise.starter_code) {
+      this.userCode = this.exercise.starter_code;
+    }
   }
 
   toggleSolution() {
@@ -49,8 +71,8 @@ export class CodeExercise implements OnChanges {
       return true;
     }
 
-    if (this.exercise.starter_code && this.exercise.starter_code.includes('_____')) {
-      const filledCode = this.exercise.starter_code.replace('_____', this.userCode.trim());
+    if (this.exercise.starter_code) {
+      const filledCode = this.exercise.starter_code.replace(/_+/g, this.userCode.trim());
       if (filledCode.trim().toLowerCase() === cleanSolution) {
         return true;
       }
