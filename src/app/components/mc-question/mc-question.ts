@@ -39,10 +39,13 @@ export class McQuestion implements OnChanges {
   }
 
   getOptionExplanation(index: number): string | null {
-    if (!this.exercise.option_explanations || !this.exercise.option_explanations[index]) {
-      return null;
+    if (this.exercise.option_explanations && this.exercise.option_explanations[index]) {
+      return this.exercise.option_explanations[index];
     }
-    return this.exercise.option_explanations[index];
+    if (index === this.exercise.correct_index) {
+      return this.exercise.explanation;
+    }
+    return null;
   }
 }
 

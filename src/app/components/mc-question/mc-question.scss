@@ -65,142 +65,101 @@
   .options-container {
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    margin-bottom: 24px;
+    gap: 14px;
   }
 
-  .option-button {
+  .option-card {
     display: flex;
-    align-items: center;
-    gap: 16px;
-    padding: 16px 20px;
+    flex-direction: column;
+    padding: 18px 22px;
     width: 100%;
     text-align: left;
     background: var(--bg-secondary);
     border: 1px solid var(--border-color);
-    border-radius: var(--radius-sm);
-    color: var(--text-main);
-    font-family: var(--font-sans);
-    font-size: 1rem;
+    border-radius: var(--radius-md);
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    box-sizing: border-box;
 
-    .option-prefix {
+    .option-title {
+      margin: 0;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text-main);
+      line-height: 1.45;
       display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 32px;
-      height: 32px;
-      border-radius: 8px;
-      background: var(--bg-elevated);
-      font-weight: 700;
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      flex-shrink: 0;
-    }
-
-    .option-text {
-      flex-grow: 1;
-      line-height: 1.4;
-    }
-
-    .status-icon {
-      font-size: 1.2rem;
-      font-weight: 800;
-      margin-left: 8px;
-
-      &.success { color: var(--success); }
-      &.error { color: var(--error); }
-    }
-
-    &:hover:not(:disabled) {
-      border-color: var(--primary);
-      background: var(--bg-card-hover);
-      transform: translateX(4px);
+      align-items: flex-start;
+      gap: 6px;
 
       .option-prefix {
-        background: var(--primary);
-        color: #ffffff;
+        font-weight: 700;
+        color: var(--text-muted);
+        flex-shrink: 0;
+      }
+
+      .option-text {
+        flex-grow: 1;
       }
     }
 
-    &.correct {
-      background: var(--success-bg);
-      border-color: var(--success-border);
-      color: var(--text-main);
-      font-weight: 600;
+    &:hover:not(.disabled) {
+      border-color: var(--primary);
+      background: var(--bg-card-hover);
+      transform: translateY(-1px);
 
-      .option-prefix {
-        background: var(--success);
-        color: #ffffff;
+      .option-title .option-prefix {
+        color: var(--primary);
+      }
+    }
+
+    &.disabled {
+      cursor: default;
+    }
+
+    &.correct {
+      background: rgba(34, 197, 94, 0.08);
+      border: 1.5px solid var(--success);
+
+      .option-title .option-prefix {
+        color: var(--success);
       }
     }
 
     &.incorrect {
-      background: var(--error-bg);
-      border-color: var(--error-border);
-      color: var(--text-main);
+      background: rgba(239, 68, 68, 0.08);
+      border: 1.5px solid var(--error);
 
-      .option-prefix {
-        background: var(--error);
-        color: #ffffff;
-      }
-    }
-  }
-
-  .option-feedback {
-    margin-top: -6px;
-    margin-bottom: 6px;
-    padding: 10px 16px;
-    border-radius: 8px;
-    font-size: 0.88rem;
-    line-height: 1.4;
-
-    &.success-feedback {
-      background: var(--success-bg);
-      color: var(--text-main);
-      border-left: 3px solid var(--success);
-    }
-
-    &.error-feedback {
-      background: var(--error-bg);
-      color: var(--text-main);
-      border-left: 3px solid var(--error);
-    }
-  }
-
-  .explanation-box {
-    padding: 20px;
-    border-radius: var(--radius-md);
-    border: 1px solid var(--border-color);
-    background: var(--bg-secondary);
-
-    .explanation-header {
-      margin-bottom: 10px;
-
-      .badge-result {
-        display: inline-block;
-        padding: 4px 12px;
-        border-radius: 20px;
-        font-weight: 700;
-        font-size: 0.85rem;
-
-        &.success {
-          background: var(--success);
-          color: #ffffff;
-        }
-
-        &.error {
-          background: var(--error);
-          color: #ffffff;
-        }
+      .option-title .option-prefix {
+        color: var(--error);
       }
     }
 
-    .explanation-content {
+    .result-badge {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 10px;
       font-size: 0.95rem;
-      color: var(--text-main);
+      font-weight: 700;
+
+      .icon {
+        font-size: 1.1rem;
+      }
+
+      &.success {
+        color: var(--success);
+      }
+
+      &.error {
+        color: var(--error);
+      }
+    }
+
+    .option-explanation {
+      margin: 8px 0 0 0;
+      font-size: 0.92rem;
       line-height: 1.5;
+      color: var(--text-muted);
     }
   }
 }
