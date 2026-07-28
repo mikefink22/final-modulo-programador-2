@@ -8,7 +8,7 @@ Estado general del proyecto. Marcar cada ítem al completarlo (`[x]`).
 - [x] Definición de la arquitectura de datos estáticos y manifests (`index.json`)
 - [x] Reestructuración y eficientización de la documentación (`README.md`, `spec.md`, `prompts.md`, `AGENTS.md`)
 - [x] Crear `src/app/models/exercise.model.ts` con interfaces y type guards
-- [x] Crear estructura inicial en `src/assets/data/<materia>/index.json` para las 3 materias
+- [x] Crear estructura inicial en `src/assets/data/<materia>/index.json` para las 5 materias
 
 ## Fase 1 — Servicio de datos
 - [x] Implementar `QuizService.getExercises()` con soporte para carga de manifests y aplanado
@@ -16,8 +16,10 @@ Estado general del proyecto. Marcar cada ítem al completarlo (`[x]`).
 - [x] Pruebas unitarias de `QuizService` y verificador de integridad de JSONs de assets
 
 ## Fase 2 — Contenido de Estudio
-- [ ] Notebook Angular cargado con apuntes + primera tanda generada (`tanda-1.json`)
+- [x] Notebook Programación Web cargado con apuntes + primera tanda generada (`tanda-1.json`)
+- [x] Notebook POO en Python cargado con apuntes + primera tanda generada (`tanda-1.json`)
 - [x] Notebook DRF cargado con apuntes + primera tanda generada (`tanda-1.json`)
+- [ ] Notebook Angular cargado con apuntes + primera tanda generada (`tanda-1.json`)
 - [ ] Notebook Metodologías cargado con apuntes + primera tanda generada (`tanda-1.json`)
 
 ## Fase 3 — Componentes de UI
@@ -47,3 +49,4 @@ Estado general del proyecto. Marcar cada ítem al completarlo (`[x]`).
 - **2026-07-26**: Implementación de componentes UI (`quiz-router`, `mc-question`, `code-exercise`, `concept-question`, `subject-filter`, `results-summary`), páginas (`home`, `quiz`), ruteo y shuffle de preguntas. Integration en `develop`.
 - **2026-07-26**: Implementación del selector dinámico de cantidad de preguntas por ronda (5, 10, 15, 20 o "Todas") y soporte del parámetro limit en QuizService y la vista Home.
 - **2026-07-27**: Implementación de navegación libre en el Quiz, desglose detallado de respuestas en pantalla de resultados y modo "Repasar preguntas falladas" (Review Deck).
+- **2026-07-27**: Reestructuración e integración del mapa completo de 5 materias (Programación Web, POO en Python, DRF, Angular y Metodologías) con assets y manifests estáticos.

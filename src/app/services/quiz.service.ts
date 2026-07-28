@@ -9,7 +9,13 @@ import { Exercise, SubjectType, isExercise } from '../models/exercise.model';
 })
 export class QuizService {
   private http = inject(HttpClient);
-  private readonly ALL_SUBJECTS: SubjectType[] = ['angular', 'drf', 'metodologias'];
+  private readonly ALL_SUBJECTS: SubjectType[] = [
+    'programacion-web',
+    'poo-python',
+    'drf',
+    'angular',
+    'metodologias',
+  ];
   private readonly REVIEW_DECK_KEY = 'practica_final_review_deck';
 
   /**
