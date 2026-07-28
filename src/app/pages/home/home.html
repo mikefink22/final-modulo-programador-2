@@ -17,12 +17,22 @@
 
     <app-subject-filter 
       [selectedSubject]="selectedSubject"
-      (subjectSelected)="onSubjectSelected($event)">
+      [selectedLimit]="selectedLimit"
+      [limitOptions]="limitOptions"
+      [totalAvailableCount]="totalAvailableCount"
+      (subjectSelected)="onSubjectSelected($event)"
+      (limitSelected)="selectLimit($event)"
+      (startQuizRequested)="startQuiz()">
     </app-subject-filter>
 
-    <div class="limit-selection-box glass-card">
+    <div class="limit-selection-box glass-card desktop-only-block">
       <div class="limit-header">
-        <span class="limit-title">⏱️ Tamaño de la Ronda:</span>
+        <div class="limit-title-group">
+          <span class="limit-title">⏱️ Tamaño de la Ronda:</span>
+          <span class="selected-subject-badge">
+            {{ selectedSubjectLabel }}
+          </span>
+        </div>
         <span class="limit-subtitle">Preguntas disponibles: <strong>{{ totalAvailableCount }}</strong></span>
       </div>
 
@@ -42,10 +52,10 @@
     <div class="cta-container">
       <button 
         type="button" 
-        class="btn btn-primary start-btn" 
+        class="btn btn-primary start-btn desktop-only-block" 
         [disabled]="totalAvailableCount === 0"
         (click)="startQuiz()">
-        🚀 {{ totalAvailableCount === 0 ? 'Sin ejercicios disponibles' : 'Iniciar Autoevaluación' }}
+        🚀 {{ totalAvailableCount === 0 ? 'Sin ejercicios disponibles' : 'Iniciar Autoevaluación de ' + selectedSubjectLabel }}
       </button>
 
       @if (reviewDeckCount > 0) {

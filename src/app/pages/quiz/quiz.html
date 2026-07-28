@@ -27,22 +27,25 @@
       <div class="header-top">
         <div class="header-actions">
           <button type="button" class="btn btn-outline back-btn" (click)="goHome()">
-            ← Inicio
+            <span class="btn-text-desktop">← Inicio</span>
+            <span class="btn-text-mobile">← Inicio</span>
           </button>
           <button type="button" class="btn btn-outline finish-early-btn" (click)="finishQuiz()">
-            🏁 Terminar Cuestionario
+            <span class="btn-text-desktop">🏁 Terminar Cuestionario</span>
+            <span class="btn-text-mobile">🏁 Terminar</span>
           </button>
         </div>
 
         <div class="quiz-info">
           <span class="subject-badge">
-            {{ subject ? (subject | uppercase) : 'TODAS LAS MATERIAS' }}
+            {{ subject ? (subject | uppercase) : 'TODAS' }}
             @if (mode === 'review') {
-              <span class="mode-badge">MAZO DE REPASO</span>
+              <span class="mode-badge">REPASO</span>
             }
           </span>
           <span class="question-counter">
-            Pregunta <strong>{{ currentIndex + 1 }}</strong> de <strong>{{ exercises.length }}</strong>
+            <span class="counter-desktop">Pregunta <strong>{{ currentIndex + 1 }}</strong> de <strong>{{ exercises.length }}</strong></span>
+            <span class="counter-mobile"><strong>{{ currentIndex + 1 }}</strong>/<strong>{{ exercises.length }}</strong></span>
           </span>
         </div>
       </div>
@@ -84,15 +87,20 @@
             class="btn btn-outline nav-btn" 
             [disabled]="currentIndex === 0"
             (click)="goToPrevious()">
-            ← Anterior
+            <span class="btn-text-desktop">← Anterior</span>
+            <span class="btn-text-mobile">← Ant</span>
           </button>
-          <span class="current-score">Puntaje actual: <strong>{{ score }}</strong></span>
+        </div>
+
+        <div class="current-score">
+          <span class="score-desktop">Puntaje actual: <strong>{{ score }}</strong></span>
+          <span class="score-mobile">Puntaje: <strong>{{ score }}</strong></span>
         </div>
 
         <div class="nav-right">
           <button 
             type="button" 
-            class="btn btn-outline finish-early-btn" 
+            class="btn btn-outline finish-early-btn desktop-only-finish" 
             (click)="finishQuiz()">
             🏁 Terminar
           </button>
@@ -102,7 +110,8 @@
               type="button" 
               class="btn btn-secondary skip-btn" 
               (click)="skipQuestion()">
-              Omitir / Saltar ↷
+              <span class="btn-text-desktop">Omitir / Saltar ↷</span>
+              <span class="btn-text-mobile">Saltar ↷</span>
             </button>
           }
           
@@ -110,7 +119,8 @@
             type="button" 
             class="btn btn-primary next-btn" 
             (click)="nextQuestion()">
-            {{ currentIndex === exercises.length - 1 ? '🏁 Ver Resultados Finales' : 'Siguiente →' }}
+            <span class="btn-text-desktop">{{ currentIndex === exercises.length - 1 ? '🏁 Ver Resultados Finales' : 'Siguiente →' }}</span>
+            <span class="btn-text-mobile">{{ currentIndex === exercises.length - 1 ? '🏁 Resultados' : 'Siguiente →' }}</span>
           </button>
         </div>
       </div>

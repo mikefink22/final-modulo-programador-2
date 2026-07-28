@@ -90,3 +90,35 @@
   color: var(--text-subtle);
   font-size: 0.85rem;
 }
+
+@media (max-width: 640px) {
+  .app-navbar {
+    padding: 10px 14px;
+
+    .navbar-container {
+      .navbar-brand {
+        font-size: 1.05rem;
+        gap: 6px;
+
+        .brand-icon {
+          font-size: 1.2rem;
+        }
+      }
+
+      .navbar-actions .btn-theme-toggle {
+        padding: 6px 10px;
+        font-size: 0.8rem;
+
+        .theme-text {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .app-footer {
+    padding: 16px 14px;
+    font-size: 0.78rem;
+  }
+}
+

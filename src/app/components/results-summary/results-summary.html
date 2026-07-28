@@ -1,10 +1,12 @@
 <div class="results-card glass-card animate-fade-in">
   <div class="actions top-actions">
-    <button type="button" class="btn btn-outline btn-sm" (click)="onGoHome()">
-      🏠 Volver a la Pantalla Principal
+    <button type="button" class="btn btn-outline btn-sm" (click)="onGoHome()" title="Volver a la Pantalla Principal">
+      <span class="btn-icon">🏠</span>
+      <span class="btn-text">Volver a la Pantalla Principal</span>
     </button>
-    <button type="button" class="btn btn-primary btn-sm" (click)="onRestart()">
-      🔄 Reiniciar Autoevaluación
+    <button type="button" class="btn btn-primary btn-sm" (click)="onRestart()" title="Reiniciar Autoevaluación">
+      <span class="btn-icon">🔄</span>
+      <span class="btn-text">Reiniciar Autoevaluación</span>
     </button>
   </div>
 
@@ -35,89 +37,201 @@
     </div>
   </div>
 
-  @if (exercisesState.length > 0) {
-    <div class="questions-breakdown">
-      <div class="breakdown-header">
-        <h3>📋 Detalle y Revisión de Preguntas</h3>
-        <p>Hacé clic en cualquier pregunta para volver y responderla.</p>
+  @if (selectedPreviewIndex !== null && currentPreviewItem) {
+    <div class="inline-preview-card glass-card animate-fade-in">
+      <div class="preview-header">
+        <button type="button" class="btn btn-outline btn-sm back-to-grid-btn" (click)="closePreview()">
+          ← Volver a la Rejilla / Menú
+        </button>
+
+        <div class="preview-meta">
+          <span class="q-badge-num">Pregunta #{{ selectedPreviewIndex + 1 }} de {{ exercisesState.length }}</span>
+          <span class="q-topic-tag">{{ currentPreviewItem.exercise.subject | uppercase }} • {{ currentPreviewItem.exercise.topic }}</span>
+          @if (!currentPreviewItem.isAnswered) {
+            <span class="badge badge-unanswered">⚠️ Sin Responder</span>
+          } @else if (currentPreviewItem.isCorrect) {
+            <span class="badge badge-correct">✓ Correcta</span>
+          } @else {
+            <span class="badge badge-incorrect">✗ Incorrecta</span>
+          }
+        </div>
       </div>
 
-      <div class="filter-tabs">
-        <button 
-          type="button" 
-          class="tab-btn" 
-          [class.active]="selectedFilter === 'all'"
-          (click)="setFilter('all')">
-          Todas ({{ total }})
-        </button>
-        <button 
-          type="button" 
-          class="tab-btn tab-warning" 
-          [class.active]="selectedFilter === 'unanswered'"
-          (click)="setFilter('unanswered')">
-          Sin responder ({{ unansweredCount }})
-        </button>
-        <button 
-          type="button" 
-          class="tab-btn tab-danger" 
-          [class.active]="selectedFilter === 'incorrect'"
-          (click)="setFilter('incorrect')">
-          Incorrectas ({{ incorrectCount }})
-        </button>
-        <button 
-          type="button" 
-          class="tab-btn tab-success" 
-          [class.active]="selectedFilter === 'correct'"
-          (click)="setFilter('correct')">
-          Correctas ({{ correctCount }})
-        </button>
+      <div class="preview-content">
+        <app-quiz-router 
+          [exercise]="currentPreviewItem.exercise" 
+          [savedState]="{ isAnswered: currentPreviewItem.isAnswered, isCorrect: currentPreviewItem.isCorrect }">
+        </app-quiz-router>
       </div>
 
-      <div class="questions-list">
-        @for (entry of filteredExercisesState; track entry.originalIndex) {
-          <div class="question-list-item glass-card" (click)="onSelectQuestion(entry.originalIndex)">
-            <div class="item-left">
-              <span class="q-number">#{{ entry.originalIndex + 1 }}</span>
-              <div class="q-details">
-                <div class="q-meta">
-                  <span class="q-topic">{{ entry.item.exercise.subject | uppercase }} • {{ entry.item.exercise.topic }}</span>
-                  <span class="type-badge" [class]="getExerciseTypeBadgeClass(entry.item.exercise)">
-                    {{ getExerciseTypeLabel(entry.item.exercise) }}
+      <div class="preview-footer">
+        <div class="nav-arrows">
+          <button 
+            type="button" 
+            class="btn btn-outline btn-sm" 
+            [disabled]="selectedPreviewIndex === 0"
+            (click)="prevPreview()">
+            ← Anterior
+          </button>
+          <button 
+            type="button" 
+            class="btn btn-outline btn-sm" 
+            [disabled]="selectedPreviewIndex === exercisesState.length - 1"
+            (click)="nextPreview()">
+            Siguiente →
+          </button>
+        </div>
+
+        <div class="footer-actions">
+          <button type="button" class="btn btn-secondary btn-sm" (click)="closePreview()">
+            🔙 Volver al Resumen
+          </button>
+          <button type="button" class="btn btn-primary btn-sm" (click)="editQuestionInQuiz(selectedPreviewIndex)">
+            ✏️ Responder / Editar en Quiz →
+          </button>
+        </div>
+      </div>
+    </div>
+  } @else {
+    @if (exercisesState.length > 0) {
+      <div class="questions-breakdown" id="questions-breakdown-section">
+        <div class="breakdown-header">
+          <div class="header-text">
+            <h3>📋 Detalle y Revisión de Preguntas</h3>
+            <p>Hacé clic en cualquier número o pregunta para verla sin salir del resumen.</p>
+          </div>
+
+          <div class="view-toggle-btns">
+            <button 
+              type="button" 
+              class="toggle-btn" 
+              [class.active]="viewMode === 'grid'"
+              (click)="setViewMode('grid')"
+              title="Vista de Rejilla Compacta">
+              ▦ Rejilla
+            </button>
+            <button 
+              type="button" 
+              class="toggle-btn" 
+              [class.active]="viewMode === 'list'"
+              (click)="setViewMode('list')"
+              title="Vista de Lista Detallada">
+              ☰ Lista
+            </button>
+          </div>
+        </div>
+
+        <div class="filter-tabs">
+          <button 
+            type="button" 
+            class="tab-btn" 
+            [class.active]="selectedFilter === 'all'"
+            (click)="setFilter('all')">
+            Todas ({{ total }})
+          </button>
+          <button 
+            type="button" 
+            class="tab-btn tab-warning" 
+            [class.active]="selectedFilter === 'unanswered'"
+            (click)="setFilter('unanswered')">
+            Sin responder ({{ unansweredCount }})
+          </button>
+          <button 
+            type="button" 
+            class="tab-btn tab-danger" 
+            [class.active]="selectedFilter === 'incorrect'"
+            (click)="setFilter('incorrect')">
+            Incorrectas ({{ incorrectCount }})
+          </button>
+          <button 
+            type="button" 
+            class="tab-btn tab-success" 
+            [class.active]="selectedFilter === 'correct'"
+            (click)="setFilter('correct')">
+            Correctas ({{ correctCount }})
+          </button>
+        </div>
+
+        @if (viewMode === 'grid') {
+          <div class="status-grid">
+            @for (entry of filteredExercisesState; track entry.originalIndex) {
+              <button 
+                type="button" 
+                class="grid-cell"
+                [class.cell-correct]="entry.item.isAnswered && entry.item.isCorrect === true"
+                [class.cell-incorrect]="entry.item.isAnswered && entry.item.isCorrect === false"
+                [class.cell-unanswered]="!entry.item.isAnswered"
+                [title]="getTooltipText(entry.item, entry.originalIndex)"
+                (click)="onSelectQuestion(entry.originalIndex)">
+                <span class="cell-num">#{{ entry.originalIndex + 1 }}</span>
+                <span class="cell-topic-abbr">{{ getSubjectAbbr(entry.item.exercise.subject) }}</span>
+              </button>
+            } @empty {
+              <div class="empty-filter-state">
+                <p>No se encontraron preguntas en esta categoría.</p>
+              </div>
+            }
+          </div>
+        } @else {
+          <div class="questions-list">
+            @for (entry of filteredExercisesState; track entry.originalIndex) {
+              <div class="question-list-item glass-card" (click)="onSelectQuestion(entry.originalIndex)">
+                <!-- Fila Superior: 1/3 de alto (#1 + tipo + estado --- Materia • Tema) -->
+                <div class="item-top-row">
+                  <div class="top-left-group">
+                    <span class="q-number">#{{ entry.originalIndex + 1 }}</span>
+                    <span class="type-badge" [class]="getExerciseTypeBadgeClass(entry.item.exercise)">
+                      {{ getExerciseTypeLabel(entry.item.exercise) }}
+                    </span>
+                    @if (!entry.item.isAnswered) {
+                      <span class="status-icon unanswered" title="Sin responder">⚠️</span>
+                    } @else if (entry.item.isCorrect) {
+                      <span class="status-icon correct" title="Correcta">🟢</span>
+                    } @else {
+                      <span class="status-icon incorrect" title="Incorrecta">🔴</span>
+                    }
+                  </div>
+
+                  <span class="q-topic-text">
+                    {{ getSubjectAbbr(entry.item.exercise.subject) }} • {{ entry.item.exercise.topic }}
                   </span>
                 </div>
-                <span class="q-title">{{ getQuestionTitle(entry.item.exercise) }}</span>
-              </div>
-            </div>
 
-            <div class="item-right">
-              @if (!entry.item.isAnswered) {
-                <span class="badge badge-unanswered">⚠️ Sin Responder</span>
-              } @else if (entry.item.isCorrect) {
-                <span class="badge badge-correct">✓ Correcta</span>
-              } @else {
-                <span class="badge badge-incorrect">✗ Incorrecta</span>
-              }
-              <button type="button" class="btn btn-outline btn-sm action-btn">
-                Volver a la pregunta →
-              </button>
-            </div>
-          </div>
-        } @empty {
-          <div class="empty-filter-state">
-            <p>No se encontraron preguntas en esta categoría.</p>
+                <!-- Fila Principal: 2/3 de alto (Pregunta a la izq 3/4 --- Ojo a la der 1/4) -->
+                <div class="item-main-row">
+                  <p class="q-title-text">{{ getQuestionTitle(entry.item.exercise) }}</p>
+
+                  <div class="view-eye-action" title="Inspeccionar detalle de la pregunta">
+                    <div class="action-icon-badge">
+                      <svg class="inspect-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="10.5" cy="10.5" r="7.5"></circle>
+                        <line x1="16" y1="16" x2="21" y2="21"></line>
+                        <circle cx="10.5" cy="10.5" r="2.5" fill="currentColor"></circle>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            } @empty {
+              <div class="empty-filter-state">
+                <p>No se encontraron preguntas en esta categoría.</p>
+              </div>
+            }
           </div>
         }
       </div>
+    }
+
+    <div class="actions bottom-actions">
+      <button type="button" class="btn btn-outline" (click)="onGoHome()" title="Volver a la Pantalla Principal">
+        <span class="btn-icon">🏠</span>
+        <span class="btn-text">Volver a la Pantalla Principal</span>
+      </button>
+      <button type="button" class="btn btn-primary" (click)="onRestart()" title="Reiniciar Autoevaluación">
+        <span class="btn-icon">🔄</span>
+        <span class="btn-text">Reiniciar Autoevaluación</span>
+      </button>
     </div>
   }
-
-  <div class="actions">
-    <button type="button" class="btn btn-outline" (click)="onGoHome()">
-      🏠 Volver a la Pantalla Principal
-    </button>
-    <button type="button" class="btn btn-primary" (click)="onRestart()">
-      🔄 Reiniciar Autoevaluación
-    </button>
-  </div>
 </div>
 

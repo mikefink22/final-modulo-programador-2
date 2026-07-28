@@ -53,3 +53,5 @@ Estado general del proyecto. Marcar cada ítem al completarlo (`[x]`).
 - **2026-07-27**: Implementación de navegación libre en el Quiz, desglose detallado de respuestas en pantalla de resultados y modo "Repasar preguntas falladas" (Review Deck).
 - **2026-07-27**: Reestructuración e integración del mapa completo de 5 materias (Programación Web, POO en Python, DRF, Angular y Metodologías) con assets y manifests estáticos.
 - **2026-07-28**: Implementación de la distribución pedagógica balanceada por tipo de ejercicio (60% MC, 20% Concept, 20% Code), corrección de cálculo de cuotas exactas, mezcla aleatoria intermezclada, badges por tipo en la pantalla de resultados y barra de menú superior para acciones rápidas.
+- **2026-07-28**: Implementación del diseño responsive y optimización UX móvil en pantallas angostas (375px), incluyendo contador compacto `1/10`, botón `Saltar ↷`, botón flotante `Siguiente →`, adaptabilidad de bloques de código y flex wrapping en encabezados.
+
