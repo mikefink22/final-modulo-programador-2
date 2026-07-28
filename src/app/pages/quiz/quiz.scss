@@ -1,7 +1,7 @@
 .quiz-container {
   max-width: 900px;
   margin: 0 auto;
-  padding: 24px 20px 60px;
+  padding: 20px 16px 95px;
 
   .loading-box, .error-box {
     padding: 48px 32px;
@@ -28,13 +28,13 @@
   }
 
   .quiz-header {
-    margin-bottom: 28px;
+    margin-bottom: 24px;
 
     .header-top {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
 
       .header-actions {
         display: flex;
@@ -110,25 +110,39 @@
 
     .question-chips-bar {
       display: flex;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      white-space: nowrap;
       gap: 6px;
-      margin-top: 16px;
+      margin-top: 14px;
+      padding: 4px 2px;
+      scrollbar-width: thin;
+
+      &::-webkit-scrollbar {
+        height: 4px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: var(--border-color);
+        border-radius: 2px;
+      }
 
       .chip-btn {
-        min-width: 32px;
-        height: 32px;
+        min-width: 30px;
+        height: 30px;
         padding: 0 6px;
         border-radius: 8px;
         border: 1px solid var(--border-color);
         background: var(--bg-card);
         color: var(--text-muted);
-        font-size: 0.85rem;
+        font-size: 0.82rem;
         font-weight: 600;
         cursor: pointer;
         transition: all 0.2s ease;
         display: inline-flex;
         align-items: center;
         justify-content: center;
+        flex-shrink: 0;
 
         &:hover {
           border-color: var(--primary);
@@ -162,40 +176,48 @@
   }
 
   .quiz-body {
-    margin-bottom: 28px;
+    margin-bottom: 24px;
   }
 
+  /* Fixed Bottom Action Bar (Thumb Zone) */
   .quiz-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: var(--bg-card);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-top: 1px solid var(--border-color);
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.35);
+    padding: 10px 16px;
+
     .footer-content {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      max-width: 800px;
+      max-width: 900px;
       margin: 0 auto;
-      padding: 16px 24px;
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-md);
-      flex-wrap: wrap;
-      gap: 12px;
+      gap: 10px;
 
       .nav-left {
         display: flex;
         align-items: center;
-        gap: 16px;
+        gap: 12px;
 
         .nav-btn {
-          padding: 8px 16px;
-          font-size: 0.9rem;
+          padding: 8px 14px;
+          font-size: 0.88rem;
         }
 
         .current-score {
-          font-size: 0.95rem;
+          font-size: 0.88rem;
           color: var(--text-muted);
 
           strong {
             color: var(--primary);
-            font-size: 1.1rem;
+            font-size: 1.05rem;
           }
         }
       }
@@ -203,11 +225,11 @@
       .nav-right {
         display: flex;
         align-items: center;
-        gap: 12px;
+        gap: 10px;
 
         .skip-btn {
-          padding: 10px 18px;
-          font-size: 0.9rem;
+          padding: 8px 14px;
+          font-size: 0.85rem;
           background: rgba(255, 255, 255, 0.08);
           border: 1px solid var(--border-focus);
           color: var(--text-muted);
@@ -222,7 +244,9 @@
         }
 
         .next-btn {
-          padding: 10px 24px;
+          padding: 8px 20px;
+          font-size: 0.9rem;
+          font-weight: 700;
         }
       }
     }
@@ -240,37 +264,6 @@
   display: none;
 }
 
-.floating-next-btn {
-  position: fixed;
-  right: 24px;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 90;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 12px 18px;
-  background: var(--primary);
-  color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 30px;
-  font-weight: 700;
-  font-size: 0.9rem;
-  box-shadow: 0 8px 24px rgba(99, 102, 241, 0.45);
-  cursor: pointer;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-
-  &:hover {
-    background: var(--primary-hover);
-    transform: translateY(-50%) scale(1.05);
-    box-shadow: 0 12px 28px rgba(99, 102, 241, 0.6);
-  }
-
-  .arrow {
-    font-size: 1.1rem;
-  }
-}
-
 @media (max-width: 640px) {
   .btn-text-desktop, .counter-desktop, .score-desktop {
     display: none;
@@ -281,15 +274,15 @@
   }
 
   .quiz-container {
-    padding: 12px 8px 85px;
+    padding: 10px 8px 90px;
 
     .quiz-header {
-      margin-bottom: 16px;
+      margin-bottom: 14px;
 
       .header-top {
         flex-direction: column;
         align-items: stretch;
-        gap: 10px;
+        gap: 8px;
 
         .header-actions {
           justify-content: space-between;
@@ -297,30 +290,29 @@
 
           .back-btn, .finish-early-btn {
             padding: 5px 10px;
-            font-size: 0.8rem;
+            font-size: 0.78rem;
           }
         }
 
         .quiz-info {
           justify-content: space-between;
           width: 100%;
-          font-size: 0.82rem;
+          font-size: 0.8rem;
 
           .subject-badge {
-            font-size: 0.7rem;
+            font-size: 0.68rem;
             padding: 3px 8px;
           }
 
           .question-counter {
-            font-size: 0.85rem;
+            font-size: 0.82rem;
           }
         }
       }
 
       .question-chips-bar {
         gap: 4px;
-        margin-top: 10px;
-        justify-content: center;
+        margin-top: 8px;
 
         .chip-btn {
           min-width: 26px;
@@ -333,16 +325,9 @@
     }
 
     .quiz-footer {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      z-index: 95;
-      background: var(--bg-main);
-      padding: 6px 8px;
+      padding: 8px 10px;
 
       .footer-content {
-        padding: 8px 10px;
         gap: 6px;
 
         .nav-left {
@@ -354,9 +339,10 @@
           }
 
           .current-score {
-            font-size: 0.8rem;
+            font-size: 0.78rem;
+
             strong {
-              font-size: 0.95rem;
+              font-size: 0.9rem;
             }
           }
         }
@@ -381,18 +367,9 @@
       }
     }
   }
-
-  .floating-next-btn {
-    right: 12px;
-    top: auto;
-    bottom: 75px;
-    transform: none;
-    padding: 10px 14px;
-    font-size: 0.82rem;
-
-    &:hover {
-      transform: scale(1.04);
-    }
-  }
 }
+
+
+
+
 

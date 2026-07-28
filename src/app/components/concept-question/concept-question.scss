@@ -30,6 +30,14 @@
     }
   }
 
+  .question-text {
+    font-size: 1.18rem;
+    font-weight: 700;
+    color: var(--text-main);
+    line-height: 1.4;
+    margin-bottom: 20px;
+  }
+
   .concept-editor-box {
     margin-bottom: 20px;
     border-radius: var(--radius-sm);
@@ -147,6 +155,22 @@
   }
 }
 
+@media (max-width: 1024px) {
+  .concept-card {
+    padding: 24px 20px;
+
+    .question-text {
+      font-size: 1.08rem;
+      margin-bottom: 16px;
+    }
+
+    .concept-editor-box .concept-editor-input {
+      font-size: 0.95rem;
+      padding: 14px;
+    }
+  }
+}
+
 @media (max-width: 640px) {
   .concept-card {
     padding: 16px 12px;
@@ -156,17 +180,24 @@
       margin-bottom: 12px;
 
       .badge {
-        font-size: 0.7rem;
-        padding: 3px 8px;
+        font-size: 0.65rem;
+        padding: 2px 8px;
+        line-height: 1.25;
       }
+    }
+
+    .question-text {
+      font-size: 0.95rem;
+      line-height: 1.4;
+      margin-bottom: 14px;
     }
 
     .concept-editor-box {
       margin-bottom: 14px;
 
       .concept-editor-input {
-        padding: 12px;
-        font-size: 0.9rem;
+        padding: 10px 12px;
+        font-size: 0.88rem;
       }
     }
 
@@ -175,24 +206,24 @@
       margin-bottom: 20px;
 
       .model-answer-box, .key-points-box {
-        padding: 14px;
+        padding: 12px 14px;
 
         h4 {
-          font-size: 0.9rem;
+          font-size: 0.88rem;
         }
 
         p, li {
-          font-size: 0.88rem;
+          font-size: 0.85rem;
         }
       }
     }
 
     .self-eval-container {
-      padding-top: 16px;
+      padding-top: 14px;
 
       .eval-prompt {
-        font-size: 0.9rem;
-        margin-bottom: 12px;
+        font-size: 0.88rem;
+        margin-bottom: 10px;
       }
 
       .eval-buttons {
@@ -209,4 +240,5 @@
     }
   }
 }
+
 

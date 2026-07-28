@@ -77,17 +77,6 @@
         [savedState]="currentSavedState"
         (answered)="onAnswered($event)">
       </app-quiz-router>
-
-      @if (isCurrentAnswered && currentIndex < exercises.length - 1) {
-        <button 
-          type="button" 
-          class="floating-next-btn animate-fade-in" 
-          (click)="nextQuestion()" 
-          title="Avanzar a la Siguiente Pregunta">
-          <span class="btn-label">Siguiente</span>
-          <span class="arrow">→</span>
-        </button>
-      }
     </main>
 
     <footer class="quiz-footer">

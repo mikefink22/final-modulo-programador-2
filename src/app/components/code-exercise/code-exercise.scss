@@ -31,10 +31,10 @@
   }
 
   .instructions-text {
-    font-size: 1.25rem;
+    font-size: 1.15rem;
     font-weight: 700;
     color: var(--text-main);
-    line-height: 1.5;
+    line-height: 1.4;
     margin-bottom: 16px;
   }
 
@@ -198,6 +198,21 @@
   }
 }
 
+@media (max-width: 1024px) {
+  .code-card {
+    padding: 24px 20px;
+
+    .instructions-text {
+      font-size: 1.08rem;
+      margin-bottom: 16px;
+    }
+
+    .code-editor-box .code-editor-input {
+      font-size: 0.9rem;
+    }
+  }
+}
+
 @media (max-width: 640px) {
   .code-card {
     padding: 14px 10px;
@@ -207,13 +222,14 @@
       margin-bottom: 10px;
 
       .badge {
-        font-size: 0.7rem;
-        padding: 3px 8px;
+        font-size: 0.65rem;
+        padding: 2px 8px;
+        line-height: 1.25;
       }
     }
 
     .instructions-text {
-      font-size: 1.05rem;
+      font-size: 0.95rem;
       line-height: 1.4;
       margin-bottom: 12px;
     }
@@ -221,11 +237,11 @@
     .starter-hint {
       padding: 10px;
       margin-bottom: 14px;
-      font-size: 0.82rem;
+      font-size: 0.8rem;
 
       .hint-code-block {
         padding: 8px;
-        font-size: 0.8rem;
+        font-size: 0.78rem;
       }
     }
 
@@ -241,11 +257,11 @@
 
       .code-editor-input {
         padding: 10px;
-        font-size: 0.83rem;
+        font-size: 0.82rem;
       }
 
       pre {
-        font-size: 0.83rem;
+        font-size: 0.82rem;
         padding: 10px;
       }
     }
@@ -272,4 +288,5 @@
     }
   }
 }
+
 
