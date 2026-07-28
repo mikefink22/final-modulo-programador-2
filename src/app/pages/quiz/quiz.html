@@ -28,7 +28,7 @@
         <div class="header-actions">
           <button type="button" class="btn btn-outline back-btn" (click)="goHome()">
             <span class="btn-text-desktop">← Inicio</span>
-            <span class="btn-text-mobile">←</span>
+            <span class="btn-text-mobile">← Inicio</span>
           </button>
           <button type="button" class="btn btn-outline finish-early-btn" (click)="finishQuiz()">
             <span class="btn-text-desktop">🏁 Terminar Cuestionario</span>
@@ -88,12 +88,13 @@
             [disabled]="currentIndex === 0"
             (click)="goToPrevious()">
             <span class="btn-text-desktop">← Anterior</span>
-            <span class="btn-text-mobile">←</span>
+            <span class="btn-text-mobile">← Ant</span>
           </button>
-          <span class="current-score">
-            <span class="score-desktop">Puntaje actual: <strong>{{ score }}</strong></span>
-            <span class="score-mobile">Ptos: <strong>{{ score }}</strong></span>
-          </span>
+        </div>
+
+        <div class="current-score">
+          <span class="score-desktop">Puntaje actual: <strong>{{ score }}</strong></span>
+          <span class="score-mobile">Puntaje: <strong>{{ score }}</strong></span>
         </div>
 
         <div class="nav-right">

@@ -148,9 +148,17 @@ export class Quiz implements OnInit {
     this.cdr.markForCheck();
   }
 
+  private scrollActiveChipIntoView(): void {
+    setTimeout(() => {
+      const activeChip = document.querySelector('.chip-btn.chip-active');
+      activeChip?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    }, 50);
+  }
+
   nextQuestion() {
     if (this.currentIndex < this.exercises.length - 1) {
       this.currentIndex++;
+      this.scrollActiveChipIntoView();
     } else {
       this.finishQuiz();
     }
@@ -160,6 +168,7 @@ export class Quiz implements OnInit {
   goToPrevious() {
     if (this.currentIndex > 0) {
       this.currentIndex--;
+      this.scrollActiveChipIntoView();
       this.cdr.markForCheck();
     }
   }
@@ -168,6 +177,7 @@ export class Quiz implements OnInit {
     if (index >= 0 && index < this.exercises.length) {
       this.currentIndex = index;
       this.isFinished = false;
+      this.scrollActiveChipIntoView();
       this.cdr.markForCheck();
     }
   }
