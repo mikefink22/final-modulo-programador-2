@@ -70,6 +70,20 @@ export class ResultsSummary {
     return 'Ejercicio de autoevaluación';
   }
 
+  getExerciseTypeLabel(exercise: Exercise): string {
+    if (exercise.type === 'mc') return 'Opción Múltiple';
+    if (exercise.type === 'concept') return 'Conceptual';
+    if (exercise.type === 'code') return 'Código';
+    return '';
+  }
+
+  getExerciseTypeBadgeClass(exercise: Exercise): string {
+    if (exercise.type === 'mc') return 'type-badge-mc';
+    if (exercise.type === 'concept') return 'type-badge-concept';
+    if (exercise.type === 'code') return 'type-badge-code';
+    return '';
+  }
+
   get feedbackMessage(): { title: string; subtitle: string; icon: string } {
     const pct = this.percentage;
     if (pct >= 90) {

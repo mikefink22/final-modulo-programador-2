@@ -187,4 +187,101 @@ describe('QuizService', () => {
     service.restoreAllDiscarded();
     expect(service.getDiscardedDeckCount()).toBe(0);
   });
+
+  it('should select exercises adhering to 60% MC / 20% Concept / 20% Code distribution', () => {
+    const pool: Exercise[] = [
+      ...Array.from({ length: 10 }, (_, i) => ({
+        id: i + 1,
+        subject: 'angular',
+        topic: 'MC',
+        type: 'mc' as const,
+        question: `MC ${i + 1}`,
+        options: ['A', 'B'],
+        correct_index: 0,
+        explanation: 'Exp'
+      })),
+      ...Array.from({ length: 5 }, (_, i) => ({
+        id: i + 101,
+        subject: 'angular',
+        topic: 'Concept',
+        type: 'concept' as const,
+        question: `Concept ${i + 1}`,
+        expected_answer: 'Ans',
+        key_points: ['KP']
+      })),
+      ...Array.from({ length: 5 }, (_, i) => ({
+        id: i + 201,
+        subject: 'angular',
+        topic: 'Code',
+        type: 'code' as const,
+        instructions: `Inst ${i + 1}`,
+        starter_code: 'code',
+        solution_code: 'solution',
+        explanation: 'Exp'
+      }))
+    ];
+
+    // Para limit 5: Math.round(5*0.6)=3 MC, Math.floor(5*0.2)=1 Concept, 5-3-1=1 Code
+    const round5 = service.selectExercisesByType(pool, 5);
+    expect(round5.length).toBe(5);
+    expect(round5.filter((ex) => ex.type === 'mc').length).toBe(3);
+    expect(round5.filter((ex) => ex.type === 'concept').length).toBe(1);
+    expect(round5.filter((ex) => ex.type === 'code').length).toBe(1);
+
+    // Para limit 10: Math.round(10*0.6)=6 MC, Math.floor(10*0.2)=2 Concept, 10-6-2=2 Code
+    const round10 = service.selectExercisesByType(pool, 10);
+    expect(round10.length).toBe(10);
+    expect(round10.filter((ex) => ex.type === 'mc').length).toBe(6);
+    expect(round10.filter((ex) => ex.type === 'concept').length).toBe(2);
+    expect(round10.filter((ex) => ex.type === 'code').length).toBe(2);
+  });
+
+  it('should fallback gracefully when a type is missing in the pool', () => {
+    // Pool sin ejercicios de 'code'
+    const poolWithoutCode: Exercise[] = [
+      ...Array.from({ length: 10 }, (_, i) => ({
+        id: i + 1,
+        subject: 'drf',
+        topic: 'MC',
+        type: 'mc' as const,
+        question: `MC ${i + 1}`,
+        options: ['A', 'B'],
+        correct_index: 0,
+        explanation: 'Exp'
+      })),
+      ...Array.from({ length: 2 }, (_, i) => ({
+        id: i + 101,
+        subject: 'drf',
+        topic: 'Concept',
+        type: 'concept' as const,
+        question: `Concept ${i + 1}`,
+        expected_answer: 'Ans',
+        key_points: ['KP']
+      }))
+    ];
+
+    // Solicitamos 5 ejercicios: objetivo 3 MC, 1 Concept, 1 Code.
+    // Como no hay Code, debe seleccionar 3 MC + 1 Concept, y rellenar la faltante con 1 MC restante.
+    const selected = service.selectExercisesByType(poolWithoutCode, 5);
+    expect(selected.length).toBe(5);
+    expect(selected.filter((ex) => ex.type === 'code').length).toBe(0);
+    expect(selected.filter((ex) => ex.type === 'mc').length + selected.filter((ex) => ex.type === 'concept').length).toBe(5);
+  });
+
+  it('should return empty array when limit is 0 in selectPrioritizedExercises', () => {
+    const pool: Exercise[] = [
+      {
+        id: 1,
+        subject: 'angular',
+        topic: 'Test',
+        type: 'mc',
+        question: 'Q',
+        options: ['A', 'B'],
+        correct_index: 0,
+        explanation: 'E'
+      }
+    ];
+    const res = service.selectPrioritizedExercises(pool, 0);
+    expect(res).toEqual([]);
+  });
 });

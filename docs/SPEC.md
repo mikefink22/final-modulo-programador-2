@@ -112,6 +112,9 @@ export function isExercise(item: any): item is Exercise {
      - Aplica el peso por materia para calcular sus cuotas relativas dentro del `limit`.
      - Si una materia sobrepasa su disponible o límite, las vacantes se reasignan a las materias principales con mayor disponibilidad de preguntas.
      - Concatena y realiza un barajado final (Fisher-Yates) para alternar las materias en la sesión del quiz.
+  5. **Distribución Pedagógica Balanceada por Tipo (60% MC / 20% Concept / 20% Code)**:
+     - Para cada cupo asignado, calcula la meta por tipo de ejercicio: `objetivoMC = Math.round(cupo * 0.6)`, `objetivoConcept = Math.floor(cupo * 0.2)`, `objetivoCode = cupo - objetivoMC - objetivoConcept`.
+     - **Fallback Graceful**: Si el banco de preguntas no cuenta con suficientes ítems de un tipo particular (ej. sin ejercicios de `code`), los cupos faltantes se rellenan automáticamente con los ejercicios de mayor prioridad del pool restante sin importar su tipo.
 - **Identificadores**: Los `id` de `Exercise` deben ser únicos *dentro* de cada tanda JSON.
 
 ### 3.2 `quiz-router` (Componente Router de Ejercicio)
