@@ -33,6 +33,14 @@ export interface ConceptExercise extends BaseExercise {
   key_points: string[];
 }
 
+export interface QuestionHistoryRecord {
+  exerciseKey: string; // `${subject}_${id}`
+  lastAttemptTimestamp: number;
+  lastResult: 'correct' | 'incorrect';
+  timesCorrect: number;
+  timesIncorrect: number;
+}
+
 export type Exercise = McExercise | CodeExercise | ConceptExercise;
 
 /**
