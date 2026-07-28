@@ -1,0 +1,222 @@
+[
+  {
+    "id": 1,
+    "subject": "desarrollo-de-software",
+    "topic": "Valores de XP",
+    "type": "mc",
+    "question": "En la metodología XP, ¿qué valor asegura que nadie haga 'checkout' del trabajo ajeno sin permiso?",
+    "code_snippet": null,
+    "options": [
+      "Simplicidad",
+      "Coraje",
+      "Comunicación",
+      "Respeto"
+    ],
+    "correct_index": 3,
+    "explanation": "El respeto mutuo entre compañeros y hacia el cliente es fundamental para la cohesión del equipo en XP.",
+    "option_explanations": [
+      "La simplicidad busca hacer el trabajo necesario de la forma más sencilla posible, no trata sobre la propiedad del código.",
+      "El coraje se refiere a la valentía para tomar decisiones difíciles o corregir errores, no a la etiqueta de trabajo.",
+      "La comunicación es la base para resolver problemas, pero la norma ética específica descrita es el respeto.",
+      "El respeto mutuo entre compañeros y hacia el cliente es fundamental para la cohesión del equipo en XP."
+    ]
+  },
+  {
+    "id": 2,
+    "subject": "desarrollo-de-software",
+    "topic": "Roles en Scrum / Sprint Planning",
+    "type": "mc",
+    "question": "¿Cuál es la función principal del Scrum Master durante el Sprint Planning?",
+    "code_snippet": null,
+    "options": [
+      "Seleccionar qué elementos entrarán en el Sprint.",
+      "Definir los criterios de aceptación de cada historia de usuario.",
+      "Asignar las tareas a cada desarrollador según su especialidad.",
+      "Asegurar que el evento ocurra y que el equipo entienda su propósito."
+    ],
+    "correct_index": 3,
+    "explanation": "El Scrum Master actúa como facilitador, asegurando que se respeten los tiempos y se logren los acuerdos necesarios.",
+    "option_explanations": [
+      "La selección del trabajo la realizan los Developers tras negociar con el Product Owner.",
+      "Esta es una responsabilidad compartida liderada generalmente por el Product Owner.",
+      "Los equipos en Scrum son autogestionados y los Developers mismos deciden cómo realizar el trabajo.",
+      "El Scrum Master actúa como facilitador, asegurando que se respeten los tiempos y se logren los acuerdos necesarios."
+    ]
+  },
+  {
+    "id": 3,
+    "subject": "desarrollo-de-software",
+    "topic": "Sprint Backlog",
+    "type": "mc",
+    "question": "¿Qué elemento del 'Sprint Backlog' responde a la pregunta de 'por qué' el equipo está realizando el Sprint?",
+    "code_snippet": null,
+    "options": [
+      "El Objetivo del Sprint",
+      "El plan de acción",
+      "Los elementos seleccionados del Product Backlog",
+      "La velocidad del equipo"
+    ],
+    "correct_index": 0,
+    "explanation": "El objetivo proporciona la meta única y el propósito que guía al equipo durante el ciclo.",
+    "option_explanations": [
+      "El objetivo proporciona la meta única y el propósito que guía al equipo durante el ciclo.",
+      "El plan de acción explica el 'cómo' se entregará el incremento.",
+      "Estos elementos definen el 'qué' se va a construir durante el periodo.",
+      "La velocidad es una métrica de capacidad, no un componente del propósito del trabajo."
+    ]
+  },
+  {
+    "id": 4,
+    "subject": "desarrollo-de-software",
+    "topic": "Desarrollo Incremental",
+    "type": "mc",
+    "question": "En el desarrollo de software, ¿qué se entiende por proceso 'Incremental'?",
+    "code_snippet": null,
+    "options": [
+      "Aumentar el número de personas en el equipo para terminar antes.",
+      "Repetir ciclos para mejorar la calidad del código ya existente.",
+      "Desarrollar partes del producto que se integran a medida que se completan.",
+      "Seguir una línea de tiempo fija sin posibilidad de cambios."
+    ],
+    "correct_index": 2,
+    "explanation": "El enfoque incremental permite construir el software por piezas funcionales que se suman al conjunto.",
+    "option_explanations": [
+      "El incremento se refiere al producto desarrollado, no al crecimiento de los recursos humanos.",
+      "Esta es la definición de un proceso iterativo, que se enfoca en el refinamiento.",
+      "El enfoque incremental permite construir el software por piezas funcionales que se suman al conjunto.",
+      "Esto es característico de modelos rígidos tradicionales, no del desarrollo incremental ágil."
+    ]
+  },
+  {
+    "id": 5,
+    "subject": "desarrollo-de-software",
+    "topic": "Definición de Software (IEEE)",
+    "type": "mc",
+    "question": "Según la IEEE, ¿cuál de estos componentes NO forma parte de la definición de software?",
+    "code_snippet": null,
+    "options": [
+      "Documentación asociada",
+      "Reglas y procedimientos",
+      "Datos de cómputo",
+      "Hardware de procesamiento"
+    ],
+    "correct_index": 3,
+    "explanation": "El software se compone de programas, datos y documentación; los equipos físicos pertenecen al hardware.",
+    "option_explanations": [
+      "La documentación es una parte integral de la definición formal de software según la IEEE.",
+      "Las reglas lógicas y procedimientos de operación son considerados componentes esenciales del software.",
+      "Los datos que forman parte de las operaciones son elementos fundamentales de los sistemas de software.",
+      "El software se compone de programas, datos y documentación; los equipos físicos pertenecen al hardware."
+    ]
+  },
+  {
+    "id": 6,
+    "subject": "desarrollo-de-software",
+    "topic": "Autogestión en Scrum",
+    "type": "mc",
+    "question": "Durante un Sprint, ¿quién tiene la autoridad exclusiva para decidir cómo convertir los elementos del backlog en incrementos de valor?",
+    "code_snippet": null,
+    "options": [
+      "El Product Owner",
+      "Los Developers",
+      "El Scrum Master",
+      "El Cliente"
+    ],
+    "correct_index": 1,
+    "explanation": "Scrum empodera a quienes realizan el trabajo técnico para gestionar su propio proceso y tareas.",
+    "option_explanations": [
+      "El Product Owner decide qué es importante, pero no interviene en las decisiones técnicas de implementación.",
+      "Scrum empodera a quienes realizan el trabajo técnico para gestionar su propio proceso y tareas.",
+      "Aunque ayuda a mejorar las prácticas, no tiene autoridad sobre la ejecución técnica del trabajo.",
+      "Los interesados externos proporcionan feedback, pero la autogestión técnica reside en el equipo."
+    ]
+  },
+  {
+    "id": 7,
+    "subject": "desarrollo-de-software",
+    "topic": "Gestión de Stakeholders",
+    "type": "mc",
+    "question": "En el contexto de la documentación inicial, ¿qué herramienta permite identificar a las personas interesadas y su nivel de influencia?",
+    "code_snippet": null,
+    "options": [
+      "Definición de Terminado",
+      "Backlog de Producto",
+      "Historias de Usuario",
+      "Mapa de Stakeholders"
+    ],
+    "correct_index": 3,
+    "explanation": "Esta herramienta visual clasifica a los interesados por su rol, interés e influencia para definir canales de comunicación.",
+    "option_explanations": [
+      "Es una lista de verificación de calidad para el incremento, no para la gestión de personas.",
+      "El backlog es una lista de requisitos técnicos y funcionales, no un análisis de personas.",
+      "Representan necesidades específicas del usuario final, no el mapa completo de actores del proyecto.",
+      "Esta herramienta visual clasifica a los interesados por su rol, interés e influencia para definir canales de comunicación."
+    ]
+  },
+  {
+    "id": 8,
+    "subject": "desarrollo-de-software",
+    "topic": "Eventos de Scrum / Retrospectiva",
+    "type": "mc",
+    "question": "¿Cuál es el propósito fundamental de la Sprint Retrospective?",
+    "code_snippet": null,
+    "options": [
+      "Planificar las tareas técnicas del próximo ciclo de trabajo.",
+      "Actualizar el gráfico de avance (burndown chart) del proyecto.",
+      "Presentar el incremento final a los clientes interesados.",
+      "Planear formas de mejorar la calidad y la efectividad del equipo."
+    ],
+    "correct_index": 3,
+    "explanation": "Se analizan los procesos, las interacciones personales y las herramientas para implementar mejoras inmediatas.",
+    "option_explanations": [
+      "La planificación técnica se realiza durante el Sprint Planning.",
+      "Esta es una actividad de seguimiento diario que no requiere un evento de cierre formal.",
+      "Ese es el objetivo de la Sprint Review, no de la retrospectiva.",
+      "Se analizan los procesos, las interacciones personales y las herramientas para implementar mejoras inmediatas."
+    ]
+  },
+  {
+    "id": 9,
+    "subject": "desarrollo-de-software",
+    "topic": "Product Backlog",
+    "type": "mc",
+    "question": "¿Qué sucede con el Product Backlog a lo largo del tiempo en un proyecto Scrum?",
+    "code_snippet": null,
+    "options": [
+      "Es una lista emergente y dinámica que se actualiza constantemente.",
+      "Solo puede ser modificado por el Scrum Master al final de cada Sprint.",
+      "Se descarta una vez que el equipo comienza a programar el primer incremento.",
+      "Se mantiene fijo tras la primera reunión de planificación."
+    ],
+    "correct_index": 0,
+    "explanation": "El Product Backlog evoluciona a medida que el producto y su entorno cambian para seguir siendo competitivo.",
+    "option_explanations": [
+      "El Product Backlog evoluciona a medida que el producto y su entorno cambian para seguir siendo competitivo.",
+      "La gestión del backlog es responsabilidad del Product Owner y puede ajustarse en cualquier momento.",
+      "Es la única fuente de trabajo del equipo durante toda la vida del producto.",
+      "Un backlog estático impediría la adaptación a nuevos aprendizajes y necesidades del mercado."
+    ]
+  },
+  {
+    "id": 10,
+    "subject": "desarrollo-de-software",
+    "topic": "Historias de Usuario vs Requisitos",
+    "type": "mc",
+    "question": "¿Qué característica distingue a las Historias de Usuario de los requisitos funcionales tradicionales?",
+    "code_snippet": null,
+    "options": [
+      "No pueden cambiar una vez que han sido estimadas por el equipo.",
+      "Son documentos técnicos escritos exclusivamente por arquitectos de software.",
+      "Requieren matrices de trazabilidad con porcentajes de avance detallados.",
+      "Se centran en la conversación y la entrega iterativa más que en la especificación formal."
+    ],
+    "correct_index": 3,
+    "explanation": "Su valor reside en el diálogo que generan entre el equipo y el cliente para descubrir la necesidad real.",
+    "option_explanations": [
+      "Son 'documentos vivos' que pueden refinarse y ajustarse hasta el momento de su desarrollo.",
+      "Las historias son colaborativas y deben ser entendibles tanto por el negocio como por el equipo.",
+      "Su criterio de aceptación es binario (cumple o no cumple), no se mide en porcentajes de avance parcial.",
+      "Su valor reside en el diálogo que generan entre el equipo y el cliente para descubrir la necesidad real."
+    ]
+  }
+]
