@@ -38,7 +38,9 @@ Estado general del proyecto. Marcar cada ítem al completarlo (`[x]`).
 ## Fase 5 — Pulido y Experiencia de Usuario
 - [x] Orden aleatorio de preguntas (Shuffle)
 - [x] Modo "Solo las preguntas que fallé"
-- [ ] Estilos CSS / Diseño responsive y accesible
+- [x] Distribución pedagógica balanceada por tipo de ejercicio (60% MC / 20% Concept / 20% Code) con fallback y barajado intermezclado
+- [x] Badges visuales por tipo de ejercicio y barra superior de acciones rápidas en resultados
+- [x] Estilos CSS / Diseño responsive y accesible
 
 ---
 
@@ -50,3 +52,4 @@ Estado general del proyecto. Marcar cada ítem al completarlo (`[x]`).
 - **2026-07-26**: Implementación del selector dinámico de cantidad de preguntas por ronda (5, 10, 15, 20 o "Todas") y soporte del parámetro limit en QuizService y la vista Home.
 - **2026-07-27**: Implementación de navegación libre en el Quiz, desglose detallado de respuestas en pantalla de resultados y modo "Repasar preguntas falladas" (Review Deck).
 - **2026-07-27**: Reestructuración e integración del mapa completo de 5 materias (Programación Web, POO en Python, DRF, Angular y Metodologías) con assets y manifests estáticos.
+- **2026-07-28**: Implementación de la distribución pedagógica balanceada por tipo de ejercicio (60% MC, 20% Concept, 20% Code), corrección de cálculo de cuotas exactas, mezcla aleatoria intermezclada, badges por tipo en la pantalla de resultados y barra de menú superior para acciones rápidas.
