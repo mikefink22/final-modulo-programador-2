@@ -13,7 +13,7 @@ Los ejercicios utilizan una **discriminated union** discriminada por la propieda
 > **Nota sobre `option_explanations` (en `McExercise`)**: Campo opcional (`string[]`) que permite definir retroalimentación individual por cada opción (coincidiendo 1:1 con el array `options`), emulando la interfaz interactiva de cuestionarios de NotebookLM. Si no está presente, se utiliza únicamente el campo general `explanation`.
 
 ```typescript
-export type SubjectType = 'angular' | 'drf' | 'metodologias';
+export type SubjectType = 'angular' | 'drf' | 'metodologias' | 'programacion-web' | 'poo-python';
 export type ExerciseType = 'mc' | 'code' | 'concept';
 
 export interface BaseExercise {
@@ -85,14 +85,14 @@ export function isExercise(item: any): item is Exercise {
 
 ### 3.1 `QuizService`
 - `getExercises(subject?: SubjectType, limit?: number): Observable<Exercise[]>`
-- **Estructura en assets**: Carpetas `angular/`, `drf/`, `metodologias/` dentro de `src/assets/data/`.
+- **Estructura en assets**: Carpetas `angular/`, `drf/`, `metodologias/`, `programacion-web/`, `poo-python/` dentro de `src/assets/data/`.
 - **Algoritmo de Carga**:
   1. Lee `assets/data/<materia>/index.json` (array de nombres de archivo JSON, ej. `["tanda-1.json"]`).
   2. Realiza un `forkJoin` (o `rxjs` combination) para descargar cada tanda listada.
   3. Aplana (`flat`) todos los arrays resultantes en un único array de ejercicios.
   4. Aplica el algoritmo Fisher-Yates para desordenar los ejercicios aleatoriamente.
   5. Si se especifica `limit` (`number > 0`), recorta el array desordenado retornando únicamente las primeras `N` preguntas (`slice(0, limit)`).
-  6. Si no se especifica `subject`, se cargan y combinan las 3 materias.
+  6. Si no se especifica `subject`, se cargan y combinan las 5 materias.
 - **Identificadores**: Los `id` de `Exercise` deben ser únicos *dentro* de cada tanda JSON.
 
 ### 3.2 `quiz-router` (Componente Router de Ejercicio)
