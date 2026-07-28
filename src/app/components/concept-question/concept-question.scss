@@ -146,3 +146,67 @@
     }
   }
 }
+
+@media (max-width: 640px) {
+  .concept-card {
+    padding: 16px 12px;
+
+    .card-meta {
+      gap: 6px;
+      margin-bottom: 12px;
+
+      .badge {
+        font-size: 0.7rem;
+        padding: 3px 8px;
+      }
+    }
+
+    .concept-editor-box {
+      margin-bottom: 14px;
+
+      .concept-editor-input {
+        padding: 12px;
+        font-size: 0.9rem;
+      }
+    }
+
+    .answer-container {
+      gap: 12px;
+      margin-bottom: 20px;
+
+      .model-answer-box, .key-points-box {
+        padding: 14px;
+
+        h4 {
+          font-size: 0.9rem;
+        }
+
+        p, li {
+          font-size: 0.88rem;
+        }
+      }
+    }
+
+    .self-eval-container {
+      padding-top: 16px;
+
+      .eval-prompt {
+        font-size: 0.9rem;
+        margin-bottom: 12px;
+      }
+
+      .eval-buttons {
+        flex-direction: column;
+        width: 100%;
+
+        .btn {
+          width: 100%;
+          justify-content: center;
+          padding: 8px 12px;
+          font-size: 0.85rem;
+        }
+      }
+    }
+  }
+}
+

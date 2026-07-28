@@ -161,3 +161,46 @@
     }
   }
 }
+
+@media (max-width: 640px) {
+  .mc-card {
+    padding: 16px 12px;
+
+    .card-meta {
+      gap: 6px;
+      margin-bottom: 12px;
+
+      .badge {
+        font-size: 0.7rem;
+        padding: 3px 8px;
+      }
+    }
+
+    .question-text {
+      font-size: 1.1rem;
+      margin-bottom: 16px;
+    }
+
+    .options-container {
+      gap: 10px;
+    }
+
+    .option-card {
+      padding: 12px 14px;
+
+      .option-title {
+        font-size: 0.95rem;
+      }
+
+      .result-badge {
+        font-size: 0.85rem;
+        margin-top: 6px;
+      }
+
+      .option-explanation {
+        font-size: 0.85rem;
+      }
+    }
+  }
+}
+

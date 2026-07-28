@@ -59,14 +59,16 @@
         class="btn btn-success" 
         [disabled]="isSubmitted"
         (click)="evaluate(true)">
-        👍 Logré resolverlo correctamente
+        <span class="btn-text-desktop">👍 Logré resolverlo correctamente</span>
+        <span class="btn-text-mobile">👍 Logré resolverlo</span>
       </button>
       <button 
         type="button" 
         class="btn btn-danger" 
         [disabled]="isSubmitted"
         (click)="evaluate(false)">
-        👎 Necesito repasar este concepto
+        <span class="btn-text-desktop">👎 Necesito repasar este concepto</span>
+        <span class="btn-text-mobile">👎 Necesito repasar</span>
       </button>
     </div>
   </div>
