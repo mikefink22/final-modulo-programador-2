@@ -30,6 +30,18 @@ export class Home implements OnInit {
 
   limitOptions: LimitOption[] = [];
 
+  get selectedSubjectLabel(): string {
+    if (!this.selectedSubject) return 'Todas las Materias';
+    switch (this.selectedSubject) {
+      case 'programacion-web': return 'Programación Web';
+      case 'poo-python': return 'POO en Python';
+      case 'drf': return 'Django REST Framework';
+      case 'angular': return 'Angular 21';
+      case 'desarrollo-de-software': return 'Desarrollo de Software';
+      default: return 'Todas las Materias';
+    }
+  }
+
   ngOnInit() {
     this.updateAvailableCounts();
   }
@@ -37,6 +49,15 @@ export class Home implements OnInit {
   onSubjectSelected(subject: SubjectType | null) {
     this.selectedSubject = subject;
     this.updateAvailableCounts();
+
+    setTimeout(() => {
+      const limitBox = document.querySelector('.limit-selection-box') as HTMLElement;
+      if (limitBox && window.innerWidth > 640) {
+        limitBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        limitBox.classList.add('highlight-pulse');
+        setTimeout(() => limitBox.classList.remove('highlight-pulse'), 1200);
+      }
+    }, 100);
   }
 
   selectLimit(limit: number | null) {

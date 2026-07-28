@@ -10,6 +10,11 @@ export interface SubjectOption {
   icon: string;
 }
 
+export interface LimitOption {
+  value: number | null;
+  label: string;
+}
+
 @Component({
   selector: 'app-subject-filter',
   standalone: true,
@@ -19,7 +24,13 @@ export interface SubjectOption {
 })
 export class SubjectFilter {
   @Input() selectedSubject: SubjectType | null = null;
+  @Input() selectedLimit: number | null = 10;
+  @Input() limitOptions: LimitOption[] = [];
+  @Input() totalAvailableCount: number = 0;
+
   @Output() subjectSelected = new EventEmitter<SubjectType | null>();
+  @Output() limitSelected = new EventEmitter<number | null>();
+  @Output() startQuizRequested = new EventEmitter<void>();
 
   subjects: SubjectOption[] = [
     {
@@ -69,6 +80,17 @@ export class SubjectFilter {
   selectSubject(subject: SubjectType | null) {
     this.selectedSubject = subject;
     this.subjectSelected.emit(subject);
+  }
+
+  onSelectLimit(limit: number | null, event: Event) {
+    event.stopPropagation();
+    this.selectedLimit = limit;
+    this.limitSelected.emit(limit);
+  }
+
+  onStartQuiz(event: Event) {
+    event.stopPropagation();
+    this.startQuizRequested.emit();
   }
 }
 
