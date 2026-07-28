@@ -95,17 +95,22 @@ export function isExercise(item: any): item is Exercise {
 - `getExercises(subject?: SubjectType, limit?: number): Observable<Exercise[]>`
 - **Estructura en assets**: Carpetas `angular/`, `drf/`, `metodologias/`, `programacion-web/`, `poo-python/` dentro de `src/assets/data/`.
 - **Algoritmo de Selección Ponderada y Muestreo Estratificado**:
-  1. **Historial de Respuestas**: Rastrear por cada ejercicio (`${subject}_${id}`) su estado en `localStorage` (`practica_final_question_history`).
+  1. **Historial de Respuestas y Mazo Descartado**: Rastrear por cada ejercicio (`${subject}_${id}`) su estado en `localStorage` (`practica_final_question_history`). Las preguntas acertadas en las últimas 24h pasan al **Mazo Descartado** y se excluyen de la práctica activa a menos que el usuario las reincorpore manualmente.
   2. **Sistema de Pesos por Pregunta**:
      - No vista: Peso 3 (Prioridad Máxima).
      - Fallada o en Mazo de Repaso: Peso 2 (Prioridad Alta).
      - Acertada lejana (> 24h): Peso 1 (Prioridad Media).
-     - Acertada reciente (<= 24h): Peso 0 (Prioridad Baja).
-  3. **Selección Ponderada en Materia Única**: Asigna `score = peso + Math.random()`, ordena descendente y extrae hasta el límite.
-  4. **Muestreo Estratificado en "Todas las Materias"**:
-     - Carga los ejercicios de las 5 materias por separado.
-     - Divide el `limit` equitativamente entre las materias (ej. $\lfloor N / 5 \rfloor$), distribuyendo homogéneamente cualquier residuo.
-     - Extrae las preguntas priorizadas correspondientes de cada materia.
+     - Acertada reciente (<= 24h): Excluida al Mazo Descartado (Peso 0).
+  3. **Pesos Relativos por Materia (`SUBJECT_WEIGHTS`)**:
+     - `drf`: 2.0
+     - `angular`: 2.0
+     - `desarrollo-de-software`: 1.7
+     - `poo-python`: 0.7
+     - `programacion-web`: 0.7
+  4. **Muestreo Estratificado Ponderado en "Todas las Materias"**:
+     - Carga los ejercicios de las 5 materias por separado, excluyendo los que estén en el Mazo Descartado.
+     - Aplica el peso por materia para calcular sus cuotas relativas dentro del `limit`.
+     - Si una materia sobrepasa su disponible o límite, las vacantes se reasignan a las materias principales con mayor disponibilidad de preguntas.
      - Concatena y realiza un barajado final (Fisher-Yates) para alternar las materias en la sesión del quiz.
 - **Identificadores**: Los `id` de `Exercise` deben ser únicos *dentro* de cada tanda JSON.
 
