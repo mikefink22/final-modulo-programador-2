@@ -10,6 +10,12 @@ export interface LimitOption {
   label: string;
 }
 
+export interface CategoryChip {
+  id: SubjectType | null;
+  label: string;
+  icon: string;
+}
+
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -29,6 +35,15 @@ export class Home implements OnInit {
   discardedDeckCount: number = 0;
 
   limitOptions: LimitOption[] = [];
+
+  categoryChips: CategoryChip[] = [
+    { id: null, label: 'Todas', icon: '✨' },
+    { id: 'programacion-web', label: 'Prog. Web', icon: '🌐' },
+    { id: 'poo-python', label: 'Python', icon: '🐍' },
+    { id: 'drf', label: 'DRF', icon: '⚡' },
+    { id: 'angular', label: 'Angular', icon: '🅰️' },
+    { id: 'desarrollo-de-software', label: 'Software', icon: '🚀' },
+  ];
 
   get selectedSubjectLabel(): string {
     if (!this.selectedSubject) return 'Todas las Materias';
@@ -56,6 +71,16 @@ export class Home implements OnInit {
         limitBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
         limitBox.classList.add('highlight-pulse');
         setTimeout(() => limitBox.classList.remove('highlight-pulse'), 1200);
+      }
+    }, 100);
+  }
+
+  selectSubjectFromChip(subjectId: SubjectType | null) {
+    this.onSubjectSelected(subjectId);
+    setTimeout(() => {
+      const activeCard = document.querySelector('.subject-card.active') as HTMLElement;
+      if (activeCard) {
+        activeCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
     }, 100);
   }

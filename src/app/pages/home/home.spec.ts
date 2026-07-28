@@ -21,5 +21,16 @@ describe('Home', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should initialize categoryChips correctly', () => {
+    expect(component.categoryChips.length).toBe(6);
+    expect(component.categoryChips[0].id).toBeNull();
+    expect(component.categoryChips[4].id).toBe('angular');
+  });
+
+  it('should select subject when selectSubjectFromChip is called', () => {
+    component.selectSubjectFromChip('angular');
+    expect(component.selectedSubject).toBe('angular');
+  });
 });
 

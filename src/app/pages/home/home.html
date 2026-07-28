@@ -1,4 +1,22 @@
 <div class="home-container animate-fade-in">
+  <div class="mobile-category-bar-wrapper mobile-only-block">
+    <div class="bar-header-label">
+      <span>📚 Ir a Materia:</span>
+    </div>
+    <nav class="mobile-category-bar">
+      @for (chip of categoryChips; track chip.id) {
+        <button 
+          type="button" 
+          class="chip-btn"
+          [class.active]="selectedSubject === chip.id"
+          (click)="selectSubjectFromChip(chip.id)">
+          <span class="chip-icon">{{ chip.icon }}</span>
+          <span class="chip-label">{{ chip.label }}</span>
+        </button>
+      }
+    </nav>
+  </div>
+
   <section class="hero-section">
     <div class="hero-badge">🎓 Examen Final Programador Web</div>
     <h1 class="hero-title">
@@ -81,7 +99,8 @@
           type="button" 
           class="btn btn-outline restore-discarded-btn"
           (click)="restoreDiscardedDeck()">
-          ♻️ Reincorporar Mazo Descartado (<strong>{{ discardedDeckCount }}</strong> {{ discardedDeckCount === 1 ? 'dominada' : 'dominadas' }} &lt;24h)
+          <span class="btn-text-desktop">♻️ Reincorporar Mazo Descartado (<strong>{{ discardedDeckCount }}</strong> {{ discardedDeckCount === 1 ? 'dominada' : 'dominadas' }} &lt;24h)</span>
+          <span class="btn-text-mobile">♻️ Restaurar Descartadas (<strong>{{ discardedDeckCount }}</strong>)</span>
         </button>
       }
     </div>
