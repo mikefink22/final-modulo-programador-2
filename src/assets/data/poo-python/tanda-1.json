@@ -1,0 +1,46 @@
+[
+  {
+    "id": 1,
+    "subject": "poo-python",
+    "topic": "Pilares de la POO",
+    "type": "mc",
+    "question": "En Python, ¿cuál es la convención utilizada para definir un atributo o método como privado/encapsulado dentro de una clase?",
+    "options": [
+      "Utilizar la palabra clave 'private'",
+      "Anteponer un doble guion bajo (__) al nombre del identificador",
+      "Encerrar el nombre entre llaves {}",
+      "Declarar el atributo dentro de un bloque try-except"
+    ],
+    "correct_index": 1,
+    "explanation": "En Python, anteponer un doble guion bajo (ej. __saldo) activa el mecanismo de Name Mangling, haciendo que el atributo sea privado y no accesible directamente desde fuera de la clase.",
+    "option_explanations": [
+      "Incorrecto. Python no posee una palabra reservada 'private'.",
+      "¡Correcto! El doble guion bajo (__) activa el ocultamiento de atributos (Name Mangling) en clases Python.",
+      "Incorrecto. Las llaves se usan para diccionarios y conjuntos, no para encapsulamiento.",
+      "Incorrecto. try-except se utiliza para el manejo de excepciones."
+    ]
+  },
+  {
+    "id": 2,
+    "subject": "poo-python",
+    "topic": "Herencia y Métodos",
+    "type": "code",
+    "instructions": "Completa el método __init__ de la subclase 'Empleado' para invocar correctamente el constructor de la clase padre 'Persona' pasando el parámetro 'nombre'.",
+    "starter_code": "class Persona:\n    def __init__(self, nombre):\n        self.nombre = nombre\n\nclass Empleado(Persona):\n    def __init__(self, nombre, legajo):\n        # Completa la llamada al constructor padre\n        ___\n        self.legajo = legajo",
+    "solution_code": "class Persona:\n    def __init__(self, nombre):\n        self.nombre = nombre\n\nclass Empleado(Persona):\n    def __init__(self, nombre, legajo):\n        super().__init__(nombre)\n        self.legajo = legajo",
+    "explanation": "En Python, se utiliza super().__init__(...) para ejecutar la inicialización de la clase base o padre de manera limpia y mantenible."
+  },
+  {
+    "id": 3,
+    "subject": "poo-python",
+    "topic": "Manejo de Excepciones",
+    "type": "concept",
+    "question": "¿Cuál es la función del bloque 'finally' en el manejo de excepciones de Python?",
+    "expected_answer": "El bloque 'finally' se ejecuta SIEMPRE al finalizar el bloque try-except, independientemente de si se produjo una excepción o no. Se utiliza principalmente para realizar tareas de limpieza y liberación de recursos (como cerrar archivos, conexiones de red o bases de datos).",
+    "key_points": [
+      "Se ejecuta siempre (con o sin excepción)",
+      "Utilizado para tareas de limpieza y liberación de recursos",
+      "Opcional dentro de la estructura try-except"
+    ]
+  }
+]

@@ -29,5 +29,37 @@ describe('CodeExercise', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should initialize userCode with starter_code on ngOnChanges', () => {
+    component.ngOnChanges({
+      exercise: {
+        currentValue: component.exercise,
+        previousValue: undefined,
+        firstChange: true,
+        isFirstChange: () => true,
+      },
+    });
+    expect(component.userCode).toBe('class MyView:');
+  });
+
+  it('should reset userCode to starter_code when resetToStarterCode is called', () => {
+    component.userCode = 'modified code';
+    component.resetToStarterCode();
+    expect(component.userCode).toBe('class MyView:');
+  });
+
+  it('should insert 4 spaces when Tab key is pressed', () => {
+    component.userCode = 'line1\nline2';
+    const textarea = document.createElement('textarea');
+    textarea.value = component.userCode;
+    textarea.selectionStart = 5;
+    textarea.selectionEnd = 5;
+
+    const event = new KeyboardEvent('keydown', { key: 'Tab', cancelable: true });
+    Object.defineProperty(event, 'target', { value: textarea, enumerable: true });
+
+    component.onKeyDown(event);
+    expect(component.userCode).toBe('line1    \nline2');
+  });
 });
 

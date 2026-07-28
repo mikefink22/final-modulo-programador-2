@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Exercise } from '../../models/exercise.model';
+import { QuizRouter } from '../quiz-router/quiz-router';
 
 export interface ExerciseStateItem {
   exercise: Exercise;
@@ -13,7 +14,7 @@ export type ResultFilter = 'all' | 'unanswered' | 'incorrect' | 'correct';
 @Component({
   selector: 'app-results-summary',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, QuizRouter],
   templateUrl: './results-summary.html',
   styleUrl: './results-summary.scss',
 })
@@ -23,9 +24,64 @@ export class ResultsSummary {
   @Input() exercisesState: ExerciseStateItem[] = [];
   
   @Output() restart = new EventEmitter<void>();
+  @Output() goHome = new EventEmitter<void>();
   @Output() goToQuestion = new EventEmitter<number>();
 
   selectedFilter: ResultFilter = 'all';
+  viewMode: 'grid' | 'list' = 'grid';
+  selectedPreviewIndex: number | null = null;
+
+  setViewMode(mode: 'grid' | 'list') {
+    this.viewMode = mode;
+  }
+
+  get currentPreviewItem(): ExerciseStateItem | null {
+    if (this.selectedPreviewIndex === null || !this.exercisesState[this.selectedPreviewIndex]) {
+      return null;
+    }
+    return this.exercisesState[this.selectedPreviewIndex];
+  }
+
+  closePreview() {
+    this.selectedPreviewIndex = null;
+  }
+
+  prevPreview() {
+    if (this.selectedPreviewIndex !== null && this.selectedPreviewIndex > 0) {
+      this.selectedPreviewIndex--;
+    }
+  }
+
+  nextPreview() {
+    if (this.selectedPreviewIndex !== null && this.selectedPreviewIndex < this.exercisesState.length - 1) {
+      this.selectedPreviewIndex++;
+    }
+  }
+
+  editQuestionInQuiz(originalIndex: number) {
+    this.goToQuestion.emit(originalIndex);
+  }
+
+  getTooltipText(item: ExerciseStateItem, index: number): string {
+    const ex = item.exercise;
+    const status = !item.isAnswered ? 'Sin responder' : item.isCorrect ? 'Correcta' : 'Incorrecta';
+    const topic = ex.topic ? `${ex.subject.toUpperCase()} • ${ex.topic}` : ex.subject.toUpperCase();
+    const title = this.getQuestionTitle(ex);
+    return `#${index + 1} [${status}] — ${topic}: ${title}`;
+  }
+
+  getSubjectAbbr(subject: string): string {
+    if (!subject) return '';
+    const s = subject.toLowerCase();
+    if (s.includes('angular')) return 'ANGULAR';
+    if (s.includes('drf')) return 'DRF';
+    if (s.includes('metodologias') || s.includes('desarrollo')) return 'DEV';
+    if (s.includes('web') || s.includes('programacion')) return 'WEB';
+    if (s.includes('poo') || s.includes('python')) return 'POO';
+    return s.substring(0, 6).toUpperCase();
+  }
+
+
 
   get percentage(): number {
     if (this.total === 0) return 0;
@@ -60,13 +116,27 @@ export class ResultsSummary {
   }
 
   onSelectQuestion(originalIndex: number) {
-    this.goToQuestion.emit(originalIndex);
+    this.selectedPreviewIndex = originalIndex;
   }
 
   getQuestionTitle(exercise: Exercise): string {
     if ('question' in exercise) return exercise.question;
     if ('instructions' in exercise) return exercise.instructions;
     return 'Ejercicio de autoevaluación';
+  }
+
+  getExerciseTypeLabel(exercise: Exercise): string {
+    if (exercise.type === 'mc') return 'Opción Múltiple';
+    if (exercise.type === 'concept') return 'Conceptual';
+    if (exercise.type === 'code') return 'Código';
+    return '';
+  }
+
+  getExerciseTypeBadgeClass(exercise: Exercise): string {
+    if (exercise.type === 'mc') return 'type-badge-mc';
+    if (exercise.type === 'concept') return 'type-badge-concept';
+    if (exercise.type === 'code') return 'type-badge-code';
+    return '';
   }
 
   get feedbackMessage(): { title: string; subtitle: string; icon: string } {
@@ -100,6 +170,10 @@ export class ResultsSummary {
 
   onRestart() {
     this.restart.emit();
+  }
+
+  onGoHome() {
+    this.goHome.emit();
   }
 }
 

@@ -17,12 +17,22 @@
 
     <app-subject-filter 
       [selectedSubject]="selectedSubject"
-      (subjectSelected)="onSubjectSelected($event)">
+      [selectedLimit]="selectedLimit"
+      [limitOptions]="limitOptions"
+      [totalAvailableCount]="totalAvailableCount"
+      (subjectSelected)="onSubjectSelected($event)"
+      (limitSelected)="selectLimit($event)"
+      (startQuizRequested)="startQuiz()">
     </app-subject-filter>
 
-    <div class="limit-selection-box glass-card">
+    <div class="limit-selection-box glass-card desktop-only-block">
       <div class="limit-header">
-        <span class="limit-title">⏱️ Tamaño de la Ronda:</span>
+        <div class="limit-title-group">
+          <span class="limit-title">⏱️ Tamaño de la Ronda:</span>
+          <span class="selected-subject-badge">
+            {{ selectedSubjectLabel }}
+          </span>
+        </div>
         <span class="limit-subtitle">Preguntas disponibles: <strong>{{ totalAvailableCount }}</strong></span>
       </div>
 
@@ -42,18 +52,36 @@
     <div class="cta-container">
       <button 
         type="button" 
-        class="btn btn-primary start-btn" 
+        class="btn btn-primary start-btn desktop-only-block" 
         [disabled]="totalAvailableCount === 0"
         (click)="startQuiz()">
-        🚀 {{ totalAvailableCount === 0 ? 'Sin ejercicios disponibles' : 'Iniciar Autoevaluación' }}
+        🚀 {{ totalAvailableCount === 0 ? 'Sin ejercicios disponibles' : 'Iniciar Autoevaluación de ' + selectedSubjectLabel }}
       </button>
 
       @if (reviewDeckCount > 0) {
+        <div class="review-deck-group">
+          <button 
+            type="button" 
+            class="btn btn-secondary review-deck-btn"
+            (click)="startReviewQuiz()">
+            🧠 Repasar Mazo Acumulado (<strong>{{ reviewDeckCount }}</strong> {{ reviewDeckCount === 1 ? 'pendiente' : 'pendientes' }})
+          </button>
+          <button
+            type="button"
+            class="btn btn-outline clear-review-btn"
+            title="Vaciar Mazo Acumulado"
+            (click)="clearReviewDeck()">
+            🗑️ Vaciar Mazo
+          </button>
+        </div>
+      }
+
+      @if (discardedDeckCount > 0) {
         <button 
           type="button" 
-          class="btn btn-secondary review-deck-btn"
-          (click)="startReviewQuiz()">
-          🧠 Repasar Mazo Acumulado (<strong>{{ reviewDeckCount }}</strong> {{ reviewDeckCount === 1 ? 'pendiente' : 'pendientes' }})
+          class="btn btn-outline restore-discarded-btn"
+          (click)="restoreDiscardedDeck()">
+          ♻️ Reincorporar Mazo Descartado (<strong>{{ discardedDeckCount }}</strong> {{ discardedDeckCount === 1 ? 'dominada' : 'dominadas' }} &lt;24h)
         </button>
       }
     </div>

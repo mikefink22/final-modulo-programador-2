@@ -1,12 +1,11 @@
 <div class="subject-filter-grid">
   @for (item of subjects; track item.id) {
-    <button 
-      type="button" 
+    <div 
       class="subject-card glass-card"
       [class.active]="selectedSubject === item.id"
       [class.angular-theme]="item.id === 'angular'"
       [class.drf-theme]="item.id === 'drf'"
-      [class.metodologias-theme]="item.id === 'metodologias'"
+      [class.desarrollo-de-software-theme]="item.id === 'desarrollo-de-software'"
       (click)="selectSubject(item.id)">
       <div class="card-header">
         <span class="icon">{{ item.icon }}</span>
@@ -15,10 +14,39 @@
       <h3 class="card-title">{{ item.label }}</h3>
       <p class="card-desc">{{ item.description }}</p>
       <div class="card-footer">
-        <span class="action-text">Seleccionar</span>
-        <span class="arrow">→</span>
+        <span class="action-text">{{ selectedSubject === item.id ? 'Materia Seleccionada ✓' : 'Seleccionar Materia' }}</span>
       </div>
-    </button>
+
+      @if (selectedSubject === item.id) {
+        <div class="card-options-panel animate-fade-in" (click)="$event.stopPropagation()">
+          <div class="panel-header">
+            <span class="panel-title">⏱️ Tamaño de la Ronda:</span>
+            <span class="panel-subtitle">Disponibles: <strong>{{ totalAvailableCount }}</strong></span>
+          </div>
+
+          <div class="panel-chips-grid">
+            @for (opt of limitOptions; track opt.label) {
+              <button 
+                type="button" 
+                class="panel-chip-btn"
+                [class.active]="selectedLimit === opt.value"
+                (click)="onSelectLimit(opt.value, $event)">
+                {{ opt.label }}
+              </button>
+            }
+          </div>
+
+          <button 
+            type="button" 
+            class="btn btn-primary panel-start-btn" 
+            [disabled]="totalAvailableCount === 0"
+            (click)="onStartQuiz($event)">
+            🚀 {{ totalAvailableCount === 0 ? 'Sin ejercicios' : 'Iniciar Examen' }}
+          </button>
+        </div>
+      }
+    </div>
   }
 </div>
+
 

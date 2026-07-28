@@ -18,6 +18,25 @@ El proyecto opera **sin backend ni base de datos**: todo el contenido de estudio
 
 ---
 
+## 🧠 Sistema Pedagógico de Estudio y Mazos Inteligentes
+
+La aplicación utiliza un algoritmo de selección adaptativo diseñado para maximizar la eficiencia del estudio:
+
+1. **Gestión de Mazos de Ejercicios**:
+   - **Mazo Principal (Activo)**: Prioriza preguntas no vistas o acertadas hace tiempo.
+   - **Mazo de Repaso**: Acumula ejercicios fallados o saltados para refuerzo prioritario.
+   - **Mazo Descartado (Dominadas)**: Las preguntas acertadas recientemente (< 24h) se excluyen temporalmente de la rotación para evitar repeticiones innecesarias. El estudiante puede reincorporarlas al Mazo Principal en cualquier momento desde la pantalla de inicio.
+
+2. **Muestreo Estratificado Ponderado ("Todas las Materias")**:
+   - Distribuye las cuotas de cada ronda priorizando las materias centrales del examen (`Django REST Framework` y `Angular` con peso **2.0**, `Desarrollo de Software` con **1.7**) y asignando cuotas reducidas a las materias de repaso base (`POO en Python` y `Programación Web` con **0.7**).
+   - Si el cupo de una materia supera su banco activo disponible, las vacantes se reasignan dinámicamente a las materias principales.
+
+3. **Distribución Pedagógica Balanceada por Tipo (60% MC / 20% Concept / 20% Code)**:
+   - Para mantener coherencia pedagógica en cada ronda y ejercitar distintas capacidades cognitivas (reconocimiento, teoría explicativa y aplicación práctica), las rondas se arman con una proporción ideal de **60% Opción Múltiple (`mc`)**, **20% Conceptual (`concept`)** y **20% Código (`code`)** (ej. ronda de 5 preguntas: 3 MC, 1 Concept, 1 Code; 10 preguntas: 6 MC, 2 Concept, 2 Code).
+   - **Manejo de Excepciones (Fallback Graceful)**: Si una materia o lote carece de suficientes preguntas de algún tipo (ej. sin ejercicios de código cargados), los cupos faltantes se rellenan automáticamente con los ejercicios de mayor prioridad del resto del pool sin romper la ronda.
+
+---
+
 ## 📂 Estructura del Repositorio
 
 ```text

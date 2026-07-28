@@ -1,4 +1,4 @@
-export type SubjectType = 'angular' | 'drf' | 'metodologias';
+export type SubjectType = 'angular' | 'drf' | 'desarrollo-de-software' | 'programacion-web' | 'poo-python';
 export type ExerciseType = 'mc' | 'code' | 'concept';
 
 export interface BaseExercise {
@@ -31,6 +31,14 @@ export interface ConceptExercise extends BaseExercise {
   question: string;
   expected_answer: string;
   key_points: string[];
+}
+
+export interface QuestionHistoryRecord {
+  exerciseKey: string; // `${subject}_${id}`
+  lastAttemptTimestamp: number;
+  lastResult: 'correct' | 'incorrect';
+  timesCorrect: number;
+  timesIncorrect: number;
 }
 
 export type Exercise = McExercise | CodeExercise | ConceptExercise;

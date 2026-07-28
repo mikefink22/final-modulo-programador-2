@@ -6,25 +6,29 @@
 
   <h2 class="instructions-text">{{ exercise.instructions }}</h2>
 
-  @if (exercise.starter_code) {
-    <div class="starter-hint">
-      <span class="hint-label">Pista / Estructura base:</span> <code>{{ exercise.starter_code }}</code>
-    </div>
-  }
-
   <div class="code-editor-box">
     <div class="code-header d-flex justify-content-between align-items-center">
-      <span>💻 Campo de Código / Comando</span>
-      @if (userCode && isExactMatch) {
-        <span class="badge-exact-match">✨ ¡Coincidencia Exacta!</span>
-      }
+      <div class="header-left">
+        <span>💻 Editor de Código / Comando</span>
+      </div>
+      <div class="header-right d-flex align-items-center gap-2">
+        @if (userCode && isExactMatch) {
+          <span class="badge-exact-match">✨ ¡Coincidencia Exacta!</span>
+        }
+        @if (exercise.starter_code) {
+          <button type="button" class="btn-reset-code" (click)="resetToStarterCode()" title="Restablecer plantilla inicial">
+            🔄 Restablecer
+          </button>
+        }
+      </div>
     </div>
     <textarea 
       class="code-editor-input" 
       [value]="userCode" 
       (input)="onCodeInput($event)"
-      rows="4" 
-      placeholder="Escribe el código completo o la palabra faltante (_____)..."></textarea>
+      (keydown)="onKeyDown($event)"
+      rows="7" 
+      placeholder="Completa el código (reemplazando ___) o escribe tu solución completa..."></textarea>
   </div>
 
   <div class="actions-row">
@@ -55,14 +59,16 @@
         class="btn btn-success" 
         [disabled]="isSubmitted"
         (click)="evaluate(true)">
-        👍 Logré resolverlo correctamente
+        <span class="btn-text-desktop">👍 Logré resolverlo correctamente</span>
+        <span class="btn-text-mobile">👍 Logré resolverlo</span>
       </button>
       <button 
         type="button" 
         class="btn btn-danger" 
         [disabled]="isSubmitted"
         (click)="evaluate(false)">
-        👎 Necesito repasar este concepto
+        <span class="btn-text-desktop">👎 Necesito repasar este concepto</span>
+        <span class="btn-text-mobile">👎 Necesito repasar</span>
       </button>
     </div>
   </div>

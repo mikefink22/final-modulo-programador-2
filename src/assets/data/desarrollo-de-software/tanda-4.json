@@ -1,0 +1,222 @@
+[
+  {
+    "id": 1,
+    "subject": "desarrollo-de-software",
+    "topic": "Proceso iterativo vs incremental",
+    "type": "mc",
+    "question": "¿Cuál es la principal diferencia entre un proceso iterativo y uno incremental?",
+    "code_snippet": null,
+    "options": [
+      "El incremental añade piezas funcionales; el iterativo revisa y mejora lo existente.",
+      "El iterativo es para proyectos grandes y el incremental para pequeños.",
+      "No hay diferencia, son sinónimos en las metodologías ágiles.",
+      "El incremental repite ciclos y el iterativo es lineal."
+    ],
+    "correct_index": 0,
+    "explanation": "Lo incremental busca completar el producto por partes; lo iterativo busca aumentar la calidad y refinamiento mediante ciclos repetitivos.",
+    "option_explanations": [
+      "Lo incremental busca completar el producto por partes; lo iterativo busca aumentar la calidad y refinamiento mediante ciclos repetitivos.",
+      "Cualquier escala de proyecto puede y debe beneficiarse de ambos enfoques combinados.",
+      "Son conceptos distintos que suelen coexistir para lograr una entrega de valor temprana y de alta calidad.",
+      "Ambos suelen ser cíclicos, pero sus objetivos finales de entrega difieren."
+    ]
+  },
+  {
+    "id": 2,
+    "subject": "desarrollo-de-software",
+    "topic": "Documentación en GitHub / Planning",
+    "type": "mc",
+    "question": "En la documentación de un proyecto Scrum en GitHub, ¿qué debe reflejarse específicamente en la Wiki sobre la ceremonia de Planning?",
+    "code_snippet": null,
+    "options": [
+      "El manual de usuario de la funcionalidad que se va a construir.",
+      "Únicamente las horas que trabajó cada desarrollador.",
+      "El código fuente completo desarrollado durante el evento.",
+      "La fecha, los asistentes, los temas abordados y el conjunto de issues/tareas resultantes."
+    ],
+    "correct_index": 3,
+    "explanation": "La documentación debe formalizar los acuerdos, el Sprint Backlog y las responsabilidades asignadas.",
+    "option_explanations": [
+      "El manual se suele generar a partir del incremento terminado, no durante la planificación inicial.",
+      "Scrum se centra en el valor y los objetivos, no solo en el conteo administrativo de horas.",
+      "En la Planning se planifica, no se escribe código de producción.",
+      "La documentación debe formalizar los acuerdos, el Sprint Backlog y las responsabilidades asignadas."
+    ]
+  },
+  {
+    "id": 3,
+    "subject": "desarrollo-de-software",
+    "topic": "Historias de Usuario / Criterios INVEST",
+    "type": "mc",
+    "question": "Según el material de Scrum Manager, ¿por qué las Historias de Usuario deben ser independientes?",
+    "code_snippet": null,
+    "options": [
+      "Para evitar que el cliente sepa qué está haciendo el equipo.",
+      "Porque cada programador debe trabajar solo sin ayuda de nadie.",
+      "Para que puedan ser priorizadas e implementadas sin un orden strictly técnico.",
+      "Para que el código no tenga que ser probado nunca."
+    ],
+    "correct_index": 2,
+    "explanation": "La independencia facilita la planificación y permite que el Product Owner cambie el orden según el valor de negocio cambiante.",
+    "option_explanations": [
+      "La agilidad busca la transparencia total con el cliente, no el ocultamiento.",
+      "La independencia de la historia no significa aislamiento del desarrollador; el trabajo sigue siendo en equipo.",
+      "La independencia facilita la planificación y permite que el Product Owner cambie el orden según el valor de negocio cambiante.",
+      "Todas las historias deben cumplir con criterios de aceptación y pruebas de calidad."
+    ]
+  },
+  {
+    "id": 4,
+    "subject": "desarrollo-de-software",
+    "topic": "Roles en el Equipo / QA Testing",
+    "type": "mc",
+    "question": "¿Cuál es la función del rol de 'QA / Testing' dentro de un equipo que sigue la documentación inicial propuesta?",
+    "code_snippet": null,
+    "options": [
+      "Es el único que puede tocar el código al final del Sprint.",
+      "Decidir qué funcionalidades se eliminan por falta de tiempo.",
+      "Sustituir al Product Owner cuando este no está presente.",
+      "Es el responsable de asegurar la calidad mediante la validación de los requerimientos."
+    ],
+    "correct_index": 3,
+    "explanation": "Su especialidad asegura que el producto responda a lo que el usuario solicitó y funcione correctamente.",
+    "option_explanations": [
+      "El equipo es multifuncional y el código es responsabilidad de todos los Developers.",
+      "Esta es una decisión de negocio que corresponde al Product Owner en consenso con el equipo.",
+      "Son roles con responsabilidades totalmente distintas y no intercambiables.",
+      "Su especialidad asegura que el producto responda a lo que el usuario solicitó y funcione correctamente."
+    ]
+  },
+  {
+    "id": 5,
+    "subject": "desarrollo-de-software",
+    "topic": "Inteligencia Colectiva en Scrum",
+    "type": "mc",
+    "question": "¿Qué representa el concepto de 'Inteligencia Colectiva' en el marco de trabajo Scrum?",
+    "code_snippet": null,
+    "options": [
+      "Hacer lo que la mayoría decida mediante una votación democrática en cada tarea.",
+      "El uso de algoritmos avanzados de IA para programar.",
+      "Confiar en que el equipo como conjunto posee todas las habilidades para resolver el problema.",
+      "Que el Scrum Master siempre tiene la razón sobre los demás."
+    ],
+    "correct_index": 2,
+    "explanation": "En lugar de instrucciones detalladas de un jefe, Scrum utiliza las reglas del marco para guiar las interacciones humanas.",
+    "option_explanations": [
+      "Se basa en el empirismo y la experiencia, no necesariamente en votos, sino en resultados medibles.",
+      "Scrum se basa en el potencial humano y no en herramientas de software específicas.",
+      "En lugar de instrucciones detalladas de un jefe, Scrum utiliza las reglas del marco para guiar las interacciones humanas.",
+      "El Scrum Master es un facilitador, no una autoridad intelectual superior sobre el trabajo técnico."
+    ]
+  },
+  {
+    "id": 6,
+    "subject": "desarrollo-de-software",
+    "topic": "Timeboxing / Duración del Sprint",
+    "type": "mc",
+    "question": "En Scrum, ¿qué sucede si un Sprint no termina a tiempo?",
+    "code_snippet": null,
+    "options": [
+      "Se extiende unos días para terminar lo planificado.",
+      "Se finaliza el tiempo, se revisa lo que se completó y se vuelve a planificar.",
+      "Se castiga al equipo reduciendo su presupuesto.",
+      "Se cancela el proyecto inmediatamente por falta de compromiso."
+    ],
+    "correct_index": 1,
+    "explanation": "El trabajo no terminado regresa al Product Backlog y se analiza en la retrospectiva por qué no se logró.",
+    "option_explanations": [
+      "Los Sprints son de duración fija (timeboxed); extenderlos rompe la cadencia y la predictibilidad.",
+      "El trabajo no terminado regresa al Product Backlog y se analiza en la retrospectiva por qué no se logró.",
+      "Scrum se basa en la confianza y la mejora continua, no en el castigo por variaciones naturales del trabajo complejo.",
+      "Un Sprint no finalizado es una oportunidad de aprendizaje para ajustar la capacidad del equipo en el futuro."
+    ]
+  },
+  {
+    "id": 7,
+    "subject": "desarrollo-de-software",
+    "topic": "Manifiesto Ágil / Medida de Progreso",
+    "type": "mc",
+    "question": "¿Cuál es la medida principal del progreso en los procesos ágiles según el Manifiesto?",
+    "code_snippet": null,
+    "options": [
+      "El software que funciona.",
+      "La cantidad de páginas de documentación técnica producidas.",
+      "El cumplimiento estricto del presupuesto inicial.",
+      "El número de horas trabajadas por el equipo."
+    ],
+    "correct_index": 0,
+    "explanation": "La entrega de incrementos utilizables y valiosos es el único indicador real de avance.",
+    "option_explanations": [
+      "La entrega de incrementos utilizables y valiosos es el único indicador real de avance.",
+      "La documentación es secundaria frente a la funcionalidad entregada al usuario.",
+      "El éxito financiero es importante, pero no mide el progreso del desarrollo del producto en sí.",
+      "Las horas no garantizan valor; un equipo puede trabajar mucho y no entregar nada útil."
+    ]
+  },
+  {
+    "id": 8,
+    "subject": "desarrollo-de-software",
+    "topic": "Roles en Scrum / Scrum Master",
+    "type": "mc",
+    "question": "¿Qué rol en Scrum se encarga de servir a la organización liderando, formando y guiando en la adopción de Scrum?",
+    "code_snippet": null,
+    "options": [
+      "El Product Owner",
+      "El Scrum Master",
+      "El Gerente de RRHH",
+      "Los Developers"
+    ],
+    "correct_index": 1,
+    "explanation": "Su labor de servicio se extiende más allá del equipo, alcanzando a toda la organización para mejorar la agilidad empresarial.",
+    "option_explanations": [
+      "Su enfoque organizacional es más comercial y estratégico respecto al valor del producto.",
+      "Su labor de servicio se extiende más allá del equipo, alcanzando a toda la organización para mejorar la agilidad empresarial.",
+      "No es un rol definido dentro del marco de Scrum para la gestión de la metodología.",
+      "Su responsabilidad organizacional es entregar calidad técnica e innovación en el producto."
+    ]
+  },
+  {
+    "id": 9,
+    "subject": "desarrollo-de-software",
+    "topic": "Modelo de Royce (Cascada)",
+    "type": "mc",
+    "question": "Según el modelo de Royce (1970), ¿cuál es el primer paso en un proyecto de software?",
+    "code_snippet": null,
+    "options": [
+      "Pruebas unitarias",
+      "Implementación del código",
+      "Diseño del sistema",
+      "Análisis y definición de requerimientos"
+    ],
+    "correct_index": 3,
+    "explanation": "En el modelo en cascada, la comprensión total de las necesidades es el requisito para avanzar al diseño.",
+    "option_explanations": [
+      "Las pruebas ocurren mucho después de que el código ha sido escrito e integrado.",
+      "No se puede implementar sin saber primero qué es lo que se necesita construir.",
+      "El diseño depende de los requerimientos analizados previamente en la fase anterior.",
+      "En el modelo en cascada, la comprensión total de las necesidades es el requisito para avanzar al diseño."
+    ]
+  },
+  {
+    "id": 10,
+    "subject": "desarrollo-de-software",
+    "topic": "Marco de Trabajo Scrum",
+    "type": "mc",
+    "question": "¿Por qué se dice que el marco de Scrum es 'intencionalmente incompleto'?",
+    "code_snippet": null,
+    "options": [
+      "Porque solo define las partes necesarias para implementar la teoría, dejando el 'cómo' al contexto.",
+      "Porque todavía está en fase de prueba beta.",
+      "Para obligar a las empresas a comprar certificaciones caras.",
+      "Porque sus creadores no terminaron de escribir la guía."
+    ],
+    "correct_index": 0,
+    "explanation": "Scrum es un marco envolvente que permite emplear diversas técnicas y métodos según el equipo y el dominio.",
+    "option_explanations": [
+      "Scrum es un marco envolvente que permite emplear diversas técnicas y métodos según el equipo y el dominio.",
+      "Scrum tiene décadas de uso y está plenamente consolidado en la industria global.",
+      "Su apertura busca la adaptabilidad universal en un mundo complejo, no fines comerciales directos.",
+      "La guía está completa en su definición, pero deja espacio para procesos específicos."
+    ]
+  }
+]

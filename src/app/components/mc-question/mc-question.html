@@ -15,49 +15,37 @@
 
   <div class="options-container">
     @for (option of exercise.options; track $index) {
-      <button
-        type="button"
-        class="option-button"
+      <div
+        class="option-card"
         [class.selected]="$index === selectedIndex"
         [class.correct]="isSubmitted && $index === exercise.correct_index"
         [class.incorrect]="isSubmitted && $index === selectedIndex && selectedIndex !== exercise.correct_index"
-        [disabled]="isSubmitted"
+        [class.disabled]="isSubmitted"
         (click)="selectOption($index)">
-        <span class="option-prefix">{{ ['A', 'B', 'C', 'D', 'E'][$index] || $index + 1 }}</span>
-        <span class="option-text">{{ option }}</span>
-        
+
+        <h3 class="option-title">
+          <span class="option-prefix">{{ ['A', 'B', 'C', 'D', 'E'][$index] || ($index + 1) }}.</span>
+          <span class="option-text">{{ option }}</span>
+        </h3>
+
         @if (isSubmitted) {
           @if ($index === exercise.correct_index) {
-            <span class="status-icon success">✓</span>
+            <div class="result-badge success">
+              <span class="icon">✓</span>
+              <span>Respuesta Correcta</span>
+            </div>
           } @else if ($index === selectedIndex) {
-            <span class="status-icon error">✗</span>
+            <div class="result-badge error">
+              <span class="icon">✗</span>
+              <span>Tu respuesta</span>
+            </div>
+          }
+
+          @if (getOptionExplanation($index); as explanationText) {
+            <p class="option-explanation animate-fade-in">{{ explanationText }}</p>
           }
         }
-      </button>
-
-      @if (isSubmitted && getOptionExplanation($index); as optFeedback) {
-        <div class="option-feedback animate-fade-in" 
-             [class.success-feedback]="$index === exercise.correct_index"
-             [class.error-feedback]="$index !== exercise.correct_index">
-          💡 {{ optFeedback }}
-        </div>
-      }
+      </div>
     }
   </div>
-
-  @if (isSubmitted) {
-    <div class="explanation-box animate-fade-in"
-         [class.correct-box]="selectedIndex === exercise.correct_index"
-         [class.incorrect-box]="selectedIndex !== exercise.correct_index">
-      <div class="explanation-header">
-        @if (selectedIndex === exercise.correct_index) {
-          <span class="badge-result success">¡Respuesta Correcta!</span>
-        } @else {
-          <span class="badge-result error">Respuesta Incorrecta</span>
-        }
-      </div>
-      <p class="explanation-content">{{ exercise.explanation }}</p>
-    </div>
-  }
 </div>
-

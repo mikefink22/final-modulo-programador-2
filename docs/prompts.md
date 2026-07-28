@@ -11,9 +11,10 @@
 1. Abrir un notebook dedicado en NotebookLM / Gemini para la materia elegida.
 2. Cargar como fuentes **únicamente el material oficial de la cátedra** (apuntes, filminas, PDFs).
 3. Aplicar la **Regla de Cero Alucinación**: La IA debe evaluar basándose exclusivamente en el material adjunto. Si un tema no figura en los apuntes, no se debe generar contenido sobre él.
-4. Ejecutar los prompts de la Sección 2 (Lote Completo) o Sección 3 (Prompts Especializados por Tipo).
-5. Copiar el JSON generado y guardarlo en `src/assets/data/<materia>/tanda-N.json`.
-6. Registrar `"tanda-N.json"` dentro del array manifest de `src/assets/data/<materia>/index.json`.
+4. Aplicar la **Regla de No Duplicación y Similitud Conceptual**: Comparar activamente las preguntas propuestas contra las tandas ya cargadas de la materia. Queda estrictamente prohibido incluir preguntas que evalúen el mismo concepto o planteen situaciones redundantes/similares con ligeros cambios de redacción. Cada nuevo ejercicio debe evaluar un ángulo o tema diferente.
+5. Ejecutar los prompts de la Sección 2 (Lote Completo) o Sección 3 (Prompts Especializados por Tipo).
+6. Copiar el JSON generado y guardarlo en `src/assets/data/<materia>/tanda-N.json`.
+7. Registrar `"tanda-N.json"` dentro del array manifest de `src/assets/data/<materia>/index.json`.
 
 ---
 
@@ -21,6 +22,8 @@
 
 ```text
 Actuá como profesor universitario evaluando [MATERIA] a partir EXCLUSIVAMENTE del material adjunto en este notebook. No uses conocimiento externo ni general: si un concepto no está en el material provisto, no generes contenido sobre él.
+
+REGLA ESTRICTA DE SIMILITUD Y NO DUPLICACIÓN: Compará activamente cada nuevo ejercicio contra todas las tandas anteriores de [MATERIA]. Está estrictamente prohibido generar preguntas muy similares o conceptualmente redundantes (incluso si la redacción o las opciones son ligeramente distintas). Cada ejercicio debe examinar un concepto, caso de uso o fragmento de código distinto de los ya evaluados.
 
 Generá un JSON estricto (array único, sin markdown ni texto adicional fuera del JSON) con:
 - 15 preguntas de opción múltiple (type: "mc")
@@ -116,6 +119,7 @@ Generá un JSON estricto (array de objetos único, sin bloques markdown ni texto
 REGLAS DE VALIDACIÓN ESTRICTA:
 - correct_index debe ser un entero entre 0 y 3 indicando el índice de la opción correcta en el array options.
 - option_explanations debe contener exactamente 4 cadenas de texto que corresponden 1:1 a cada una de las 4 opciones.
+- REGLA ESTRICTA DE SIMILITUD Y NO DUPLICACIÓN: Comparar las preguntas a generar contra las ya existentes en tandas anteriores de la materia. Prohibido incluir preguntas conceptualmente equivalentes o con enunciados muy similares.
 ```
 
 ### 3.2 Ejercicios de Código (`type: "code"`)
@@ -142,6 +146,7 @@ REGLAS DE INTEGRIDAD ESTRICTA:
 - Queda estrictamente prohibido mezclar las instrucciones o starter_code de un ejercicio con el solution_code o explanation de un ejercicio diferente.
 - starter_code debe ser la versión incompleta del MISMO fragmento mostrado en solution_code.
 - solution_code debe resolver directa e íntegramente la instrucción descrita en instructions.
+- REGLA ESTRICTA DE SIMILITUD Y NO DUPLICACIÓN: No repetir ni generar ejercicios de código que pongan a prueba la misma sintaxis o patrón de código que ya fue evaluado en tandas previas.
 ```
 
 ### 3.3 Preguntas Conceptuales Abiertas (`type: "concept"`)
@@ -169,6 +174,7 @@ Generá un JSON estricto (array de objetos único, sin bloques markdown ni texto
 
 REGLAS DE VALIDACIÓN ESTRICTA:
 - key_points debe incluir entre 2 y 4 criterios/puntos clave breves para la autoevaluación del alumno.
+- REGLA ESTRICTA DE SIMILITUD Y NO DUPLICACIÓN: Prohibido generar preguntas abiertas que aborden el mismo concepto teórico o planteo que ya fue cubierto en tandas anteriores.
 ```
 
 ---
@@ -180,6 +186,8 @@ REGLAS DE VALIDACIÓN ESTRICTA:
 | **Angular** | `src/assets/data/angular/` | `"angular"` |
 | **Django REST Framework** | `src/assets/data/drf/` | `"drf"` |
 | **Metodologías** | `src/assets/data/metodologias/` | `"metodologias"` |
+| **Programación Web** | `src/assets/data/programacion-web/` | `"programacion-web"` |
+| **POO en Python** | `src/assets/data/poo-python/` | `"poo-python"` |
 
 **Ejemplo de archivo manifest `src/assets/data/angular/index.json`**:
 ```json

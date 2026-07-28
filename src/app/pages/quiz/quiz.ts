@@ -123,6 +123,8 @@ export class Quiz implements OnInit {
 
     this.score = this.answersState.filter((state) => state.isCorrect === true).length;
 
+    this.quizService.recordQuestionAttempt(current, event.correct);
+
     if (event.correct) {
       this.quizService.removeFromReviewDeck(current.id, current.subject);
     } else {
@@ -141,11 +143,24 @@ export class Quiz implements OnInit {
     this.nextQuestion();
   }
 
+  finishQuiz() {
+    this.isFinished = true;
+    this.cdr.markForCheck();
+  }
+
+  private scrollActiveChipIntoView(): void {
+    setTimeout(() => {
+      const activeChip = document.querySelector('.chip-btn.chip-active');
+      activeChip?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    }, 50);
+  }
+
   nextQuestion() {
     if (this.currentIndex < this.exercises.length - 1) {
       this.currentIndex++;
+      this.scrollActiveChipIntoView();
     } else {
-      this.isFinished = true;
+      this.finishQuiz();
     }
     this.cdr.markForCheck();
   }
@@ -153,6 +168,7 @@ export class Quiz implements OnInit {
   goToPrevious() {
     if (this.currentIndex > 0) {
       this.currentIndex--;
+      this.scrollActiveChipIntoView();
       this.cdr.markForCheck();
     }
   }
@@ -161,16 +177,13 @@ export class Quiz implements OnInit {
     if (index >= 0 && index < this.exercises.length) {
       this.currentIndex = index;
       this.isFinished = false;
+      this.scrollActiveChipIntoView();
       this.cdr.markForCheck();
     }
   }
 
   restartQuiz() {
-    this.answersState = this.exercises.map(() => ({ isAnswered: false }));
-    this.currentIndex = 0;
-    this.score = 0;
-    this.isFinished = false;
-    this.cdr.markForCheck();
+    this.loadExercises();
   }
 
   goHome() {

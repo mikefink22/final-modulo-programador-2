@@ -1,0 +1,354 @@
+[
+  {
+    "id": 1,
+    "subject": "angular",
+    "topic": "ECMAScript y Transpilación",
+    "type": "mc",
+    "question": "¿A qué versiones del estándar ECMAScript se transpilan habitualmente los archivos de TypeScript para generar código JavaScript?",
+    "code_snippet": null,
+    "options": [
+      "Directamente a código binario de servidor.",
+      "A versiones de Java para ejecución en el cliente.",
+      "A ECMAScript 3, 5 o 6.",
+      "Únicamente a ECMAScript 6."
+    ],
+    "correct_index": 2,
+    "explanation": "El proceso de transpilación permite transformar el código fuente a diferentes versiones del estándar según la compatibilidad requerida por las plataformas de destino.",
+    "option_explanations": [
+      "TypeScript se traduce a otro lenguaje de alto nivel antes de ser ejecutado, no a código de máquina directamente.",
+      "El objetivo de la transpilación de TypeScript es producir JavaScript, que es el lenguaje que los navegadores pueden interpretar.",
+      "El proceso de transpilación permite transformar el código fuente a diferentes versiones del estándar según la compatibilidad requerida por las plataformas de destino.",
+      "Aunque es una versión común, TypeScript ofrece compatibilidad con versiones anteriores para asegurar el funcionamiento en diversos navegadores."
+    ]
+  },
+  {
+    "id": 2,
+    "subject": "angular",
+    "topic": "Routing en Angular",
+    "type": "mc",
+    "question": "En el sistema de routing de Angular, ¿qué importancia tiene el orden de definición de las rutas en el array de configuración?",
+    "code_snippet": null,
+    "options": [
+      "El orden es irrelevante, Angular busca la coincidencia más exacta.",
+      "Se aplica el ruteo utilizando la primera coincidencia que se encuentre.",
+      "El orden solo importa si se utilizan componentes dinámicos.",
+      "Las rutas se ordenan alfabéticamente de forma automática."
+    ],
+    "correct_index": 1,
+    "explanation": "Al procesar el arreglo en orden, una ruta genérica colocada al inicio podría impedir que se alcancen rutas más específicas.",
+    "option_explanations": [
+      "A diferencia de otros sistemas, el enrutador de Angular sigue una secuencia lineal de búsqueda.",
+      "Al procesar el arreglo en orden, una ruta genérica colocada al inicio podría impedir que se alcancen rutas más específicas.",
+      "La evaluación secuencial es una regla fundamental para todos los tipos de rutas configuradas en la aplicación.",
+      "El desarrollador es el responsable de estructurar el arreglo según la prioridad deseada."
+    ]
+  },
+  {
+    "id": 3,
+    "subject": "angular",
+    "topic": "Programación Reactiva y Observables",
+    "type": "mc",
+    "question": "¿Qué papel desempeña el 'Componente' dentro del patrón de programación reactiva implementado con observables en Angular?",
+    "code_snippet": null,
+    "options": [
+      "Funciona como el servidor que procesa las peticiones HTTP.",
+      "Es el encargado de transpilar los archivos .ts a .js.",
+      "Actúa como el Observable, emitiendo flujos de datos continuos.",
+      "Actúa como el Observer, reaccionando a los eventos emitidos."
+    ],
+    "correct_index": 3,
+    "explanation": "El componente se suscribe a un flujo de datos (observable) para recibir notificaciones y actualizar la vista cuando ocurren cambios.",
+    "option_explanations": [
+      "El componente reside en el lado del cliente y se encarga de la lógica de la interfaz de usuario.",
+      "La transpilación es una tarea del compilador (TSC) o de las herramientas de construcción, no de los componentes.",
+      "Generalmente es el servicio el que se encarga de generar o gestionar el origen de los datos.",
+      "El componente se suscribe a un flujo de datos (observable) para recibir notificaciones y actualizar la vista cuando ocurren cambios."
+    ]
+  },
+  {
+    "id": 4,
+    "subject": "angular",
+    "topic": "HttpClient y Manejo de Errores",
+    "type": "mc",
+    "question": "Al trabajar con el servicio HttpClient, ¿qué ocurre si una petición al servidor falla?",
+    "code_snippet": null,
+    "options": [
+      "El navegador recarga la página completa para intentar de nuevo.",
+      "Se emite un error en lugar de una respuesta exitosa.",
+      "La aplicación se detiene y muestra una pantalla azul de error.",
+      "El observable emite una respuesta vacía automáticamente."
+    ],
+    "correct_index": 1,
+    "explanation": "El diseño reactivo de HttpClient está pensado para que el flujo cambie al canal de error, permitiendo al desarrollador capturarlo y gestionarlo.",
+    "option_explanations": [
+      "Como parte de una SPA, Angular evita recargar la página y gestiona la comunicación de forma asíncrona.",
+      "El diseño reactivo de HttpClient está pensado para que el flujo cambie al canal de error, permitiendo al desarrollador capturarlo y gestionarlo.",
+      "Angular permite manejar estos fallos de forma controlada mediante suscripciones para que la aplicación siga funcionando.",
+      "Una respuesta vacía podría interpretarse como un éxito sin datos, lo cual ocultaría el problema real."
+    ]
+  },
+  {
+    "id": 5,
+    "subject": "angular",
+    "topic": "Principios de POO - Modularidad",
+    "type": "mc",
+    "question": "Dentro del contexto de la POO, ¿cómo se define la 'Modularidad'?",
+    "code_snippet": null,
+    "options": [
+      "La propiedad que permite tener independencia entre las diferentes partes de un sistema.",
+      "La técnica de ocultar los detalles de implementación al usuario.",
+      "La capacidad de un objeto de tomar muchas formas diferentes.",
+      "El proceso de heredar atributos de una clase padre."
+    ],
+    "correct_index": 0,
+    "explanation": "Permite dividir un programa en módulos que pueden compilarse por separado, facilitando el mantenimiento y la escalabilidad.",
+    "option_explanations": [
+      "Permite dividir un programa en módulos que pueden compilarse por separado, facilitando el mantenimiento y la escalabilidad.",
+      "Aunque están relacionados, el ocultamiento es una propiedad del encapsulamiento.",
+      "Esta es la definición del polimorfismo, que permite usar una misma interfaz para diferentes tipos.",
+      "Dicho concepto se refiere a la jerarquía y herencia, no a la división modular del sistema."
+    ]
+  },
+  {
+    "id": 6,
+    "subject": "angular",
+    "topic": "Directiva routerLink",
+    "type": "mc",
+    "question": "En Angular, ¿cuál es el propósito de la directiva 'routerLink'?",
+    "code_snippet": null,
+    "options": [
+      "Conectar la aplicación con una base de datos externa.",
+      "Establecer la conexión segura por protocolo HTTPS.",
+      "Definir el lugar exacto donde se mostrará el componente de la ruta.",
+      "Indicar que un enlace HTML debe funcionar usando el sistema de routing de Angular."
+    ],
+    "correct_index": 3,
+    "explanation": "Permite navegar entre componentes sin recargar la página, gestionando la URL de forma virtual.",
+    "option_explanations": [
+      "La comunicación con datos externos es responsabilidad de los servicios y HttpClient.",
+      "La seguridad del protocolo se gestiona a nivel de servidor y configuración del navegador, no mediante esta directiva.",
+      "Esa función específica corresponde a la etiqueta 'router-outlet'.",
+      "Permite navegar entre componentes sin recargar la página, gestionando la URL de forma virtual."
+    ]
+  },
+  {
+    "id": 7,
+    "subject": "angular",
+    "topic": "Jerarquía de Clases y Herencia en TypeScript",
+    "type": "mc",
+    "question": "¿Cuál de los siguientes errores es común al intentar definir una jerarquía de clases en TypeScript según el material proporcionado?",
+    "code_snippet": null,
+    "options": [
+      "Usar el modificador 'protected' para permitir que la subclase acceda a atributos del padre.",
+      "Definir métodos con el mismo nombre en la subclase y la superclase.",
+      "Intentar que una clase herede simultáneamente de dos clases base distintas.",
+      "Extender una clase que ya deriva de otra clase base."
+    ],
+    "correct_index": 2,
+    "explanation": "TypeScript sigue las reglas de herencia simple, lo que restringe a una clase a tener una única superclase directa.",
+    "option_explanations": [
+      "El uso de este modificador es la forma correcta de permitir visibilidad dentro de una jerarquía de herencia sin exponer los datos al exterior.",
+      "Esta práctica es conocida como polimorfismo y es una característica fundamental para que las subclases especialicen el comportamiento.",
+      "TypeScript sigue las reglas de herencia simple, lo que restringe a una clase a tener una única superclase directa.",
+      "La herencia multinivel es válida siempre que cada paso de la cadena respete la regla de tener un solo padre directo."
+    ]
+  },
+  {
+    "id": 8,
+    "subject": "angular",
+    "topic": "Modificadores de Acceso y Principio de Ocultamiento",
+    "type": "mc",
+    "question": "En una estructura de clases donde se aplica el Principio de Ocultamiento, ¿qué sucede si una clase hija intenta acceder directamente a un atributo 'private' de su superclase?",
+    "code_snippet": null,
+    "options": [
+      "El valor se recibe como 'undefined' sin generar errores de sintaxis.",
+      "El acceso se permite siempre que la clase hija esté en el mismo módulo.",
+      "Se produce un error de compilación indicando que el miembro no es accesible.",
+      "El compilador cambia automáticamente el modificador a 'protected'."
+    ],
+    "correct_index": 2,
+    "explanation": "Los miembros privados están restringidos exclusivamente al ámbito de la clase donde fueron declarados, incluso para sus descendientes.",
+    "option_explanations": [
+      "Debido al tipado estricto de TypeScript, la violación de las reglas de acceso se detecta antes de la ejecución.",
+      "La privacidad en POO se basa en el ámbito de la clase y no en la ubicación del archivo o módulo.",
+      "Los miembros privados están restringidos exclusivamente al ámbito de la clase donde fueron declarados, incluso para sus descendientes.",
+      "Los modificadores de acceso son estáticos y el compilador no altera la visibilidad definida por el programador para resolver conflictos."
+    ]
+  },
+  {
+    "id": 9,
+    "subject": "angular",
+    "topic": "Relaciones entre Clases: Composición vs Agregación",
+    "type": "mc",
+    "question": "Al diseñar un sistema complejo, ¿cómo se diferencia correctamente una relación de composición de una de agregación?",
+    "code_snippet": null,
+    "options": [
+      "La composición permite que múltiples clases compartan la misma instancia de un objeto parte.",
+      "La agregación requiere obligatoriamente el uso de la palabra reservada 'extends'.",
+      "En la composición, las partes son esenciales y su ciclo de vida depende totalmente del objeto contenedor.",
+      "En la agregación, el objeto hijo no puede existir sin el objeto padre."
+    ],
+    "correct_index": 2,
+    "explanation": "Esta relación implica que el componente no tiene sentido de existencia o no puede funcionar fuera de la entidad principal.",
+    "option_explanations": [
+      "La composición suele implicar una propiedad exclusiva donde el objeto parte nace y muere con su contenedor único.",
+      "La agregación se implementa mediante propiedades que referencian a otros objetos, no mediante herencia de clases.",
+      "Esta relación implica que el componente no tiene sentido de existencia o no puede funcionar fuera de la entidad principal.",
+      "La agregación es una relación más débil donde el objeto parte puede seguir existiendo de forma independiente."
+    ]
+  },
+  {
+    "id": 10,
+    "subject": "angular",
+    "topic": "Interfaces y Contratos en TypeScript",
+    "type": "mc",
+    "question": "Si se desea implementar un contrato que obligue a diferentes clases a tener los mismos métodos pero sin compartir código base, ¿cuál es la estructura recomendada?",
+    "code_snippet": null,
+    "options": [
+      "Una Tupla para agrupar los tipos de datos de los métodos.",
+      "Un Decorador de Clase para añadir metadatos de comportamiento.",
+      "Una Interfaz (interface) utilizando la palabra reservada 'implements'.",
+      "Una Clase Abstracta utilizando la palabra reservada 'extends'."
+    ],
+    "correct_index": 2,
+    "explanation": "Las interfaces definen la firma de los métodos sin proporcionar lógica, estableciendo un contrato estricto para las clases.",
+    "option_explanations": [
+      "Las tuplas son colecciones de valores de tipos heterogéneos y no se utilizan para definir estructuras de comportamiento en clases.",
+      "Los decoradores se utilizan para modificar o anotar el comportamiento existente, no para definir la estructura de un contrato formal.",
+      "Las interfaces definen la firma de los métodos sin proporcionar lógica, estableciendo un contrato estricto para las clases.",
+      "Aunque las clases abstractas pueden definir contratos, también permiten compartir implementación, lo cual no es el objetivo en este escenario."
+    ]
+  },
+  {
+    "id": 11,
+    "subject": "angular",
+    "topic": "Arquitectura de Angular y Servicios",
+    "type": "mc",
+    "question": "En el contexto de Angular, ¿por qué se considera una mala práctica incluir lógica de acceso a datos directamente dentro de un componente?",
+    "code_snippet": null,
+    "options": [
+      "Porque el propósito del componente es gestionar exclusivamente la experiencia del usuario y la vista.",
+      "Porque la lógica de datos debe estar escrita en JavaScript puro para ser transpilada.",
+      "Porque los componentes solo pueden contener código HTML y CSS.",
+      "Porque los archivos .ts de los componentes no admiten la importación de HttpClient."
+    ],
+    "correct_index": 0,
+    "explanation": "La arquitectura de Angular delega la gestión de datos a los servicios para mantener los componentes ligeros y fáciles de testear.",
+    "option_explanations": [
+      "La arquitectura de Angular delega la gestión de datos a los servicios para mantener los componentes ligeros y fáciles de testear.",
+      "TypeScript es el lenguaje estándar para Angular y soporta perfectamente toda la lógica de la aplicación.",
+      "Los componentes tienen una clase de TypeScript asociada para manejar la lógica de interacción con la plantilla.",
+      "HttpClient puede importarse, pero se desaconseja su uso directo en componentes por razones de modularidad y reutilización."
+    ]
+  },
+  {
+    "id": 12,
+    "subject": "angular",
+    "topic": "Formularios en Angular",
+    "type": "mc",
+    "question": "¿Qué característica distingue a los Formularios Reactivos de los basados en plantillas en Angular?",
+    "code_snippet": null,
+    "options": [
+      "Se crean automáticamente a partir de las etiquetas HTML de la plantilla.",
+      "Son preferibles únicamente para escenarios muy simples con pocos campos.",
+      "No requieren la importación de módulos específicos en el archivo .ts.",
+      "La lógica y estructura del formulario se definen de forma explícita en la clase del componente."
+    ],
+    "correct_index": 3,
+    "explanation": "Este enfoque proporciona un modelo de datos más robusto y escalable, facilitando las pruebas unitarias y validaciones complejas.",
+    "option_explanations": [
+      "La creación basada en directivas de plantilla es característica de los formularios 'Template-driven', no de los reactivos.",
+      "Los formularios reactivos están diseñados precisamente para manejar escenarios complejos y dinámicos.",
+      "Ambos tipos de formularios requieren la configuración de sus respectivos módulos de Angular para funcionar.",
+      "Este enfoque proporciona un modelo de datos más robusto y escalable, facilitando las pruebas unitarias y validaciones complejas."
+    ]
+  },
+  {
+    "id": 13,
+    "subject": "angular",
+    "topic": "Tipado Estricto en TypeScript",
+    "type": "mc",
+    "question": "Dada la siguiente declaración: `let puntaje: number = 92.5;`, ¿cuál es el resultado esperado si intentamos asignar `puntaje = \"Excelente\";`?",
+    "code_snippet": "let puntaje: number = 92.5;\npuntaje = \"Excelente\";",
+    "options": [
+      "La variable cambia su tipo a string dinámicamente sin errores.",
+      "El programa se ejecuta pero muestra una advertencia en la consola del navegador.",
+      "El valor se convierte automáticamente a 0 para mantener el tipo numérico.",
+      "Un error de compilación porque TypeScript es fuertemente tipado."
+    ],
+    "correct_index": 3,
+    "explanation": "El compilador verifica que el tipo del valor asignado coincida con el tipo declarado de la variable para garantizar la consistencia.",
+    "option_explanations": [
+      "Esto ocurriría en JavaScript puro, pero TypeScript previene estos cambios para evitar errores en tiempo de ejecución.",
+      "La mayoría de las violaciones de tipos en TypeScript impiden la transpilación exitosa antes de llegar al navegador.",
+      "TypeScript no realiza conversiones de tipos (coerción) implícitas de este tipo; simplemente señala la incompatibilidad.",
+      "El compilador verifica que el tipo del valor asignado coincida con el tipo declarado de la variable para garantizar la consistencia."
+    ]
+  },
+  {
+    "id": 14,
+    "subject": "angular",
+    "topic": "Constructores en POO",
+    "type": "mc",
+    "question": "En la Programación Orientada a Objetos, ¿cuál es la función primordial del constructor de una clase?",
+    "code_snippet": null,
+    "options": [
+      "Eliminar el objeto de la memoria cuando ya no se utiliza.",
+      "Actuar como un molde estático que no puede ser instanciado.",
+      "Definir si la clase será pública o privada.",
+      "Inicializar los atributos del objeto al momento de su creación."
+    ],
+    "correct_index": 3,
+    "explanation": "El constructor es un método especial que se ejecuta automáticamente con el operador 'new' para establecer el estado inicial.",
+    "option_explanations": [
+      "La gestión de memoria suele ser automática en entornos como JavaScript/TypeScript; el constructor solo se encarga del inicio.",
+      "Esa descripción corresponde más a las clases abstractas o interfaces; el constructor es precisamente para crear instancias.",
+      "La visibilidad de la clase se define mediante modificadores de acceso en su declaración, no dentro del constructor.",
+      "El constructor es un método especial que se ejecuta automáticamente con el operador 'new' para establecer el estado inicial."
+    ]
+  },
+  {
+    "id": 15,
+    "subject": "angular",
+    "topic": "Transpilación de TypeScript a JavaScript",
+    "type": "mc",
+    "question": "¿Qué sucede al transpilar un archivo de TypeScript que contiene clases y tipos a JavaScript estándar?",
+    "code_snippet": null,
+    "options": [
+      "El código resultante se convierte a versiones como ECMAScript 5 o 6, eliminando las anotaciones de tipo.",
+      "Las interfaces se transforman en funciones especiales dentro de JavaScript.",
+      "Se genera un archivo binario que solo el navegador Chrome puede leer.",
+      "El archivo mantiene la extensión .ts para que el servidor lo procese directamente."
+    ],
+    "correct_index": 0,
+    "explanation": "JavaScript no soporta tipos estáticos, por lo que el transpilador los remueve tras verificar la validez del código.",
+    "option_explanations": [
+      "JavaScript no soporta tipos estáticos, por lo que el transpilador los remueve tras verificar la validez del código.",
+      "Las interfaces son puramente conceptuales en TypeScript y no generan código alguno en el archivo JavaScript final.",
+      "TypeScript se convierte a JavaScript de texto plano para asegurar compatibilidad con todas las plataformas y navegadores.",
+      "Los navegadores no ejecutan archivos .ts nativamente; requieren la conversión previa a archivos .js."
+    ]
+  },
+  {
+    "id": 16,
+    "subject": "angular",
+    "topic": "Modificador readonly en TypeScript",
+    "type": "mc",
+    "question": "Al utilizar el modificador 'readonly' en una propiedad de clase, ¿cuál es el comportamiento esperado?",
+    "code_snippet": null,
+    "options": [
+      "La propiedad requiere obligatoriamente un método 'setter' para funcionar.",
+      "La propiedad solo puede ser accedida por métodos de la misma clase.",
+      "La propiedad puede ser leída pero no modificada después de su inicialización.",
+      "La propiedad es invisible para las subclases que heredan de ella."
+    ],
+    "correct_index": 2,
+    "explanation": "Este modificador garantiza la inmutabilidad de los datos tras la asignación inicial, aumentando la seguridad del código.",
+    "option_explanations": [
+      "Un 'setter' permitiría la modificación, lo cual contradice la naturaleza de 'solo lectura' de la propiedad.",
+      "Esa definición corresponde al modificador 'private'; 'readonly' se refiere a la capacidad de escritura, no de visibilidad.",
+      "Este modificador garantiza la inmutabilidad de los datos tras la asignación inicial, aumentando la seguridad del código.",
+      "El acceso de lectura se mantiene según el modificador de visibilidad (public, etc.) que acompañe a 'readonly'."
+    ]
+  }
+]
