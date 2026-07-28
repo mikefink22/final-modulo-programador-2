@@ -1,0 +1,222 @@
+[
+  {
+    "id": 1,
+    "subject": "angular",
+    "topic": "JavaScript vs TypeScript",
+    "type": "mc",
+    "question": "¿Cuál es la principal diferencia en el manejo de tipos entre JavaScript y TypeScript según el material proporcionado?",
+    "code_snippet": null,
+    "options": [
+      "JavaScript utiliza clases abstractas e interfaces de forma nativa.",
+      "JavaScript es débilmente tipado, mientras que TypeScript es fuertemente tipado.",
+      "JavaScript requiere transpilación para ejecutarse, mientras que TypeScript no.",
+      "TypeScript solo se ejecuta en el cliente, mientras que JavaScript es universal."
+    ],
+    "correct_index": 1,
+    "explanation": "TypeScript verifica la validez de los valores antes de ser manipulados, a diferencia de la naturaleza flexible e interpretada de JavaScript.",
+    "option_explanations": [
+      "JavaScript carece de estas herramientas de tipado profesional, razón por la cual TypeScript fue creado por Microsoft como solución.",
+      "TypeScript verifica la validez de los valores antes de ser manipulados, a diferencia de la naturaleza flexible e interpretada de JavaScript.",
+      "Es TypeScript el lenguaje que necesita ser transpilado a JavaScript para que los navegadores puedan entenderlo.",
+      "El material indica que TypeScript puede ejecutarse tanto en el servidor como en el navegador, ampliando el alcance de JavaScript tradicional."
+    ]
+  },
+  {
+    "id": 2,
+    "subject": "angular",
+    "topic": "Detección de errores en TypeScript",
+    "type": "mc",
+    "question": "En el contexto de proyectos colaborativos grandes, ¿cómo beneficia el uso de TypeScript a la detección de errores?",
+    "code_snippet": null,
+    "options": [
+      "Elimina la necesidad de realizar pruebas unitarias en la aplicación.",
+      "Permite detectar errores de lógica compleja automáticamente sin intervención humana.",
+      "Garantiza que el código sea interpretado más rápido por el navegador.",
+      "Incorpora comprobación en tiempo de compilación para identificar fallos antes de la ejecución."
+    ],
+    "correct_index": 3,
+    "explanation": "Esta característica permite que los equipos grandes detecten inconsistencias en los datos antes de que el código llegue a producción.",
+    "option_explanations": [
+      "El tipado estático complementa las pruebas, pero Angular sigue recomendando suites de herramientas para pruebas unitarias específicas.",
+      "Aunque ayuda, la lógica del negocio sigue dependiendo del desarrollador; TypeScript se enfoca en la validez de los tipos.",
+      "El navegador no interpreta TypeScript directamente; el beneficio reside en la mantenibilidad y no necesariamente en la velocidad de interpretación bruta.",
+      "Esta característica permite que los equipos grandes detecten inconsistencias en los datos antes de que el código llegue a producción."
+    ]
+  },
+  {
+    "id": 3,
+    "subject": "angular",
+    "topic": "Interfaces de TypeScript",
+    "type": "mc",
+    "question": "¿Qué utilidad fundamental aportan las interfaces de TypeScript dentro del framework Angular?",
+    "code_snippet": null,
+    "options": [
+      "Son herramientas para compilar archivos CSS en estilos optimizados.",
+      "Funcionan como bases de datos locales para almacenar información persistente.",
+      "Se utilizan para renderizar elementos visuales directamente en el DOM.",
+      "Actúan como contratos que definen la estructura que deben seguir los datos y objetos."
+    ],
+    "correct_index": 3,
+    "explanation": "Las interfaces permiten crear nuevos tipos y asegurar que los argumentos o datos recibidos cumplan con un formato estricto.",
+    "option_explanations": [
+      "Las interfaces pertenecen a la lógica de programación y tipado, no al preprocesamiento de estilos.",
+      "Las interfaces son estructuras de diseño de código, no mecanismos de almacenamiento de datos.",
+      "Esa es la función de las plantillas HTML y los componentes, no de las interfaces.",
+      "Las interfaces permiten crear nuevos tipos y asegurar que los argumentos o datos recibidos cumplan con un formato estricto."
+    ]
+  },
+  {
+    "id": 4,
+    "subject": "angular",
+    "topic": "Arquitectura SPA",
+    "type": "mc",
+    "question": "¿Cuál es una ventaja crítica de las aplicaciones SPA (Single Page Application) sobre el modelo tradicional de múltiples páginas?",
+    "code_snippet": null,
+    "options": [
+      "Requieren una recarga completa del navegador en cada petición del usuario.",
+      "Permiten que cada vista tenga un archivo HTML físico independiente en el servidor.",
+      "Cargan dinámicamente solo el contenido necesario mediante la manipulación del DOM.",
+      "Son más seguras porque no utilizan JavaScript en el lado del cliente."
+    ],
+    "correct_index": 2,
+    "explanation": "Al no recargar la página completa, se logra una navegación fluida y una mejor experiencia de usuario.",
+    "option_explanations": [
+      "Esta es la característica de las aplicaciones MPA tradicionales, la cual las SPA buscan evitar para mejorar el rendimiento.",
+      "En las SPA de Angular, todo sucede sobre un único archivo `index.html`, intercambiando componentes virtuales.",
+      "Al no recargar la página completa, se logra una navegación fluida y una mejor experiencia de usuario.",
+      "Las SPA dependen totalmente de la capacidad de JavaScript para gestionar las vistas dinámicamente."
+    ]
+  },
+  {
+    "id": 5,
+    "subject": "angular",
+    "topic": "POO y Clases",
+    "type": "mc",
+    "question": "En la Programación Orientada a Objetos con TypeScript, ¿qué concepto se utiliza como 'plantilla' para crear múltiples objetos con características comunes?",
+    "code_snippet": null,
+    "options": [
+      "Métodos estáticos",
+      "Clases",
+      "Instancias",
+      "Tipificación"
+    ],
+    "correct_index": 1,
+    "explanation": "Una clase es la descripción de una entidad que sirve como molde para generar múltiples objetos que respondan a dicha descripción.",
+    "option_explanations": [
+      "Estos son comportamientos que no requieren instanciación, pero no representan la plantilla de la entidad completa.",
+      "Una clase es la descripción de una entidad que sirve como molde para generar múltiples objetos que respondan a dicha descripción.",
+      "Las instancias son los objetos individuales creados 'a partir de' la plantilla, no la plantilla en sí.",
+      "La tipificación es la puesta en vigor de la clase para evitar intercambios incorrectos de objetos, no la estructura de creación."
+    ]
+  },
+  {
+    "id": 6,
+    "subject": "angular",
+    "topic": "Standalone Components",
+    "type": "mc",
+    "question": "¿Qué beneficio ofrece la arquitectura modular basada en 'standalone componentes' introducida en Angular 17?",
+    "code_snippet": null,
+    "options": [
+      "Reduce el tamaño de la aplicación al eliminar el uso de TypeScript.",
+      "Permite que los componentes sean independientes y fáciles de reutilizar sin configuraciones complejas de módulos.",
+      "Garantiza que la lógica del negocio esté mezclada con la lógica de presentación.",
+      "Obliga a que todos los componentes dependan de un único módulo central para funcionar."
+    ],
+    "correct_index": 1,
+    "explanation": "Esta independencia facilita la lectura, el mantenimiento y la escalabilidad de la aplicación al tratar cada pieza como una unidad autónoma.",
+    "option_explanations": [
+      "Angular está construido sobre TypeScript y lo requiere para su funcionamiento modular.",
+      "Esta independencia facilita la lectura, el mantenimiento y la escalabilidad de la aplicación al tratar cada pieza como una unidad autónoma.",
+      "La arquitectura de Angular promueve separar estas lógicas mediante el uso de componentes para la vista y servicios para el modelo.",
+      "Al contrario, los standalone componentes eliminan la necesidad de módulos que provean contexto asociado."
+    ]
+  },
+  {
+    "id": 7,
+    "subject": "angular",
+    "topic": "Tipo any",
+    "type": "mc",
+    "question": "Cuando se utiliza el tipo `any` en TypeScript, ¿cuál es la consecuencia principal para el compilador?",
+    "code_snippet": null,
+    "options": [
+      "Aumenta automáticamente el rendimiento de la aplicación en tiempo de ejecución.",
+      "La variable solo puede aceptar valores numéricos o booleanos.",
+      "El compilador aplica un tipado estricto para prevenir errores de asignación.",
+      "Se opta por no verificar el tipo de la variable, permitiendo cualquier valor de JavaScript."
+    ],
+    "correct_index": 3,
+    "explanation": "El tipo `any` representa cualquier valor sin restricciones, eliminando las ventajas de la comprobación de tipos de TypeScript.",
+    "option_explanations": [
+      "El tipado no afecta el rendimiento del tiempo de ejecución, sino la seguridad durante el tiempo de desarrollo.",
+      "Eso correspondería a una unión de tipos, no al tipo `any` que es el supertipo de todos los tipos.",
+      "El uso de `any` es precisamente lo opuesto al tipado estricto.",
+      "El tipo `any` representa cualquier valor sin restricciones, eliminando las ventajas de la comprobación de tipos de TypeScript."
+    ]
+  },
+  {
+    "id": 8,
+    "subject": "angular",
+    "topic": "POO / Encapsulamiento",
+    "type": "mc",
+    "question": "¿Cuál es el propósito del principio de Encapsulamiento en la POO con TypeScript?",
+    "code_snippet": null,
+    "options": [
+      "Hacer que una clase B obtenga todos los miembros de una clase A automáticamente.",
+      "Dividir el sistema en partes independientes que pueden ser compiladas por separado.",
+      "Impedir que un atributo sea modificado de forma insegura, dando lugar al Principio de Ocultamiento.",
+      "Permitir que cualquier parte del programa modifique los atributos de una clase libremente."
+    ],
+    "correct_index": 2,
+    "explanation": "Asegura que solo los métodos de la propia clase tengan acceso directo a sus atributos para evitar valores inconsistentes.",
+    "option_explanations": [
+      "Ese mecanismo se conoce como herencia, no encapsulamiento.",
+      "Esa es la definición de modularidad, no de encapsulamiento.",
+      "Asegura que solo los métodos de la propia clase tengan acceso directo a sus atributos para evitar valores inconsistentes.",
+      "Esto violaría el principio de ocultamiento y seguridad de los datos que busca el encapsulamiento."
+    ]
+  },
+  {
+    "id": 9,
+    "subject": "angular",
+    "topic": "Servicios en Angular",
+    "type": "mc",
+    "question": "¿Qué rol cumplen los 'Servicios' en la arquitectura de Angular según el modelo MVC?",
+    "code_snippet": null,
+    "options": [
+      "Son la Vista de la aplicación, definiendo el estilo visual.",
+      "Actúan como el Modelo, encargándose de la lógica de negocio y persistencia de datos.",
+      "Su única función es recargar el navegador cada vez que cambian los datos.",
+      "Actúan como el Controlador, gestionando los clics del usuario."
+    ],
+    "correct_index": 1,
+    "explanation": "Los servicios encapsulan la comunicación con API y las reglas de procesamiento, separándolas de la vista.",
+    "option_explanations": [
+      "Las plantillas HTML y el CSS son los encargados de la capa de presentación.",
+      "Los servicios encapsulan la comunicación con API y las reglas de procesamiento, separándolas de la vista.",
+      "Angular es SPA y busca precisamente evitar recargas; los servicios operan de forma asíncrona.",
+      "Ese es el papel de los componentes, no de los servicios."
+    ]
+  },
+  {
+    "id": 10,
+    "subject": "angular",
+    "topic": "Rutas en Angular",
+    "type": "mc",
+    "question": "En el sistema de rutas de Angular, ¿por qué se dice que las rutas son 'virtuales'?",
+    "code_snippet": null,
+    "options": [
+      "Porque el usuario no puede verlas ni modificarlas en la barra de direcciones.",
+      "Porque no existen archivos físicos independientes (como contacto.html) en el servidor.",
+      "Porque solo funcionan cuando la aplicación no tiene conexión a internet.",
+      "Porque requieren de un casco de realidad virtual para poder navegar en ellas."
+    ],
+    "correct_index": 1,
+    "explanation": "El servidor entrega datos y Angular intercambia componentes sobre el mismo archivo `index.html` basándose en la URL.",
+    "option_explanations": [
+      "Las URL pueden cambiar y son visibles, permitiendo la navegación como en un sitio tradicional.",
+      "El servidor entrega datos y Angular intercambia componentes sobre el mismo archivo `index.html` basándose en la URL.",
+      "Las rutas funcionan en línea para coordinar la carga dinámica de componentes desde el servidor.",
+      "El término 'virtual' se refiere a la arquitectura del software, no al hardware de interfaz."
+    ]
+  }
+]
