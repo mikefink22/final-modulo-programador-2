@@ -91,7 +91,8 @@
           background: var(--error-bg);
           color: var(--error);
           border-color: rgba(239, 68, 68, 0.3);
-          padding: 3px 6px;
+          padding: 4px 10px;
+          justify-content: center;
 
           &:hover {
             filter: brightness(1.15);
