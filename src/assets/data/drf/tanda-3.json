@@ -335,5 +335,79 @@
       "Evita archivos urls.py monolíticos",
       "Reduce conflictos de merge en equipos de desarrollo"
     ]
+  },
+  {
+    "id": 76,
+    "subject": "drf",
+    "topic": "Uso de related_name e identificador inverso",
+    "type": "mc",
+    "question": "Si en el modelo 'FraseDb' definimos 'autor = models.ForeignKey(AutorDb, on_delete=models.CASCADE, related_name=\"frases\")', ¿cómo accedemos desde una instancia de AutorDb (ej. 'autor') a todas sus frases relacionadas?",
+    "code_snippet": "class FraseDb(models.Model):\n    cita = models.CharField(max_length=200)\n    autor = models.ForeignKey(AutorDb, on_delete=models.CASCADE, related_name=\"frases\")",
+    "options": [
+      "autor.frasedb_set.all()",
+      "autor.frases.all()",
+      "autor.FraseDb.all()",
+      "autor.get_frases()"
+    ],
+    "correct_index": 1,
+    "explanation": "Al definir related_name=\"frases\", se reemplaza el identificador inverso por defecto ('frasedb_set') por el nombre personalizado 'frases'. Por lo tanto, se accede directamente mediante autor.frases.all() (o autor.frases.all en DTL).",
+    "option_explanations": [
+      "Incorrecta: frasedb_set es el nombre por defecto que genera Django cuando NO se especifica related_name; al definir related_name=\"frases\", esa propiedad es reemplazada.",
+      "Correcta: al especificar related_name=\"frases\", el identificador inverso para acceder desde AutorDb pasa a ser directamente 'autor.frases'.",
+      "Incorrecta: Django no utiliza el nombre de la clase del modelo relacionado como atributo inverso.",
+      "Incorrecta: Django no crea métodos dinámicos con el prefijo get_ para relaciones inversas."
+    ]
+  },
+  {
+    "id": 77,
+    "subject": "drf",
+    "topic": "Identificador inverso por defecto vs related_name",
+    "type": "mc",
+    "question": "¿Qué ocurre si NO especificamos el atributo 'related_name' en una relación ForeignKey o ManyToManyField en Django?",
+    "code_snippet": null,
+    "options": [
+      "Django no permite realizar consultas inversas desde el modelo relacionado.",
+      "Django genera automáticamente un identificador inverso con el nombre del modelo relacionado en minúsculas seguido de '_set' (ej. modelo_set).",
+      "Django lanza un error de compilación al ejecutar makemigrations.",
+      "Django usa automáticamente la palabra 'objects' como acceso inverso."
+    ],
+    "correct_index": 1,
+    "explanation": "Cuando no se define related_name, Django genera por defecto una propiedad inversa utilizando el nombre de la clase del modelo en minúsculas seguido de '_set' (por ejemplo, 'frasedb_set' para el modelo FraseDb). Definir related_name sirve para personalizar este acceso.",
+    "option_explanations": [
+      "Incorrecta: Django sí permite consultas inversas por defecto generando el atributo dinámico '_set'.",
+      "Correcta: es la convención por defecto de Django para identificadores inversos (nombre_modelo_set).",
+      "Incorrecta: omitir related_name es perfectamente válido y genera el comportamiento por defecto sin errores.",
+      "Incorrecta: 'objects' es el Manager del ORM para consultas directas del modelo, no un acceso inverso entre modelos."
+    ]
+  },
+  {
+    "id": 78,
+    "subject": "drf",
+    "topic": "Definición de related_name en ForeignKey",
+    "type": "code",
+    "instructions": "Completá la definición del campo autor en el modelo FraseDb para personalizar la relación inversa hacia AutorDb con el nombre 'frases' en lugar de la sintaxis por defecto.",
+    "starter_code": "from django.db import models\n\nclass AutorDb(models.Model):\n    nombre = models.CharField(max_length=75)\n\nclass FraseDb(models.Model):\n    cita = models.CharField(max_length=200)\n    autor = models.ForeignKey(AutorDb, on_delete=models.CASCADE, _____=\"frases\")",
+    "solution_code": "from django.db import models\n\nclass AutorDb(models.Model):\n    nombre = models.CharField(max_length=75)\n\nclass FraseDb(models.Model):\n    cita = models.CharField(max_length=200)\n    autor = models.ForeignKey(AutorDb, on_delete=models.CASCADE, related_name=\"frases\")",
+    "explanation": "El parámetro related_name=\"frases\" permite reemplazar el identificador inverso dinámico por defecto (frasedb_set) por uno propio ('frases'), de modo que desde cualquier objeto de AutorDb se pueda acceder a sus frases relacionadas mediante autor.frases.all()."
+  },
+  {
+    "id": 79,
+    "subject": "drf",
+    "topic": "Consulta en ORM usando related_name",
+    "type": "code",
+    "instructions": "Dado el modelo FraseDb que define related_name=\"frases\", completá la consulta en Python para recuperar todas las frases del autor usando su relación inversa personalizada.",
+    "starter_code": "from django.db import models\nfrom .models import AutorDb\n\nclass FraseDb(models.Model):\n    cita = models.CharField(max_length=200)\n    autor = models.ForeignKey(AutorDb, on_delete=models.CASCADE, related_name=\"frases\")\n\n# Obtenemos un autor específico\nautor = AutorDb.objects.get(id=1)\n\n# Recuperar todas sus frases usando la relación inversa personalizada:\nfrases_del_autor = autor._____",
+    "solution_code": "from django.db import models\nfrom .models import AutorDb\n\nclass FraseDb(models.Model):\n    cita = models.CharField(max_length=200)\n    autor = models.ForeignKey(AutorDb, on_delete=models.CASCADE, related_name=\"frases\")\n\n# Obtenemos un autor específico\nautor = AutorDb.objects.get(id=1)\n\n# Recuperar todas sus frases usando la relación inversa personalizada:\nfrases_del_autor = autor.frases.all()",
+    "explanation": "Dado que en la ForeignKey se definió related_name=\"frases\", el identificador inverso por defecto (frasedb_set.all()) queda anulado y se accede directamente mediante la propiedad personalizada autor.frases.all()."
+  },
+  {
+    "id": 80,
+    "subject": "drf",
+    "topic": "Consulta en ORM con relación inversa por defecto (_set)",
+    "type": "code",
+    "instructions": "Dado el modelo FraseDb que NO especifica related_name en su ForeignKey, completá la consulta en Python para recuperar todas las frases del autor utilizando el identificador inverso por defecto de Django.",
+    "starter_code": "from django.db import models\nfrom .models import AutorDb\n\nclass FraseDb(models.Model):\n    cita = models.CharField(max_length=200)\n    # NO se define related_name (se usará el nombre por defecto)\n    autor = models.ForeignKey(AutorDb, on_delete=models.CASCADE)\n\n# Obtenemos un autor específico\nautor = AutorDb.objects.get(id=1)\n\n# Recuperar todas sus frases usando la relación inversa por defecto de Django:\nfrases_del_autor = autor._____",
+    "solution_code": "from django.db import models\nfrom .models import AutorDb\n\nclass FraseDb(models.Model):\n    cita = models.CharField(max_length=200)\n    # NO se define related_name (se usará el nombre por defecto)\n    autor = models.ForeignKey(AutorDb, on_delete=models.CASCADE)\n\n# Obtenemos un autor específico\nautor = AutorDb.objects.get(id=1)\n\n# Recuperar todas sus frases usando la relación inversa por defecto de Django:\nfrases_del_autor = autor.frasedb_set.all()",
+    "explanation": "Al no especificar related_name, Django genera automáticamente el identificador inverso tomando el nombre del modelo en minúsculas seguido de _set (frasedb_set). Por eso, en Python la consulta se completa invocando autor.frasedb_set.all()."
   }
 ]
