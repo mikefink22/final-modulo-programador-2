@@ -40,7 +40,9 @@
       [totalAvailableCount]="totalAvailableCount"
       (subjectSelected)="onSubjectSelected($event)"
       (limitSelected)="selectLimit($event)"
-      (startQuizRequested)="startQuiz()">
+      (startQuizRequested)="startQuiz()"
+      (deckUpdated)="updateAvailableCounts()"
+      (confirmRequested)="openConfirmModal($event)">
     </app-subject-filter>
 
     <div class="limit-selection-box glass-card desktop-only-block">
@@ -75,34 +77,31 @@
         (click)="startQuiz()">
         🚀 {{ totalAvailableCount === 0 ? 'Sin ejercicios disponibles' : 'Iniciar Autoevaluación de ' + selectedSubjectLabel }}
       </button>
-
-      @if (reviewDeckCount > 0) {
-        <div class="review-deck-group">
-          <button 
-            type="button" 
-            class="btn btn-secondary review-deck-btn"
-            (click)="startReviewQuiz()">
-            🧠 Repasar Mazo Acumulado (<strong>{{ reviewDeckCount }}</strong> {{ reviewDeckCount === 1 ? 'pendiente' : 'pendientes' }})
-          </button>
-          <button
-            type="button"
-            class="btn btn-outline clear-review-btn"
-            title="Vaciar Mazo Acumulado"
-            (click)="clearReviewDeck()">
-            🗑️ Vaciar Mazo
-          </button>
-        </div>
-      }
-
-      @if (discardedDeckCount > 0) {
-        <button 
-          type="button" 
-          class="btn btn-outline restore-discarded-btn"
-          (click)="restoreDiscardedDeck()">
-          <span class="btn-text-desktop">♻️ Reincorporar Mazo Descartado (<strong>{{ discardedDeckCount }}</strong> {{ discardedDeckCount === 1 ? 'dominada' : 'dominadas' }} &lt;24h)</span>
-          <span class="btn-text-mobile">♻️ Restaurar Descartadas (<strong>{{ discardedDeckCount }}</strong>)</span>
-        </button>
-      }
     </div>
   </section>
 </div>
+
+@if (confirmModal.isOpen) {
+  <div class="confirm-modal-overlay animate-fade-in" (click)="closeConfirmModal()">
+    <div class="confirm-modal-box glass-card" (click)="$event.stopPropagation()">
+      <div class="modal-icon-badge">{{ confirmModal.icon }}</div>
+      <h3 class="modal-title">{{ confirmModal.title }}</h3>
+      <p class="modal-message">{{ confirmModal.message }}</p>
+      
+      <div class="modal-actions">
+        <button 
+          type="button" 
+          class="btn btn-outline modal-cancel-btn" 
+          (click)="closeConfirmModal()">
+          {{ confirmModal.cancelText }}
+        </button>
+        <button 
+          type="button" 
+          class="btn {{ confirmModal.confirmClass }} modal-confirm-btn" 
+          (click)="executeConfirmModalAction()">
+          {{ confirmModal.confirmText }}
+        </button>
+      </div>
+    </div>
+  </div>
+}
