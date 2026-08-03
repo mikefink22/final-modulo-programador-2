@@ -72,7 +72,7 @@
   }
 
   &:hover {
-    transform: translateY(-4px);
+    transform: translateY(-4px) translateZ(0);
     box-shadow: var(--shadow-lg);
     border-color: var(--primary);
   }
