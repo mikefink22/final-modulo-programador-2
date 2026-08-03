@@ -125,6 +125,17 @@ a {
   backface-visibility: hidden;
 }
 
+@media (max-width: 640px) {
+  .glass-card {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: var(--bg-secondary) !important;
+    transform: none !important;
+    -webkit-backface-visibility: visible !important;
+    backface-visibility: visible !important;
+  }
+}
+
 .glass-card:hover {
   border-color: rgba(99, 102, 241, 0.4);
 }
