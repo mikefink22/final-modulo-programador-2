@@ -1,0 +1,339 @@
+[
+  {
+    "id": 54,
+    "subject": "drf",
+    "topic": "Patrón MVT",
+    "type": "mc",
+    "question": "En el patrón MVT de Django, ¿qué componente contiene la lógica de control y es responsable de recibir el request y retornar una respuesta HTTP?",
+    "code_snippet": null,
+    "options": [
+      "Model",
+      "Template",
+      "View",
+      "Manager"
+    ],
+    "correct_index": 2,
+    "explanation": "El material define a la View como la capa que contiene la lógica de control: recibe solicitudes HTTP, interactúa con los modelos y retorna una respuesta HTTP (HttpResponse o render).",
+    "option_explanations": [
+      "Incorrecta: el Model define la estructura de datos y las reglas de negocio en la capa de persistencia, no la lógica de control.",
+      "Incorrecta: el Template es la capa de presentación, combina HTML con DTL para renderizar datos.",
+      "Correcta: la View recibe el request, interactúa con los modelos y retorna la respuesta HTTP.",
+      "Incorrecta: 'Manager' no es un componente del patrón MVT descripto en el material, sino el objeto 'objects' del ORM."
+    ]
+  },
+  {
+    "id": 55,
+    "subject": "drf",
+    "topic": "Estructura de proyecto vs apps",
+    "type": "concept",
+    "question": "Explicá la diferencia entre el 'proyecto' y una 'aplicación (app)' en Django según la estructura descripta en el material.",
+    "expected_answer": "El proyecto (por ejemplo taller/) es el contenedor principal: aloja la configuración global en settings.py, el enrutador principal en urls.py y los archivos de despliegue wsgi.py/asgi.py. Las aplicaciones (por ejemplo app1/) son módulos independientes y reutilizables con su propio dominio de negocio, que contienen sus propios models.py, views.py, carpeta templates/, carpeta static/ y su propio urls.py local.",
+    "key_points": [
+      "El proyecto contiene settings.py, urls.py principal y wsgi.py/asgi.py",
+      "Las apps son módulos independientes y reutilizables",
+      "Cada app tiene su propio models.py, views.py, templates/, static/ y urls.py"
+    ]
+  },
+  {
+    "id": 56,
+    "subject": "drf",
+    "topic": "Modularización de URLs con include()",
+    "type": "code",
+    "instructions": "Completá el urls.py principal del proyecto 'taller' para que delegue todas las rutas raíz hacia el urls.py de la app 'app1' usando include().",
+    "starter_code": "from django.contrib import admin\nfrom django.urls import path, include\n\nurlpatterns = [\n    path('admin/', admin.site.urls),\n    _____\n]",
+    "solution_code": "from django.contrib import admin\nfrom django.urls import path, include\n\nurlpatterns = [\n    path('admin/', admin.site.urls),\n    path('', include('app1.urls')),\n]",
+    "explanation": "El material muestra que en lugar de concentrar todas las URLs en el urls.py principal, Django delega el enrutamiento interno de cada app mediante path('', include('app1.urls')), que redirige el flujo hacia el urls.py de app1."
+  },
+  {
+    "id": 57,
+    "subject": "drf",
+    "topic": "Importaciones en urls.py",
+    "type": "mc",
+    "question": "Según el material, ¿cuáles son las dos formas válidas de vincular una vista a un path en urls.py?",
+    "code_snippet": null,
+    "options": [
+      "Solo se puede usar 'from . import views' y luego views.nombre_vista",
+      "Importar el módulo completo (from . import views) o importar directamente la función (from .views import nombre_vista)",
+      "Solo se puede importar directamente la función con from .views import nombre_vista",
+      "Usar admin.site.urls para registrar cada vista individualmente"
+    ],
+    "correct_index": 1,
+    "explanation": "El apunte indica dos formas: 1) importación del módulo completo con from . import views usando views.index_view, o 2) importación directa de la función con from .views import index_view usando directamente index_view.",
+    "option_explanations": [
+      "Incorrecta: el material menciona explícitamente una segunda forma alternativa de importación directa.",
+      "Correcta: ambas formas están descriptas en la sección 2.2 del material como opciones válidas.",
+      "Incorrecta: omite la primera forma (importación del módulo completo), que también es válida según el material.",
+      "Incorrecta: admin.site.urls corresponde al registro de rutas del panel de administración, no a la vinculación de vistas de una app."
+    ]
+  },
+  {
+    "id": 58,
+    "subject": "drf",
+    "topic": "Nombres de vistas por convención",
+    "type": "concept",
+    "question": "¿Es 'index_view' una palabra reservada del framework Django? Justificá con lo indicado en el material.",
+    "expected_answer": "No. El material aclara explícitamente que nombres como index, index_view o indexview no son palabras reservadas del framework, sino identificadores elegidos por convención por el propio desarrollador.",
+    "key_points": [
+      "No es una palabra reservada de Django",
+      "Es un identificador elegido por convención por el desarrollador",
+      "Se aplica también a otros nombres similares como index o indexview"
+    ]
+  },
+  {
+    "id": 59,
+    "subject": "drf",
+    "topic": "HttpResponse vs render",
+    "type": "mc",
+    "question": "¿Cuál es la diferencia principal entre HttpResponse y render() según el material?",
+    "code_snippet": null,
+    "options": [
+      "HttpResponse solo funciona con JSON, render solo con HTML",
+      "HttpResponse retorna contenido directo (texto, HTML plano, JSON); render procesa un archivo HTML de templates/ y le inyecta un diccionario de contexto",
+      "render no puede recibir un contexto, HttpResponse sí",
+      "Ambos son idénticos, solo cambia el nombre"
+    ],
+    "correct_index": 1,
+    "explanation": "El material define HttpResponse como el retorno de contenido directo (cadenas de texto, HTML plano, JSON), mientras que render(request, template_name, context) procesa un archivo HTML de la carpeta templates/ y le inyecta un diccionario de datos (context).",
+    "option_explanations": [
+      "Incorrecta: HttpResponse puede retornar cadenas de texto, HTML plano o JSON, no está limitado a JSON.",
+      "Correcta: es la definición exacta que da el material sobre ambos.",
+      "Incorrecta: es al revés, render es justamente el que recibe el diccionario de context.",
+      "Incorrecta: cumplen funciones distintas según se describe en la sección 3.1."
+    ]
+  },
+  {
+    "id": 60,
+    "subject": "drf",
+    "topic": "get_object_or_404",
+    "type": "code",
+    "instructions": "Completá la vista autor_view para que use get_object_or_404 y busque un AutorDb por id, retornando 404 automáticamente si no existe.",
+    "starter_code": "from django.shortcuts import render, get_object_or_404\nfrom .models import AutorDb\n\ndef autor_view(request, id):\n    autor = _____\n    return render(request, 'autor.html', {'objeto': autor})",
+    "solution_code": "from django.shortcuts import render, get_object_or_404\nfrom .models import AutorDb\n\ndef autor_view(request, id):\n    autor = get_object_or_404(AutorDb, id=id)\n    return render(request, 'autor.html', {'objeto': autor})",
+    "explanation": "Según el material, get_object_or_404 encapsula la búsqueda mediante objects.get(); si el registro no existe, captura la excepción DoesNotExist y lanza automáticamente una respuesta HTTP 404, evitando un error 500 no controlado."
+  },
+  {
+    "id": 61,
+    "subject": "drf",
+    "topic": "get_object_or_404 vs Model.objects.get()",
+    "type": "concept",
+    "question": "¿Qué ventaja ofrece get_object_or_404 frente a usar directamente Model.objects.get()?",
+    "expected_answer": "Model.objects.get() lanza una excepción DoesNotExist no controlada si el registro no existe, lo que deriva en un error 500 del servidor. get_object_or_404 intenta la misma búsqueda pero, si el objeto no existe, captura esa excepción automáticamente y retorna una respuesta HTTP 404 (Not Found), evitando que el servidor devuelva un error no controlado.",
+    "key_points": [
+      "Model.objects.get() puede lanzar DoesNotExist sin controlar, derivando en error 500",
+      "get_object_or_404 captura esa excepción automáticamente",
+      "Retorna una respuesta HTTP 404 en lugar de un error de servidor"
+    ]
+  },
+  {
+    "id": 62,
+    "subject": "drf",
+    "topic": "Métodos del ORM",
+    "type": "mc",
+    "question": "¿Qué método del ORM equivale a la sentencia SQL 'SELECT * FROM tabla ORDER BY id DESC;'?",
+    "code_snippet": null,
+    "options": [
+      "Model.objects.filter(id='DESC')",
+      "Model.objects.all().desc()",
+      "Model.objects.order_by('-id')",
+      "Model.objects.get(order='desc')"
+    ],
+    "correct_index": 2,
+    "explanation": "Según la tabla del material, Model.objects.order_by('-id') equivale a SELECT * FROM tabla ORDER BY id DESC;, donde el prefijo '-' indica orden descendente.",
+    "option_explanations": [
+      "Incorrecta: filter() se usa para filtrar registros por condición, no para ordenar.",
+      "Incorrecta: .desc() no es un método del ORM mencionado en el material.",
+      "Correcta: order_by('-id') es el método listado en la tabla ORM del apunte para ordenar de forma descendente.",
+      "Incorrecta: get() devuelve un único objeto y lanza excepción si hay 0 o más de 1 resultado, no ordena resultados."
+    ]
+  },
+  {
+    "id": 63,
+    "subject": "drf",
+    "topic": "Comportamiento de Model.objects.get()",
+    "type": "concept",
+    "question": "¿Qué ocurre si Model.objects.get(...) encuentra 0 registros o más de 1 registro que cumplan la condición?",
+    "expected_answer": "Según la tabla de métodos ORM del material, Model.objects.get() está pensado para devolver un único objeto, y lanza una excepción si encuentra 0 registros o más de 1 registro que cumplan la condición (equivalente a un SELECT ... LIMIT 2 para detectar ese caso).",
+    "key_points": [
+      "get() devuelve un único objeto",
+      "Lanza excepción si hay 0 resultados",
+      "Lanza excepción si hay más de 1 resultado"
+    ]
+  },
+  {
+    "id": 64,
+    "subject": "drf",
+    "topic": "Definición de campos en modelos",
+    "type": "code",
+    "instructions": "Completá la definición del modelo AutorDb para que el campo fecha_fallecimiento pueda quedar vacío (tanto a nivel base de datos como en formularios), ya que no todos los autores tienen fecha de fallecimiento.",
+    "starter_code": "from django.db import models\n\nclass AutorDb(models.Model):\n    nombre = models.CharField(max_length=75, verbose_name=\"Nombre\")\n    fecha_nacimiento = models.DateField(verbose_name=\"Fecha Nacimiento\", null=False, blank=False)\n    fecha_fallecimiento = models.DateField(verbose_name=\"Fecha Fallecimiento\", _____)\n\n    def __str__(self):\n        return self.nombre",
+    "solution_code": "from django.db import models\n\nclass AutorDb(models.Model):\n    nombre = models.CharField(max_length=75, verbose_name=\"Nombre\")\n    fecha_nacimiento = models.DateField(verbose_name=\"Fecha Nacimiento\", null=False, blank=False)\n    fecha_fallecimiento = models.DateField(verbose_name=\"Fecha Fallecimiento\", null=True, blank=True)\n\n    def __str__(self):\n        return self.nombre",
+    "explanation": "En el material, el modelo AutorDb define fecha_fallecimiento con null=True, blank=True, permitiendo que el campo quede vacío tanto en la base de datos (null) como en formularios/validación (blank), a diferencia de fecha_nacimiento que es obligatorio (null=False, blank=False)."
+  },
+  {
+    "id": 65,
+    "subject": "drf",
+    "topic": "Relación ManyToManyField",
+    "type": "mc",
+    "question": "En el modelo del material, AutorDb tiene 'profesion = models.ManyToManyField(ProfesionDb, ...)'. ¿Cómo se accede a todas las profesiones de un autor concreto desde Python?",
+    "code_snippet": null,
+    "options": [
+      "autor.profesion_set.all()",
+      "autor.profesion.all",
+      "autor.ProfesionDb.all()",
+      "ProfesionDb.autor.all()"
+    ],
+    "correct_index": 1,
+    "explanation": "El material indica que, desde el modelo declarante (AutorDb), se accede a la relación ManyToManyField mediante autor.profesion.all.",
+    "option_explanations": [
+      "Incorrecta: la sintaxis _set corresponde a la relación inversa de ForeignKey (1:N), no a ManyToManyField.",
+      "Correcta: es la forma exacta descripta en el material para acceder a la relación M2M desde el modelo declarante.",
+      "Incorrecta: no se accede usando el nombre de la clase relacionada como atributo.",
+      "Incorrecta: invierte la relación de forma que no corresponde a la sintaxis del ORM mostrada en el material."
+    ]
+  },
+  {
+    "id": 66,
+    "subject": "drf",
+    "topic": "Relación inversa ForeignKey (_set)",
+    "type": "code",
+    "instructions": "Completá la plantilla HTML para recorrer, dentro de la página de un autor, todas las frases (FraseDb) relacionadas por ForeignKey a ese autor, usando la relación inversa por defecto.",
+    "starter_code": "<ul>\n{% for frase in _____ %}\n    <li>{{ frase.cita }}</li>\n{% endfor %}\n</ul>",
+    "solution_code": "<ul>\n{% for frase in autor.frasedb_set.all %}\n    <li>{{ frase.cita }}</li>\n{% endfor %}\n</ul>",
+    "explanation": "El material indica que, por defecto, Django genera una propiedad inversa usando el nombre del modelo relacionado en minúsculas seguido de _set (frasedb_set), y que en DTL se invoca .all sin paréntesis: {% for frase in autor.frasedb_set.all %}."
+  },
+  {
+    "id": 67,
+    "subject": "drf",
+    "topic": "related_name",
+    "type": "concept",
+    "question": "¿Para qué sirve el parámetro related_name en una relación ManyToManyField o ForeignKey, según el material?",
+    "expected_answer": "El material indica que el uso de related_name permite personalizar el identificador inverso de la relación, evitando tener que usar la sintaxis por defecto basada en el nombre del modelo seguido de _set (o el equivalente por defecto en M2M).",
+    "key_points": [
+      "Permite personalizar el nombre del identificador inverso",
+      "Evita depender de la sintaxis automática _set",
+      "Se menciona en el contexto de la relación ManyToManyField del material"
+    ]
+  },
+  {
+    "id": 68,
+    "subject": "drf",
+    "topic": "Clase Meta del modelo",
+    "type": "mc",
+    "question": "En el modelo AutorDb del material, ¿qué logra definir 'db_table = \"autores\"' dentro de class Meta?",
+    "code_snippet": "class AutorDb(models.Model):\n    ...\n    class Meta:\n        db_table = \"autores\"\n        verbose_name = \"Autor\"\n        verbose_name_plural = \"Autores\"",
+    "options": [
+      "Cambia el nombre de la clase Python del modelo",
+      "Define el nombre real de la tabla en la base de datos, en lugar del nombre autogenerado por Django",
+      "Elimina la necesidad de hacer migraciones",
+      "Define el orden por defecto de los registros"
+    ],
+    "correct_index": 1,
+    "explanation": "El material muestra db_table = 'autores' dentro de class Meta del modelo AutorDb como parte de la definición de modelos, usado junto a verbose_name y verbose_name_plural para personalizar cómo se representa el modelo, en este caso el nombre de la tabla en la base de datos.",
+    "option_explanations": [
+      "Incorrecta: db_table no afecta el nombre de la clase Python, solo el nombre de la tabla SQL asociada.",
+      "Correcta: db_table permite especificar el nombre de tabla en base de datos en lugar del que Django genera automáticamente.",
+      "Incorrecta: las migraciones siguen siendo necesarias para reflejar los modelos en la base de datos.",
+      "Incorrecta: el orden por defecto se define con otro atributo (ordering), no mencionado en este fragmento del material."
+    ]
+  },
+  {
+    "id": 69,
+    "subject": "drf",
+    "topic": "Personalización del panel admin",
+    "type": "code",
+    "instructions": "Completá el archivo admin.py para personalizar el encabezado del panel de administración con el texto 'Panel de Control', según lo mostrado en el material.",
+    "starter_code": "from django.contrib import admin\n\nadmin._____ = \"Panel de Control\"\nadmin.site.site_title = \"Administración del Sistema\"\nadmin.site.index_title = \"Gestión de Modelos\"",
+    "solution_code": "from django.contrib import admin\n\nadmin.site.site_header = \"Panel de Control\"\nadmin.site.site_title = \"Administración del Sistema\"\nadmin.site.index_title = \"Gestión de Modelos\"",
+    "explanation": "El material muestra que las variables globales del objeto admin.site (site_header, site_title, index_title) se modifican directamente para personalizar títulos e interfaz del panel de administración."
+  },
+  {
+    "id": 70,
+    "subject": "drf",
+    "topic": "Persistencia en acciones personalizadas del admin",
+    "type": "mc",
+    "question": "En una acción personalizada de ModelAdmin, si se modifica un atributo de cada objeto de un queryset dentro de un for pero se omite obj.save(), ¿qué sucede?",
+    "code_snippet": "@admin.action(description=\"Actualizar letras O mayúsculas a minúsculas\")\ndef actualizar_o(self, request, queryset):\n    for obj in queryset:\n        if \"O\" in obj.nombre:\n            obj.nombre = obj.nombre.replace(\"O\", \"o\")\n    self.message_user(request, \"Registros actualizados correctamente.\")",
+    "options": [
+      "Los cambios se guardan automáticamente al finalizar el for",
+      "Django lanza un error de validación al no llamar a save()",
+      "El cambio solo ocurre en memoria RAM del servidor y no se refleja en la base de datos",
+      "El queryset completo se elimina de la base de datos"
+    ],
+    "correct_index": 2,
+    "explanation": "El material señala como 'punto crítico' que modificar el atributo de un objeto en Python no altera la base de datos a menos que se llame explícitamente a obj.save(), ya que sin ese llamado el cambio no emite la sentencia UPDATE correspondiente.",
+    "option_explanations": [
+      "Incorrecta: sin obj.save() no hay guardado automático, según lo indicado explícitamente en el material.",
+      "Incorrecta: el material no menciona que Django lance un error de validación en este escenario, simplemente el cambio no persiste.",
+      "Correcta: el material aclara que la modificación ocurre únicamente en memoria RAM del servidor hasta que se invoca obj.save().",
+      "Incorrecta: omitir save() no borra registros, simplemente los cambios de atributo no persisten en la base de datos."
+    ]
+  },
+  {
+    "id": 71,
+    "subject": "drf",
+    "topic": "Registro de acciones personalizadas en ModelAdmin",
+    "type": "code",
+    "instructions": "Completá la clase AutorAdmin para registrar la acción actualizar_o en el desplegable de acciones del panel de administración.",
+    "starter_code": "@admin.register(AutorDb)\nclass AutorAdmin(admin.ModelAdmin):\n    fields = [\"nombre\", \"fecha_nacimiento\", \"fecha_fallecimiento\", \"profesion\"]\n    list_display = [\"nombre\", \"fecha_nacimiento\"]\n\n    @admin.action(description=\"Actualizar letras O mayúsculas a minúsculas\")\n    def actualizar_o(self, request, queryset):\n        for obj in queryset:\n            if \"O\" in obj.nombre:\n                obj.nombre = obj.nombre.replace(\"O\", \"o\")\n                obj.save()\n        self.message_user(request, \"Registros actualizados correctamente.\")\n\n    _____",
+    "solution_code": "@admin.register(AutorDb)\nclass AutorAdmin(admin.ModelAdmin):\n    fields = [\"nombre\", \"fecha_nacimiento\", \"fecha_fallecimiento\", \"profesion\"]\n    list_display = [\"nombre\", \"fecha_nacimiento\"]\n\n    @admin.action(description=\"Actualizar letras O mayúsculas a minúsculas\")\n    def actualizar_o(self, request, queryset):\n        for obj in queryset:\n            if \"O\" in obj.nombre:\n                obj.nombre = obj.nombre.replace(\"O\", \"o\")\n                obj.save()\n        self.message_user(request, \"Registros actualizados correctamente.\")\n\n    actions = [actualizar_o]",
+    "explanation": "El material muestra que, para que una acción personalizada aparezca en el desplegable de acciones del admin, debe registrarse en el atributo actions = [actualizar_o] de la clase ModelAdmin."
+  },
+  {
+    "id": 72,
+    "subject": "drf",
+    "topic": "Sintaxis básica de DTL",
+    "type": "mc",
+    "question": "¿Cuál es la diferencia de sintaxis entre imprimir una variable y ejecutar lógica de control en Django Template Language (DTL)?",
+    "code_snippet": null,
+    "options": [
+      "Ambas usan {% %}",
+      "{{ variable }} imprime valores; {% tag %} ejecuta lógica de control como for, if o load static",
+      "{{ variable }} ejecuta lógica; {% tag %} imprime valores",
+      "Ambas usan {{ }}"
+    ],
+    "correct_index": 1,
+    "explanation": "El material define que {{ variable }} se usa para imprimir valores en el HTML, mientras que {% tag %} ejecuta lógica de control (por ejemplo for, if, load static).",
+    "option_explanations": [
+      "Incorrecta: cada sintaxis tiene un propósito distinto según el material, no son intercambiables.",
+      "Correcta: coincide exactamente con la distinción hecha en la sección 6.1 del material.",
+      "Incorrecta: invierte los roles descriptos en el material.",
+      "Incorrecta: {% %} está reservado para tags de lógica, no para imprimir variables."
+    ]
+  },
+  {
+    "id": 73,
+    "subject": "drf",
+    "topic": "Bucle for en DTL vs Python",
+    "type": "concept",
+    "question": "Mencioná tres diferencias entre el bucle {% for %} de DTL y el bucle for nativo de Python, según el material.",
+    "expected_answer": "Según el material, DTL exige el cierre explícito de la etiqueta con {% endfor %} (a diferencia de Python, donde el bloque se define por indentación); ofrece la cláusula {% empty %}, un bloque alternativo opcional que se renderiza si la lista no contiene elementos; y provee la variable especial forloop, que ofrece métricas de la iteración como forloop.counter, forloop.first y forloop.last.",
+    "key_points": [
+      "Requiere cierre explícito con {% endfor %}",
+      "Tiene la cláusula {% empty %} para listas vacías",
+      "Ofrece la variable forloop con counter, first y last"
+    ]
+  },
+  {
+    "id": 74,
+    "subject": "drf",
+    "topic": "Etiqueta {% empty %} en un listado de autores",
+    "type": "code",
+    "instructions": "Completá la plantilla para que, si la lista 'objeto' de autores está vacía, se muestre el mensaje 'No hay autores registrados.' en lugar del listado.",
+    "starter_code": "<ul>\n{% for autor in objeto %}\n    <li>{{ autor.nombre }}</li>\n_____\n    <li>No hay autores registrados.</li>\n{% endfor %}\n</ul>",
+    "solution_code": "<ul>\n{% for autor in objeto %}\n    <li>{{ autor.nombre }}</li>\n{% empty %}\n    <li>No hay autores registrados.</li>\n{% endfor %}\n</ul>",
+    "explanation": "El material muestra la etiqueta {% empty %} como bloque alternativo opcional dentro de {% for %}, que se renderiza únicamente cuando la lista iterada no contiene elementos."
+  },
+  {
+    "id": 75,
+    "subject": "drf",
+    "topic": "Modularización de rutas con include()",
+    "type": "concept",
+    "question": "¿Por qué se utiliza include() para modularizar las urls.py en Django en lugar de definir todas las rutas en el urls.py principal?",
+    "expected_answer": "Porque promueve el desacoplamiento y la reutilización de aplicaciones en distintos proyectos, mantiene la organización del código evitando archivos monolíticos, y reduce los conflictos de fusión (merge conflicts) en equipos de desarrollo.",
+    "key_points": [
+      "Promueve el desacoplamiento y la reutilización de apps",
+      "Evita archivos urls.py monolíticos",
+      "Reduce conflictos de merge en equipos de desarrollo"
+    ]
+  }
+]
