@@ -9,7 +9,38 @@
       (click)="selectSubject(item.id)">
       <div class="card-header">
         <span class="icon">{{ item.icon }}</span>
-        <span class="badge">{{ item.badge }}</span>
+        <div class="card-header-actions">
+          @if (getReviewCount(item.id) > 0) {
+            <div class="card-action-group">
+              <button 
+                type="button" 
+                class="header-action-btn review-btn"
+                [title]="'Repasar Mazo de Repaso de ' + item.label + ' (' + getReviewCount(item.id) + ' pendientes)'"
+                (click)="onStartReview(item.id, $event)">
+                🧠 <span class="action-count">{{ getReviewCount(item.id) }}</span>
+              </button>
+              <button 
+                type="button" 
+                class="header-action-btn clear-btn"
+                [title]="'Vaciar Mazo de Repaso de ' + item.label"
+                (click)="onClearReview(item.id, $event)">
+                🗑️
+              </button>
+            </div>
+          }
+
+          @if (getDiscardedCount(item.id) > 0) {
+            <button 
+              type="button" 
+              class="header-action-btn restore-btn"
+              [title]="'Reincorporar ' + getDiscardedCount(item.id) + ' preguntas descartadas (<24h) de ' + item.label"
+              (click)="onRestoreDiscarded(item.id, $event)">
+              ♻️ <span class="action-count">{{ getDiscardedCount(item.id) }}</span>
+            </button>
+          }
+
+          <span class="badge">{{ item.badge }}</span>
+        </div>
       </div>
       <h3 class="card-title">{{ item.label }}</h3>
       <p class="card-desc">{{ item.description }}</p>

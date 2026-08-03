@@ -1,6 +1,8 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 import { SubjectType } from '../../models/exercise.model';
+import { QuizService } from '../../services/quiz.service';
 
 export interface SubjectOption {
   id: SubjectType | null;
@@ -15,6 +17,20 @@ export interface LimitOption {
   label: string;
 }
 
+export interface ConfirmModalConfig {
+  title: string;
+  message: string;
+  icon?: string;
+  confirmText?: string;
+  cancelText?: string;
+  confirmClass?: string;
+  action: () => void;
+}
+
+export interface ConfirmModalState extends ConfirmModalConfig {
+  isOpen: boolean;
+}
+
 @Component({
   selector: 'app-subject-filter',
   standalone: true,
@@ -23,6 +39,9 @@ export interface LimitOption {
   styleUrl: './subject-filter.scss',
 })
 export class SubjectFilter {
+  private quizService = inject(QuizService);
+  private router = inject(Router);
+
   @Input() selectedSubject: SubjectType | null = null;
   @Input() selectedLimit: number | null = 10;
   @Input() limitOptions: LimitOption[] = [];
@@ -31,6 +50,59 @@ export class SubjectFilter {
   @Output() subjectSelected = new EventEmitter<SubjectType | null>();
   @Output() limitSelected = new EventEmitter<number | null>();
   @Output() startQuizRequested = new EventEmitter<void>();
+  @Output() deckUpdated = new EventEmitter<void>();
+  @Output() confirmRequested = new EventEmitter<ConfirmModalConfig>();
+
+  getReviewCount(subjectId: SubjectType | null): number {
+    return this.quizService.getReviewDeckCount(subjectId ?? undefined);
+  }
+
+  getDiscardedCount(subjectId: SubjectType | null): number {
+    return this.quizService.getDiscardedDeckCount(subjectId ?? undefined);
+  }
+
+  onStartReview(subjectId: SubjectType | null, event: Event) {
+    event.stopPropagation();
+    const queryParams: any = { mode: 'review' };
+    if (subjectId) queryParams.subject = subjectId;
+    this.router.navigate(['/quiz'], { queryParams });
+  }
+
+  onClearReview(subjectId: SubjectType | null, event: Event) {
+    event.stopPropagation();
+    const subjectName = this.subjects.find((s) => s.id === subjectId)?.label ?? 'todas las materias';
+    
+    this.confirmRequested.emit({
+      title: 'Vaciar Mazo de Repaso',
+      message: `¿Estás seguro de que deseas vaciar las preguntas acumuladas de repaso para ${subjectName}?`,
+      icon: '🗑️',
+      confirmText: 'Sí, Vaciar Mazo',
+      cancelText: 'Cancelar',
+      confirmClass: 'btn-danger',
+      action: () => {
+        this.quizService.clearReviewDeck(subjectId ?? undefined);
+        this.deckUpdated.emit();
+      },
+    });
+  }
+
+  onRestoreDiscarded(subjectId: SubjectType | null, event: Event) {
+    event.stopPropagation();
+    const subjectName = this.subjects.find((s) => s.id === subjectId)?.label ?? 'todas las materias';
+    
+    this.confirmRequested.emit({
+      title: 'Reincorporar Preguntas',
+      message: `¿Deseas reincorporar las preguntas descartadas en las últimas 24 horas para ${subjectName} al mazo activo?`,
+      icon: '♻️',
+      confirmText: 'Sí, Reincorporar',
+      cancelText: 'Cancelar',
+      confirmClass: 'btn-success',
+      action: () => {
+        this.quizService.restoreAllDiscarded(subjectId ?? undefined);
+        this.deckUpdated.emit();
+      },
+    });
+  }
 
   subjects: SubjectOption[] = [
     {

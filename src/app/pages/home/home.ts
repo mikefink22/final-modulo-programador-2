@@ -16,6 +16,20 @@ export interface CategoryChip {
   icon: string;
 }
 
+export interface ConfirmModalConfig {
+  title: string;
+  message: string;
+  icon?: string;
+  confirmText?: string;
+  cancelText?: string;
+  confirmClass?: string;
+  action: () => void;
+}
+
+export interface ConfirmModalState extends ConfirmModalConfig {
+  isOpen: boolean;
+}
+
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -35,6 +49,41 @@ export class Home implements OnInit {
   discardedDeckCount: number = 0;
 
   limitOptions: LimitOption[] = [];
+
+  confirmModal: ConfirmModalState = {
+    isOpen: false,
+    title: '',
+    message: '',
+    icon: '❓',
+    confirmText: 'Confirmar',
+    cancelText: 'Cancelar',
+    confirmClass: 'btn-primary',
+    action: () => {},
+  };
+
+  openConfirmModal(config: ConfirmModalConfig) {
+    this.confirmModal = {
+      isOpen: true,
+      title: config.title,
+      message: config.message,
+      icon: config.icon ?? '❓',
+      confirmText: config.confirmText ?? 'Confirmar',
+      cancelText: config.cancelText ?? 'Cancelar',
+      confirmClass: config.confirmClass ?? 'btn-primary',
+      action: config.action,
+    };
+  }
+
+  closeConfirmModal() {
+    this.confirmModal.isOpen = false;
+  }
+
+  executeConfirmModalAction() {
+    if (this.confirmModal.action) {
+      this.confirmModal.action();
+    }
+    this.closeConfirmModal();
+  }
 
   categoryChips: CategoryChip[] = [
     { id: null, label: 'Todas', icon: '✨' },
