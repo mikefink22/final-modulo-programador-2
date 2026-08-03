@@ -244,7 +244,6 @@ code:not(pre code) {
   }
   to {
     opacity: 1;
-    transform: translateY(0);
   }
 }
 
@@ -264,6 +263,75 @@ code:not(pre code) {
 
   .btn-text-mobile, .counter-mobile, .score-mobile {
     display: inline;
+  }
+}
+
+/* Custom Confirm Modal */
+.confirm-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+
+  .confirm-modal-box {
+    width: 100%;
+    max-width: 420px;
+    padding: 28px 24px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .modal-icon-badge {
+      font-size: 2.2rem;
+      margin-bottom: 12px;
+      width: 56px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-color);
+    }
+
+    .modal-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 8px;
+    }
+
+    .modal-message {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 24px;
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 12px;
+      width: 100%;
+
+      .btn {
+        flex: 1;
+        padding: 12px;
+        font-size: 0.9rem;
+        font-weight: 700;
+        border-radius: var(--radius-md);
+      }
+    }
   }
 }
 
